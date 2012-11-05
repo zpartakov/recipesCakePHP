@@ -13,6 +13,13 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with PmCake. If not, see <http://www.gnu.org/licenses/>.
+
+/**
+FRENCH:
+recipesCakePHP est un système de gestion de recettes de cuisine en ligne
+vous pouvez voir le résultat sur http://www.akademia.ch/recettes
+requis: AMP (apache - mysql - php), cakePHP
+*/
  
 /**
 *
