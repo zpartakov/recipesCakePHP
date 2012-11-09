@@ -57,6 +57,7 @@ class RecettesController extends AppController {
 						$result['errors'][] = "Error uploaded file. Please try again.";
 					}
 		}
+		
   /* if(strlen($this->data['Recette']['image']['tmp_name'])<1) {
 	   $this->data['Recette']['pict']="";
    }*/
@@ -70,6 +71,11 @@ class RecettesController extends AppController {
 				$this->Session->setFlash(___('the recette could not be saved. Please, try again.', true), 'flash_error');
 			}
 		}
+			$types = $this->Recette->Type->find('list');
+		$modeCuissons = $this->Recette->ModeCuisson->find('list');
+		$diets = $this->Recette->Diet->find('list');
+		$this->set(compact('types', 'modeCuissons', 'diets'));
+
 		
 	}
 	
@@ -95,7 +101,13 @@ function edit($id = null)
 				$this->Session->setFlash(___('the recette could not be saved. Please, try again.', true), 'flash_error');
 			}
 		}
+		$types = $this->Recette->Type->find('list');
 		
+		$modeCuissons = $this->Recette->ModeCuisson->find('list', array('order' => array('ModeCuisson.lib ASC')));
+ $diets = $this->Recette->Diet->find('list', array('order' => array('Diet.lib ASC')));
+		//$diets = $this->Recette->Diet->find('list', array('conditions' => array('ORDER Diet.lib' => 'asc')));
+		 
+		$this->set(compact('types', 'modeCuissons', 'diets'));
 		$this->_set_recette($id);
 		
 	}

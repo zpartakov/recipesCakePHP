@@ -2,7 +2,18 @@
 class ModeCuissonsController extends AppController {
 
 	var $name = 'ModeCuissons';
+	
+		var $components = array('Auth','RequestHandler');
 
+  function beforeFilter() {
+		$this->Auth->allow('index','view');
+	 }
+	var $paginate = array(
+        'limit' => 25,
+        'order' => array(
+            'ModeCuisson.lib' => 'desc'
+        )
+    );
 	function index() {
 		/*$this->ModeCuisson->recursive = 0;
 		$this->set('modeCuissons', $this->paginate());*/

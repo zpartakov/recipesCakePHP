@@ -94,6 +94,16 @@ $hauteur_champs_textarea=5;
 			<?php echo $this->AlaxosForm->input('source', array('type'=>'text','size'=>$largeur_champs_text,'label' => false, 'value'=>mysql_result($result,0,'source'), 'size'=>'25')); ?>
 		</td>
 	</tr>
+	
+	
+	<?php
+	
+		echo $this->Form->input('mode_cuisson_id');
+		echo $this->Form->input('time');
+		echo $this->Form->input('difficulty');
+		echo $this->Form->input('price');
+		echo $this->Form->input('diet_id');
+	?>	
 	<tr>
 		<td>
 			<?php ___('Image') ?>
@@ -120,6 +130,10 @@ $hauteur_champs_textarea=5;
 
 		</td>
 	</tr>
+	
+	
+	
+	
 	</table>
 		 </td>
 		 <td><?php echo $this->AlaxosForm->end(___('submit', true)); ?></td>

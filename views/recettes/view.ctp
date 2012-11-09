@@ -157,11 +157,45 @@ if($session->read('Auth.User.role')) {
 			?>
 		</td>
 	</tr>
+	
+	<tr>
+		<td>
+			<dl>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Mode Cuisson'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($recette['ModeCuisson']['id'], array('controller' => 'mode_cuissons', 'action' => 'view', $recette['ModeCuisson']['id'])); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Time'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $recette['Recette']['time']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Difficulty'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $recette['Recette']['difficulty']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Price'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $recette['Recette']['price']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Diet'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($recette['Diet']['lib'], array('controller' => 'diets', 'action' => 'view', $recette['Diet']['id'])); ?>
+			&nbsp;
+		</dd>
+	</dl>
+	</td>
+	</tr>
 	<?
 }
 ?>
 	</table>
 </div>
+
+
 
 <div class="retour">
 <?
