@@ -2,6 +2,7 @@
 class DietsController extends AppController {
 
 	var $name = 'Diets';
+	var $components = array('Auth','RequestHandler');
 	
 	function beforeFilter() {
 		$this->Auth->allow('index','view');

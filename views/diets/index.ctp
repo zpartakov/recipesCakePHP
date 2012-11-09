@@ -1,3 +1,6 @@
+<?php 
+$this->pageTitle="Régimes";
+?>
 <div class="diets index">
 	<h2>Régimes</h2>
 	<table cellpadding="0" cellspacing="0">

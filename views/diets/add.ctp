@@ -1,4 +1,6 @@
-<div class="diets form">
+<?php 
+$this->pageTitle="Ajouter régime";
+?><div class="diets form">
 <?php echo $this->Form->create('Diet');?>
 	<fieldset>
  		<legend><?php __('Ajouter un régime'); ?></legend>
