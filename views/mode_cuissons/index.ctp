@@ -21,6 +21,18 @@ if(!$sql) {
 		while($i<mysql_num_rows($sql)){
 			$id1=mysql_result($sql,$i,'id');
 			echo "<h1>" .mysql_result($sql,$i,'lib') ."</h1>";
+			
+
+if($session->read('Auth.User.role')) {
+
+			echo $this->Html->link(__('View', true), array('action' => 'view', mysql_result($sql,$i,'id')));
+			echo "&nbsp;";
+			echo $this->Html->link(__('Edit', true), array('action' => 'edit', mysql_result($sql,$i,'id')));
+			echo "&nbsp;";
+			echo $this->Html->link(__('Delete', true), array('action' => 'delete', mysql_result($sql,$i,'id')), null, sprintf(__('Are you sure you want to delete # %s?', true), mysql_result($sql,$i,'id'))); 
+}
+			
+			
 			$sql2="SELECT * FROM mode_cuissons WHERE parent=".$id1;
 				#do and check sql
 				$sql2=mysql_query($sql2);
@@ -31,6 +43,21 @@ if(!$sql) {
 				while($i2<mysql_num_rows($sql2)){
 					$id2=mysql_result($sql2,$i2,'id');
 					echo "<h2>" .mysql_result($sql2,$i2,'lib') ."</h2>";
+
+
+if($session->read('Auth.User.role')) {
+
+ echo $this->Html->link(__('View', true), array('action' => 'view', mysql_result($sql2,$i2,'id'))); 
+ 			echo "&nbsp;";
+
+ echo $this->Html->link(__('Edit', true), array('action' => 'edit', mysql_result($sql2,$i2,'id'))); 
+			echo "&nbsp;";
+ echo $this->Html->link(__('Delete', true), array('action' => 'delete', mysql_result($sql2,$i2,'id')), null, sprintf(__('Are you sure you want to delete # %s?', true), mysql_result($sql2,$i2,'id'))); 
+
+}
+					
+					
+					
 					$sql3="SELECT * FROM mode_cuissons WHERE parent=".$id2;
 					#echo $sql3;
 						#do and check sql
@@ -42,6 +69,17 @@ if(!$sql) {
 						while($i3<mysql_num_rows($sql3)){
 							$id3=mysql_result($sql3,$i,'id');
 							echo "<h3><a href=\"modecuisson?id=" .$id3 ."\">" .mysql_result($sql3,$i3,'lib') ."</a></h3>";
+							?>	
+								<?
+if($session->read('Auth.User.role')) {
+	?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', mysql_result($sql3,$i3,'id'))); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', mysql_result($sql3,$i3,'id'))); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', mysql_result($sql3,$i3,'id')), null, sprintf(__('Are you sure you want to delete # %s?', true), mysql_result($sql3,$i3,'id'))); ?>
+		<?
+}
+?>
+		<?php
 							$i3++;
 						}
 

@@ -62,7 +62,7 @@ if($session->read('Auth.User.role')=="administrator") {
 			<li><a href="<? echo CHEMIN; ?>recettes/rss">MàJ flux RSS</a></li>
 			<li><a href="recettes/app/webroot/img/up.php">Nouvelle image TODO</a></li>
 			<li><a href="<? echo CHEMIN; ?>menus/">Menus</a></li>
-			<li><a href="<? echo CHEMIN; ?>menus/">Menus</a></li>
+			<li><a href="<? echo CHEMIN; ?>mode_cuissons/">Modes de cuisson</a></li>
 			<li><a href="<? echo CHEMIN; ?>diets/">Régimes</a></li>
 			<li><a href="<? echo CHEMIN; ?>invitations/">Invitations</a></li>
 			<li><a href="<? echo CHEMIN; ?>stats/">Statistiques</a></li>
