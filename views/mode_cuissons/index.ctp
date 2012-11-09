@@ -1,91 +1,51 @@
-<?
-$this->pageTitle = "Modes de cuisson"; 
-?>
-<style>
-h2 {
-	margin-left: 10px;
-}
-h3 {
-	margin-left: 30px;
-}
-</style>
-<?
-echo "<h1 style=\"font-style: bigger\">" .$this->pageTitle ."</h1>";
-$sql="SELECT * FROM mode_cuissons WHERE parent=0";
-#do and check sql
-$sql=mysql_query($sql);
-if(!$sql) {
-	echo "SQL error: " .mysql_error(); exit;
-}
-		$i=0;
-		while($i<mysql_num_rows($sql)){
-			$id1=mysql_result($sql,$i,'id');
-			echo "<h1>" .mysql_result($sql,$i,'lib') ."</h1>";
-			
-
-if($session->read('Auth.User.role')) {
-
-			echo $this->Html->link(__('View', true), array('action' => 'view', mysql_result($sql,$i,'id')));
-			echo "&nbsp;";
-			echo $this->Html->link(__('Edit', true), array('action' => 'edit', mysql_result($sql,$i,'id')));
-			echo "&nbsp;";
-			echo $this->Html->link(__('Delete', true), array('action' => 'delete', mysql_result($sql,$i,'id')), null, sprintf(__('Are you sure you want to delete # %s?', true), mysql_result($sql,$i,'id'))); 
-}
-			
-			
-			$sql2="SELECT * FROM mode_cuissons WHERE parent=".$id1;
-				#do and check sql
-				$sql2=mysql_query($sql2);
-				if(!$sql2) {
-					echo "SQL error: " .mysql_error(); exit;
-				}
-				$i2=0;
-				while($i2<mysql_num_rows($sql2)){
-					$id2=mysql_result($sql2,$i2,'id');
-					echo "<h2>" .mysql_result($sql2,$i2,'lib') ."</h2>";
-
-
-if($session->read('Auth.User.role')) {
-
- echo $this->Html->link(__('View', true), array('action' => 'view', mysql_result($sql2,$i2,'id'))); 
- 			echo "&nbsp;";
-
- echo $this->Html->link(__('Edit', true), array('action' => 'edit', mysql_result($sql2,$i2,'id'))); 
-			echo "&nbsp;";
- echo $this->Html->link(__('Delete', true), array('action' => 'delete', mysql_result($sql2,$i2,'id')), null, sprintf(__('Are you sure you want to delete # %s?', true), mysql_result($sql2,$i2,'id'))); 
-
-}
-					
-					
-					
-					$sql3="SELECT * FROM mode_cuissons WHERE parent=".$id2;
-					#echo $sql3;
-						#do and check sql
-						$sql3=mysql_query($sql3);
-						if(!$sql3) {
-							echo "SQL error: " .mysql_error(); exit;
-						}
-						$i3=0;
-						while($i3<mysql_num_rows($sql3)){
-							$id3=mysql_result($sql3,$i,'id');
-							echo "<h3><a href=\"modecuisson?id=" .$id3 ."\">" .mysql_result($sql3,$i3,'lib') ."</a></h3>";
-							?>	
-								<?
-if($session->read('Auth.User.role')) {
+<div class="modeCuissons index">
+	<h2><?php __('Mode Cuissons');?></h2>
+	<table cellpadding="0" cellspacing="0">
+	<tr>
+			<th><?php echo $this->Paginator->sort('id');?></th>
+			<th><?php echo $this->Paginator->sort('parent');?></th>
+			<th><?php echo $this->Paginator->sort('lib');?></th>
+			<th><?php echo $this->Paginator->sort('rem');?></th>
+			<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+	$i = 0;
+	foreach ($modeCuissons as $modeCuisson):
+		$class = null;
+		if ($i++ % 2 == 0) {
+			$class = ' class="altrow"';
+		}
 	?>
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', mysql_result($sql3,$i3,'id'))); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', mysql_result($sql3,$i3,'id'))); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', mysql_result($sql3,$i3,'id')), null, sprintf(__('Are you sure you want to delete # %s?', true), mysql_result($sql3,$i3,'id'))); ?>
-		<?
-}
-?>
-		<?php
-							$i3++;
-						}
+	<tr<?php echo $class;?>>
+		<td><?php echo $modeCuisson['ModeCuisson']['id']; ?>&nbsp;</td>
+		<td><?php echo $modeCuisson['ModeCuisson']['parent']; ?>&nbsp;</td>
+		<td><?php echo $modeCuisson['ModeCuisson']['lib']; ?>&nbsp;</td>
+		<td><?php echo $modeCuisson['ModeCuisson']['rem']; ?>&nbsp;</td>
+		<td class="actions">
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $modeCuisson['ModeCuisson']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $modeCuisson['ModeCuisson']['id'])); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $modeCuisson['ModeCuisson']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $modeCuisson['ModeCuisson']['id'])); ?>
+		</td>
+	</tr>
+<?php endforeach; ?>
+	</table>
+	<p>
+	<?php
+	echo $this->Paginator->counter(array(
+	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+	));
+	?>	</p>
 
-					$i2++;
-				}
-	$i++;
-	}
-
-?>
+	<div class="paging">
+		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
+	 | 	<?php echo $this->Paginator->numbers();?>
+ |
+		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	</div>
+</div>
+<div class="actions">
+	<h3><?php __('Actions'); ?></h3>
+	<ul>
+		<li><?php echo $this->Html->link(__('New Mode Cuisson', true), array('action' => 'add')); ?></li>
+	</ul>
+</div>

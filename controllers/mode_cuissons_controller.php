@@ -15,8 +15,8 @@ class ModeCuissonsController extends AppController {
         )
     );
 	function index() {
-		/*$this->ModeCuisson->recursive = 0;
-		$this->set('modeCuissons', $this->paginate());*/
+		$this->ModeCuisson->recursive = 0;
+		$this->set('modeCuissons', $this->paginate());
 	}
 
 	function view($id = null) {
