@@ -1,0 +1,17 @@
+tmp/
+tmp/* 
+tests/
+config/core.php.local
+config/core.php.prod
+config/core.php
+config/database.php
+.git/*
+webroot/img/*
+tmp/logs*
+clearcache.sh
+clone.sh
+exportaka.sh
+importaka.sh
+push.sh
+!empty
+plugins/contact
