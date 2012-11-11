@@ -1,4 +1,5 @@
 <?
+
 $this->pageTitle = "Ajouter une recette"; 
 $largeur_champs_text=50;
 $largeur_champs_textarea=60;
@@ -97,13 +98,22 @@ $hauteur_champs_textarea=5;
 	
 	
 	<?php
+//	print_r($this);
+	//sort($diets);
+	//print_r($diets);
 	
-		echo $this->Form->input('mode_cuisson_id');
+	//echo "diet: " .print_r($this->input('diet_id')); exit;
+	
+		//echo $this->Form->input('mode_cuisson_id');
+		mode_de_cuisson();
 		echo $this->Form->input('time');
 		echo $this->Form->input('difficulty');
 		echo $this->Form->input('price');
-		echo $this->Form->input('diet_id');
-	?>	
+	/*	$options=array('order' => ('lib ASC'));
+		echo $this->Form->input('diet_id', $options);*/
+		regimes();
+		//echo $this->Form->input('diet_id');
+		?>	
 	<tr>
 		<td>
 			<?php ___('Image') ?>
