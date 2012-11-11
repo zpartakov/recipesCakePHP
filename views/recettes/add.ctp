@@ -106,9 +106,9 @@ $hauteur_champs_textarea=5;
 	
 		//echo $this->Form->input('mode_cuisson_id');
 		mode_de_cuisson();
-		echo $this->Form->input('time');
-		echo $this->Form->input('difficulty');
-		echo $this->Form->input('price');
+		echo $this->Form->input('time', array('value'=>"-"));
+		echo $this->Form->input('difficulty', array('value'=>"-"));
+		echo $this->Form->input('price', array('value'=>"-"));
 	/*	$options=array('order' => ('lib ASC'));
 		echo $this->Form->input('diet_id', $options);*/
 		regimes();
