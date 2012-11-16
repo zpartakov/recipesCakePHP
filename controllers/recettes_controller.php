@@ -416,6 +416,10 @@ function regimes($iddiet) {
  * renvoie les régimes
 */
 function mode_de_cuisson($id) {
+	if(!$id){
+		$id=21;
+	}
+//	echo $id; exit;
 	#$letype=preg_replace("/7/","Entrées",$idt);
 	$sqltl="SELECT * FROM  mode_cuissons ORDER BY lib";
 	//echo $sqltl;
@@ -430,7 +434,7 @@ function mode_de_cuisson($id) {
 		$lib=mysql_result($result,$i,'lib');
 		echo "<option value=\"" .mysql_result($result,$i,'id') ."\"";
 		//special to erase later
-		if(mysql_result($result,$i,'id')=='$id') {
+		if(mysql_result($result,$i,'id')==$id) {
 			echo " selected";
 		}
 		echo ">" .mysql_result($result,$i,'lib') ."</option>\n";
