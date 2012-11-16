@@ -6,7 +6,7 @@ class ModeCuissonsController extends AppController {
 		var $components = array('Auth','RequestHandler');
 
   function beforeFilter() {
-		$this->Auth->allow('index','view');
+		$this->Auth->allow('index','view','liste_modecuisson');
 	 }
 	var $paginate = array(
         'limit' => 25,
@@ -71,6 +71,24 @@ class ModeCuissonsController extends AppController {
 	}
 	
 	function modecuisson() {
+	}
+	
+	/*affiche tous les ingrédients */
+	
+	function liste_modecuisson() {
+		$sql="SELECT * FROM mode_cuissons ORDER BY lib";
+		#echo $sql;
+		$result = mysql_query($sql);
+		testsql($result);
+		echo "<select name=\"mode_cuisson\" size=\"18\">";
+		echo "<option value='' selected>-- tous --";
+		$i=0;
+		while ($i < mysql_num_rows($result)) {
+	
+			echo "<option value=\"" .mysql_result($result,$i,'id') ."\">" .mysql_result($result,$i,'lib') ."</option>\n";
+			$i++;
+		}
+		echo "</select>";
 	}
 }
 ?>

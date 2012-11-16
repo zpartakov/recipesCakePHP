@@ -21,6 +21,13 @@ if($session->read('Auth.User.role')) {
 		//include countries
       $this->requestAction('/recettes/pays');
       ?>
+      <p>
+Mode de cuissons<br/>
+      <?
+		//include mode de cuissons
+      $this->requestAction('/mode_cuissons/liste_modecuisson');
+      ?>
+</p>
       </td>
 	 
       <td width="385"> 

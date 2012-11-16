@@ -19,8 +19,11 @@ $image=$_GET['image'];
 $kids=$_GET['kids'];
 $new=$_GET['new'];
 $fulltext=$_GET['fulltext'];
-
-
+$mode_cuisson=$_GET['mode_cuisson'];
+if (!is_numeric($mode_cuisson)) {
+$mode_cuisson="%%";
+}
+//echo $mode_cuisson; exit;
 #conditions based on vars
 if($kids==1) {
 $prep=$prep."%<!--kids-->%";
@@ -145,24 +148,42 @@ $ingrNot="AND $selection MATCH (ingr) AGAINST ('$ingrNot' IN BOOLEAN MODE)";
 #recherche simple initiale
 #admin
   if($s==1) {
-$sql="select * "
-. "from recettes "
-. "where prov like '%$prov%' and titre like '%$titre%' and prep like '%$prep%' and temps like '%$temps%' and ingr like '%$ingr%' and pers like '%$pers%' and type_id like '$type_id' and ingr like '%$ingr%' AND ingr "
-. $selection
-. " like '%$ingrNot%' AND ingr "
-. $selection1
-. " like '%$ingrNot1%' "
-. " AND source LIKE '%$source%' order by type_id,titre asc";
+$sql="
+SELECT * "
+. "FROM recettes "
+. "WHERE prov LIKE '%$prov%' 
+AND titre LIKE '%$titre%' 
+AND prep LIKE '%$prep%' 
+AND temps LIKE '%$temps%' 
+AND ingr LIKE '%$ingr%' 
+AND pers LIKE '%$pers%' 
+AND type_id LIKE '$type_id' 
+AND ingr LIKE '%$ingr%' 
+AND ingr ". $selection. " LIKE '%$ingrNot%' 
+AND ingr ". $selection1. " LIKE '%$ingrNot1%' "
+. " AND source LIKE '%$source%' 
+AND mode_cuisson_id LIKE '$mode_cuisson' 
+ORDER BY type_id,titre ASC
+";
   } else {
 #surfer
-$sql="select * "
-. "from recettes "
-. "where prov like '%$prov%' and titre like '%$titre%' and prep like '%$prep%' and temps like '%$temps%' and ingr like '%$ingr%' and pers like '%$pers%' and type_id like '$type_id' and ingr like '%$ingr%' AND ingr "
-. $selection
-. " like '%$ingrNot%' AND ingr "
-. $selection1
-. " like '%$ingrNot1%' "
-. " AND source LIKE '%$source%' AND private=0 order by type_id,titre asc";
+$sql="
+SELECT * "
+. "FROM recettes "
+. "WHERE prov LIKE '%$prov%' 
+AND titre LIKE '%$titre%' 
+AND prep LIKE '%$prep%' 
+AND temps LIKE '%$temps%' 
+AND ingr LIKE '%$ingr%' 
+AND pers LIKE '%$pers%' 
+AND type_id LIKE '$type_id' 
+AND ingr LIKE '%$ingr%' 
+AND ingr ". $selection. " LIKE '%$ingrNot%' 
+AND ingr ". $selection1. " LIKE '%$ingrNot1%' "
+. " AND source LIKE '%$source%' 
+  AND private=0 
+  AND mode_cuisson_id LIKE '$mode_cuisson' 
+  ORDER BY type_id,titre ASC";
   }
 
 #menus
@@ -179,9 +200,9 @@ $sql="select * "
       }}
     $sqlmenu=preg_replace("/ OR id=$/","",$sqlmenu);
 $sql="SELECT * FROM recettes WHERE id=$sqlmenu ORDER BY type_id,titre asc";
-# echo $sql;
   }
-@$result = mysql_query($sql);
+ //echo $sql;
+  @$result = mysql_query($sql);
 @$nbRec = mysql_num_rows($result);
 # echo $nbRec;
 # exit;
@@ -204,6 +225,8 @@ AND ingr LIKE '%$ingr%'
 $ingrNot
 AND ingr $selection1 LIKE '%$ingrNot1%' 
 AND source LIKE '%$source%' 
+AND mode_cuisson_id LIKE '$mode_cuisson' 
+
 ORDER BY type_id,titre asc
 ";
   } else {
@@ -224,6 +247,8 @@ $ingrNot
 AND ingr $selection1 LIKE '%$ingrNot1%' 
 AND source LIKE '%$source%' 
 AND private=0 
+AND mode_cuisson_id LIKE '$mode_cuisson' 
+
 ORDER BY type_id,titre asc
 ";
   }
@@ -241,7 +266,10 @@ ORDER BY type_id,titre asc
      . " like '%$ingrNot%' AND ingr "
      . $selection1
      . " like '%$ingrNot1%' "
-     . " AND source LIKE '%$source%' AND pict NOT LIKE '' order by type_id,titre asc";
+     . " AND source LIKE '%$source%' AND pict NOT LIKE '' 
+   AND mode_cuisson_id LIKE '$mode_cuisson' 
+     
+   order by type_id,titre asc";
  } else {
 #surfer
    $sql="select * "
@@ -251,7 +279,10 @@ ORDER BY type_id,titre asc
      . " like '%$ingrNot%' AND ingr "
      . $selection1
      . " like '%$ingrNot1%' "
-     . " AND private=0 AND source LIKE '%$source%' AND pict NOT LIKE '' order by type_id,titre asc";
+     . " AND private=0 AND source LIKE '%$source%' AND pict NOT LIKE '' 
+    AND mode_cuisson_id LIKE '$mode_cuisson' 
+     
+ 	order by type_id,titre asc";
 
   }
  }		    
@@ -262,12 +293,14 @@ ORDER BY type_id,titre asc
 $sql="select * "
 . "from recettes "
 . "where prep like '%Source: club - $email%' "
+
 . "order by type_id,titre asc";
   } else {
 #surfer
 $sql="select * "
 . "from recettes "
-. "where prep like '%Source: club - $email%' "
+. "where prep like '%Source: club - $email%'    AND mode_cuisson_id LIKE '$mode_cuisson' 
+"
 . "AND private=0 order by type_id,titre asc";
   }
 if($image=1){
@@ -275,13 +308,15 @@ if($image=1){
   if($s==1) {
 $sql="select * "
 . "from recettes "
-. "where prep like '%Source: club - $email%'  AND pict NOT LIKE ''"
+. "where prep like '%Source: club - $email%'  AND pict NOT LIKE ''   AND mode_cuisson_id LIKE '$mode_cuisson' 
+"
 . "order by type_id,titre asc";
  } else {
 #surfer
 $sql="select * "
 . "from recettes "
-. "where prep like '%Source: club - $email%'  AND pict NOT LIKE ''"
+. "where prep like '%Source: club - $email%'  AND pict NOT LIKE ''   AND mode_cuisson_id LIKE '$mode_cuisson' 
+"
 . "AND private=0 order by type_id,titre asc";
   }
  }
@@ -292,7 +327,9 @@ $sql="select * "
 . "from recettes "
 . "where prov LIKE '' "
 . $admin   
-. "order by type_id,titre asc";
+
+. "   AND mode_cuisson_id LIKE '$mode_cuisson' 
+order by type_id,titre asc";
 }
 
 ###### NEW RECIPES #######
