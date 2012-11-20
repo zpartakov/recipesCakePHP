@@ -9,14 +9,25 @@ class ModeCuissonsController extends AppController {
 		$this->Auth->allow('index','view','liste_modecuisson');
 	 }
 	var $paginate = array(
-        'limit' => 25,
+        'limit' => 100,
         'order' => array(
-            'ModeCuisson.lib' => 'desc'
+            'ModeCuisson.lib' => 'asc'
         )
     );
 	function index() {
 		$this->ModeCuisson->recursive = 0;
+			
+		if($this->data['ModeCuisson']['q']) {
+					$q = $this->data['ModeCuisson']['q']; 
+					
+					$options = array(
+					"ModeCuisson.lib LIKE '%" .$q ."%'");										
+
+					$this->set(array('modeCuissons' => $this->paginate('ModeCuisson', $options))); 
+
+		} else {
 		$this->set('modeCuissons', $this->paginate());
+		}
 	}
 
 	function view($id = null) {

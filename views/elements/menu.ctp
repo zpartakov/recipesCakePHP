@@ -22,7 +22,7 @@ if(preg_match("/MSIE/",$_SERVER['HTTP_USER_AGENT'])&&preg_match("/8.0/",$_SERVER
 			<li><a href="<? echo CHEMIN; ?>recettes/chercher?source=radeff" target="_blank">Mes Recettes</a></li>
 			<li><a href="http://www.akademia.ch/biblio/result.php?type=cuisine" target="_blank">Livres de cuisine</a></li>
 			<!-- <li><?php echo '<a class="contact" href="http://www.akademia.ch/recettes/contacts/" title="Contact">'.$html->image('ico-contact.gif', array("alt"=>"Contact", "width"=>"20","height"=>"20")).'&nbsp;Contact</a>';?></li> -->
-			
+			<li><a href="<? echo CHEMIN; ?>mode_cuissons/">Modes de cuisson</a></li>
 			<li><a href="http://www.akademia.ch/dokuwiki/doku.php?id=cuisine:aide_recettes" target="_blank">Aide / Wiki</a></li>
 			<li><a href="<? echo CHEMIN; ?>recettes/chercher?new=1">Nouveautés</a></li>
 			<li><a href="<? echo CHEMIN; ?>stats/resume">Statistiques</a></li>
@@ -62,7 +62,6 @@ if($session->read('Auth.User.role')=="administrator") {
 			<li><a href="<? echo CHEMIN; ?>recettes/rss">MàJ flux RSS</a></li>
 			<li><a href="recettes/app/webroot/img/up.php">Nouvelle image TODO</a></li>
 			<li><a href="<? echo CHEMIN; ?>menus/">Menus</a></li>
-			<li><a href="<? echo CHEMIN; ?>mode_cuissons/">Modes de cuisson</a></li>
 			<li><a href="<? echo CHEMIN; ?>diets/">Régimes</a></li>
 			<li><a href="<? echo CHEMIN; ?>invitations/">Invitations</a></li>
 			<li><a href="<? echo CHEMIN; ?>stats/">Statistiques</a></li>
