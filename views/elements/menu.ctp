@@ -81,6 +81,7 @@ if($session->read('Auth.User.role')=="administrator") {
 <li><a href="" title="">News</a>
 		<ul class="sousMenu">
 			<li><a href="<? echo CHEMIN; ?>posts" title="zeBlog">Blog</a></li>
+			<li><a href="https://github.com/zpartakov/recipesCakePHP" title="zeBlog">Repository (github)</a></li>
 			<li><a href="<? echo CHEMIN; ?>restaurants" title="Restaurants">Restaurants</a></li>
 		</ul>
 </li>

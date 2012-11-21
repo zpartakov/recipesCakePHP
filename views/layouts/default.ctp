@@ -168,6 +168,12 @@ echo "</a>";
 echo '<a class="contact" href="http://www.akademia.ch/dokuwiki/fred_radeff" title="About">'.$html->image('linux/tux_che.jpg', array("alt"=>"About")).'</a>';
 ?>
 </td>
+<!-- github -->
+<td class="tablepied">
+<?php
+echo '<a class="contact" href="https://github.com/zpartakov/recipesCakePHP" title="github repository">'.$html->image('github.png', array("alt"=>"github repository")).'</a>';
+?>
+</td>
 <!-- contact -->
 <td class="tablepied">
 <?php
@@ -180,7 +186,9 @@ echo '<a class="contact" href="http://www.akademia.ch/writemail.php" title="Cont
 //license
 echo '<a target="_blank" href="http://www.gnu.org/licenses/gpl-3.0.txt">'.$html->image('copyleft.jpg', array("alt"=>"GPL License / CopyLeft","title"=>"GPL License / CopyLeft","width"=>"45","height"=>"45")).'</a>';
 ?>
-</td></tr>
+</td>
+
+</tr>
 </table>
 
 </div>
