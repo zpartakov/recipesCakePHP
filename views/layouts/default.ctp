@@ -35,7 +35,7 @@ echo $javascript->link('recettes.js');
 echo $javascript->link('jquery-1.5.1.js');
 echo $javascript->link('scrolltopcontrol');
 
-e($html->meta('rss', array('controller' => 'recettes', 'action' => 'rss'), array('title' => "Les dernières recettes")));
+//e($html->meta('rss', array('controller' => 'recettes', 'action' => 'rss'), array('title' => "Les dernières recettes")));
 ?>
 <script type="text/javascript">
 	function lookup(inputString) {
@@ -80,13 +80,13 @@ echo "Votre groupe: " .$session->read('Auth.User.role')."<br>";*/
 			<a href="<? echo CHEMIN; ?>" title="Accueil recettes Fred Radeff">
 			<? echo $html->image('logo/6505.02.gif', array("alt"=>"Accueil recettes Fred Radeff", "width" => "80px", "style"=>"vertical-align: middle"));?>
 			</a>
-			<!-- flux rss http://www.akademia.ch/recettes2/recettes/rss?user=login&password=pwd -->
 			<? echo SITE ." - " .$this->pageTitle ?>
-		&nbsp;
+<!--		&nbsp;
 <a href="<? echo CHEMIN; ?>recettes/rss" title="Flux RSS recettes Fred Radeff">
 			<? echo $html->image('rss.gif', array("alt"=>"Flux RSS recettes Fred Radeff", "width" => "40px"));
 			?>
-			</a></td>
+			</a>
+			--></td>
 		<td class="titre" style="vertical-align: middle">
 <!-- ########################### GLOBAL SEARCH ENGINE ######################## -->
 
