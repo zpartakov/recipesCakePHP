@@ -31,7 +31,8 @@ $this->pageTitle = 'Modes de cuisson';
 			
 			<th><?php echo $this->Paginator->sort('lib');?></th>
 			<th><?php echo $this->Paginator->sort('rem');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+						<th><?php echo $this->Paginator->sort('img');?></th>
+						<th class="actions"><?php __('Actions');?></th>
 	</tr>
 <?php 
 	}
@@ -54,9 +55,10 @@ $this->pageTitle = 'Modes de cuisson';
 		<?php 
 	}
 ?>	
-		<td><?php echo $modeCuisson['ModeCuisson']['lib']; ?>&nbsp;</td>
+		<td><a href="<?php echo CHEMIN ."mode_cuissons/view/" .$modeCuisson['ModeCuisson']['id']; ?>"><?php echo $modeCuisson['ModeCuisson']['lib']; ?></a>&nbsp;</td>
 		<td><?php echo $modeCuisson['ModeCuisson']['rem']; ?>&nbsp;</td>
-		<?php
+		<td><img style="width: 100px" src="<?php echo CHEMIN."img/glossaire/".$modeCuisson['ModeCuisson']['img']; ?>"></td>
+				<?php
 	if($session->read('Auth.User.role')=="administrator") {
 		
 	?>	

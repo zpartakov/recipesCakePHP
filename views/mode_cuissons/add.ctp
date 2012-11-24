@@ -6,7 +6,8 @@
 		echo $this->Form->input('parent');
 		echo $this->Form->input('lib');
 		echo $this->Form->input('rem');
-	?>
+		echo $this->Form->input('img');
+		?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>

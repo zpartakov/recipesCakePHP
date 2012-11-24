@@ -1,28 +1,20 @@
+<?
+$this->pageTitle = 'Mode de cuisson: ' .$modeCuisson['ModeCuisson']['lib']; 
+?>
 <div class="modeCuissons view">
-<h2><?php  __('Mode Cuisson');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $modeCuisson['ModeCuisson']['id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Parent'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $modeCuisson['ModeCuisson']['parent']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Lib'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $modeCuisson['ModeCuisson']['lib']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Rem'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $modeCuisson['ModeCuisson']['rem']; ?>
-			&nbsp;
-		</dd>
-	</dl>
+<h2><?php echo $modeCuisson['ModeCuisson']['lib']; ?></h2>
+<p style="height: 400px;">
+		<img style="float: left; padding: 20px;" src="<?php echo CHEMIN."img/glossaire/".$modeCuisson['ModeCuisson']['img']; ?>">
+<span style="font-size: 1.6em"><?php echo $modeCuisson['ModeCuisson']['rem']; ?>
+<br/><br/><a href="<?php echo CHEMIN."recettes/chercher?mode_cuisson=".$modeCuisson['ModeCuisson']['id']?>">Voir les recettes utilisant ce mode de cuisson
+		</div>
+					</p>
+	
 </div>
+<?php
+	if($session->read('Auth.User.role')=="administrator") {
+		
+	?>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
@@ -32,3 +24,7 @@
 		<li><?php echo $this->Html->link(__('New Mode Cuisson', true), array('action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+		<?php 
+	}
+?>
