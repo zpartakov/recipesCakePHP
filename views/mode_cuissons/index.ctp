@@ -31,7 +31,7 @@ $this->pageTitle = 'Modes de cuisson';
 			
 			<th><?php echo $this->Paginator->sort('lib');?></th>
 			<th><?php echo $this->Paginator->sort('rem');?></th>
-						<th><?php echo $this->Paginator->sort('img');?></th>
+						<th><?php echo $this->Paginator->sort('Image','img');?></th>
 						<th class="actions"><?php __('Actions');?></th>
 	</tr>
 <?php 

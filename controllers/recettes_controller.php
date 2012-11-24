@@ -316,6 +316,19 @@ testsql($result);
 echo mysql_result($result,0,'name');
 }
 
+function modecuisson($id) {
+	
+	$sql="SELECT * FROM mode_cuissons WHERE id=".$id;
+	//echo $sql;
+	$sql=mysql_query($sql);
+	if(!$sql) {
+		echo "sql error: " .mysql_error();
+	}
+	echo "<img alt=\"".mysql_result($sql,0,'lib')."\" title=\"".mysql_result($sql,0,'lib')."\" style=\"width: 100px\" src=\"/recettes2/img/glossaire/"
+	.mysql_result($sql,0,'img')."\">";
+
+}
+
 /*affiche la liste des pays pour ajout recette*/
 function addpays($pays) {
 #echo "Pays" .$pays ."<br>";

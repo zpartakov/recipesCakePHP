@@ -48,9 +48,19 @@ if(strlen($recette['Recette']['pict']>0)) {
 		</td>
 
 		<td>
-			<?php 			le_type_lib($recette['Recette']['type_id']); ?>
+	<?php le_type_lib($recette['Recette']['type_id']); ?>		</td>
+		</tr>
+			<tr>
+		<td>
+			<?php ___('Mode de cuisson'); ?>
 		</td>
-	</tr>
+
+		<td>
+				<?php modecuisson($recette['Recette']['mode_cuisson_id']); ?>
+		</td>
+		</tr>
+	
+	
 		<tr>
 
 
@@ -163,7 +173,6 @@ if($session->read('Auth.User.role')) {
 			<dl>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Mode Cuisson'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($recette['ModeCuisson']['id'], array('controller' => 'mode_cuissons', 'action' => 'view', $recette['ModeCuisson']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Time'); ?></dt>
