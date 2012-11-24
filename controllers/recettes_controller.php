@@ -325,7 +325,7 @@ function modecuisson($id) {
 		echo "sql error: " .mysql_error();
 	}
 	echo "<img alt=\"".mysql_result($sql,0,'lib')."\" title=\"".mysql_result($sql,0,'lib')."\" style=\"width: 100px\" src=\"/recettes2/img/glossaire/"
-	.mysql_result($sql,0,'img')."\">";
+	.mysql_result($sql,0,'img')."\">&nbsp;".mysql_result($sql,0,'lib');
 
 }
 
