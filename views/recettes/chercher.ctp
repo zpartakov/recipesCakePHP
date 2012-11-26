@@ -69,6 +69,7 @@ $source=addslashes(trim($source));
 
 
 if($rech_globale<>"") {
+	$rech_globale=trim($rech_globale);
 #admin
   if($s==1) {
 $sql="SELECT * FROM recettes WHERE prov like '%$rech_globale%' OR titre like '%$rech_globale%' OR prep like '%$rech_globale%' OR ingr like '%$rech_globale%' ORDER BY type_id,titre asc";
