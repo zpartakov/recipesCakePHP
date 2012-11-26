@@ -10,7 +10,6 @@ if($session->read('Auth.User.role')=="member"||$session->read('Auth.User.role')=
 }
 
 
-
 $this->pageTitle = $recette['Recette']['titre']; 
 echo "<div class=\"retour\"><h1><a href=\"" .$_SERVER["HTTP_REFERER"] ."\">Retour</a></h1></div>";
 ?>
@@ -198,7 +197,16 @@ if($session->read('Auth.User.role')) {
 	</dl>
 	</td>
 	</tr>
+	
+	
+	
 	<?
+	
+	
+	
+	
+	
+	
 }
 ?>
 	</table>
@@ -213,4 +221,35 @@ echo "<h1><a href=\"" .$_SERVER["HTTP_REFERER"] ."\">Retour</a></h1>";
 </div>
 <?php
 #echo phpinfo();
+if($session->read('Auth.User.role')=="administrator") {
+
+	echo '
+	<h2>Tags</h2>
+	<form id="UsersTagAddForm" method="post" action="/recettes2/users_tags/add" accept-charset="utf-8">
+	<div style="display:none;">
+	<input type="hidden" name="_method" value="POST" />
+	<input type="hidden" name="data[UsersTag][user_id]" value="6" />
+	<input type="hidden" name="data[UsersTag][recette_id]" value="' .$recette['Recette']['id'] .'" />
+	<input type="hidden" name="data[UsersTag][datein]" value="' .date("Y-m-d H:i:s").'" />
+	</div>
+	
+	<div>
+	<select name="data[UsersTag][tag_id]" id="UsersTagTagId">';
+
+	$sql="SELECT * FROM tags ORDER BY lib";
+	$sql=mysql_query($sql);
+	$i=0;
+	while($i<mysql_num_rows($sql)) {
+		echo '<option value="' .mysql_result($sql,$i,'id') .'">' .mysql_result($sql,$i,'lib') .'</option>';
+	$i++;
+	}
+
+echo '	</select>
+	</div>
+	<div class="input textarea">
+	<label for="UsersTagNote">Note</label><textarea name="data[UsersTag][note]" cols="30" rows="6" id="UsersTagNote" ></textarea></div>
+	
+	<div class="submit"><input type="submit" value="Submit" /></div></form></div>
+    ';
+}
 ?>

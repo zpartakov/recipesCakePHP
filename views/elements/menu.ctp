@@ -59,6 +59,8 @@ if($session->read('Auth.User.role')=="administrator") {
 		<ul class="sousMenu">
 			<li><a style="color: PeachPuff" href="<? echo CHEMIN; ?>recettes/">Recettes</a></li>
 			<li><a style="color: PeachPuff" href="<? echo CHEMIN; ?>recettes/add">Nouvelle recette</a></li>
+			<li><a style="color: PeachPuff" href="<? echo CHEMIN; ?>/users_tags">Tags & Users</a></li>
+						
 			<li><a href="<? echo CHEMIN; ?>recettes/rss">MàJ flux RSS</a></li>
 			<li><a href="recettes/app/webroot/img/up.php">Nouvelle image TODO</a></li>
 			<li><a href="<? echo CHEMIN; ?>menus/">Menus</a></li>
