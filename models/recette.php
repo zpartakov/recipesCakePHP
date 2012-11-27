@@ -28,5 +28,7 @@ class Recette extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	var $hasMany = array('Comment'=>array('className'=>'Comment'));
 }
 ?>

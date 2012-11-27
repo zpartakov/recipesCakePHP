@@ -210,7 +210,48 @@ if($session->read('Auth.User.role')) {
 }
 ?>
 	</table>
-</div>
+
+	<?
+if($session->read('Auth.User.role')) {
+	?>
+	<?php echo $form->create('Comment',array('url'=>array('controller'=>'comments','action'=>'add',$post['Recette']['id'])));?>
+    <fieldset>
+        <legend><?php __('Ajouter un commentaire');?></legend>
+        <input type="hidden" name="data[Comment][recette_id]" value="<?php echo $recette['Recette']['id']?>">
+            <?php    
+        echo $form->input('Comment.name', array( 'label' => 'Nom'));
+        echo $form->input('Comment.email', array( 'label' => 'Courriel'));
+        echo $form->input('Comment.text', array( 'label' => 'Commentaire'));
+        echo $this->Form->input('captcha');
+        
+    ?>
+    <em>Note: votre email ne sera pas affiché</em>
+    </fieldset>
+    <img id="captcha" src="<?php echo $this->Html->url('/comments/captcha_image');?>" alt="" />
+<a href="javascript:void(0);" onclick="javascript:document.images.captcha.src='<?php echo $this->Html->url("/comments/captcha_image");?>?' + Math.round(Math.random(0)*1000)+1" >Reset</a>
+    
+<?php echo $form->end('Enregistrer votre commentaire');?>
+<?php 
+}
+?>
+
+<?php 
+echo "<h2>Commentaires</h2>";
+foreach ( $comment[ 'Comment' ] as $commentaire ){
+
+	//output the 'text' field of a 'comment' object
+	echo "<em>" .$commentaire[ 'text' ] ."</em>";
+	echo "<br/>";
+	echo "Date: " .$commentaire[ 'created' ];
+	echo "<br/>";
+	echo "Auteur: " .$commentaire[ 'name' ];
+	echo "<hr/>";
+}
+
+
+?>
+	
+	</div>
 
 
 

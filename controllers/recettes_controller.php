@@ -39,6 +39,7 @@ function chercher() {
 function view($id = null)
 {
 $this->_set_recette($id);
+$this->set('comment', $this->Recette->read(null, $id));
 }
 
 function add()
