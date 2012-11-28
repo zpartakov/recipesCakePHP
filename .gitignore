@@ -1,6 +1,7 @@
 tmp/
 tmp/* 
 tests/
+config/core.php
 config/core.php.local
 config/core.php.prod
 config/database.php
