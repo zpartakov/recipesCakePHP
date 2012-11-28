@@ -49,9 +49,9 @@ $type_id="%";
 }
 /*todo
 #mots vides
-include("stopwords.inc.php");
+//include("stopwords.inc.php");
 # extraction orthographes fantaisistes, synonymes, autres langues
-include("orthographe.inc.php");
+//include("orthographe.inc.php");
 */
 #trim vars
 $titre=addslashes(trim($titre));
@@ -372,7 +372,7 @@ if ($nbRec==0) {
 #a faire: 
 #-generer liste de mots
 #-crontab pour générer la liste des mots
-#include("mysql_extract_voc.php");
+//include("mysql_extract_voc.php");
 
 echo "<h2>Désolé, pas de résultats!</h2><h1><a href=\"".CHEMIN."\">Retour</a></h1>";
 
@@ -560,7 +560,7 @@ echo "</td></tr></table>";
 #echo "<p align='center'><input type=submit value='Sélectionner les recettes retenues'></p></form>";
 echo '<br><script language="JavaScript" src="bak2top.js"></script>';
 }
-include("footer.inc.php");
+//include("footer.inc.php");
 
 ?>
 <p>&nbsp;</p>
