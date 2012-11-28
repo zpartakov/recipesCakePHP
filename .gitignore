@@ -3,7 +3,6 @@ tmp/*
 tests/
 config/core.php.local
 config/core.php.prod
-config/core.php
 config/database.php
 .git/*
 webroot/img/*
