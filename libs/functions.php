@@ -51,6 +51,21 @@ function generate_password($length){
  
 }
 
+function lignes_vides($txt) {
+	/*
+	 * une fonction pour supprimer les espaces blancs à l'affichage,
+	 * et mettre un saut de ligne HTML à la place des retours chariots restants
+	 */
+	$txt=preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $txt);
+	/*
+	 * si majuscule, ajouter un saut de ligne avant
+	 */
+	$txt=preg_replace("/\n([A-Z])/", "\n\n$1", $txt);
+	
+	$txt=stripslashes(stripslashes(nl2br($txt)));
+	return $txt;
+}
+
 
 
 ?>

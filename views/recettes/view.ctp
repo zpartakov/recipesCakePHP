@@ -1,5 +1,7 @@
 <?php
-stats($recette['Recette']['id']);
+App::import('Lib', 'functions'); //imports app/libs/functions
+
+//stats($recette['Recette']['id']);
 
 /*anti-hack private*/
 if($session->read('Auth.User.role')=="member"||$session->read('Auth.User.role')=="administrator") {
@@ -106,7 +108,7 @@ if(strlen($recette['Recette']['pict']>0)) {
 		</td>
 
 		<td>
-			<?php echo "<em>" .stripslashes(stripslashes(nl2br($recette['Recette']['ingr']))) ."</em>"; ?>
+			<?php echo "<em>" .lignes_vides($recette['Recette']['ingr']) ."</em>"; ?>
 		</td>
 	</tr>
 
@@ -117,7 +119,7 @@ if(strlen($recette['Recette']['pict']>0)) {
 		</td>
 
 		<td>
-			<?php echo stripslashes(stripslashes(nl2br($recette['Recette']['prep']))); ?>
+			<?php echo lignes_vides($recette['Recette']['prep']); ?>
 		</td>
 	</tr>
 	<tr>

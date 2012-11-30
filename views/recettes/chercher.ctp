@@ -538,7 +538,12 @@ if(mysql_result($result,$i,'private')=="1") {
 }
 
   echo "<li class=\"" .$private ."\">";
-  echo "<a href=\"view/" .$id."\" class=\"tooltip\" style=\"".$style."\">" .ucfirst(mysql_result($result,$i,'titre')) ."<em><span></span>" .$infobulle ."</em></a>";
+  echo "<a href=\"view/" .$id."\" class=\"tooltip\" style=\"".$style."\">"
+   .ucfirst(mysql_result($result,$i,'titre')) ." <span style=\"font-style: italic; font-size: smaller\">(";
+  
+  le_type_lib(mysql_result($result,$i,'type_id'));
+  
+  echo ")</span><em><span></span>" .$infobulle ."</em></a></li>";
   
 
   
