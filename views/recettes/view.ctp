@@ -31,11 +31,15 @@ echo "<div class=\"retour\"><h1><a href=\"" .$_SERVER["HTTP_REFERER"] ."\">Retou
 	<tr>
 		<td>
 			<?php 
-			
-if(strlen($recette['Recette']['pict']>0)) {
-	echo $html->image('pics/'.$recette['Recette']['pict'], array("alt"=>"Image","style"=>"float: right"));
+if(strlen($recette['Recette']['pict'])>0) {
+	if(preg_match("/^http:/",$recette['Recette']['pict'])) { //picture from the web
+		echo $html->image($recette['Recette']['pict'], array("alt"=>"Image","style"=>"float: right; width: 300px"));
+	} else {
+	echo $html->image('pics/'.$recette['Recette']['pict'], array("alt"=>"Image","style"=>"float: right; width: 300px"));
+	}
 } else {
-	echo $html->image('pics/'.$recette['Recette']['id'] .".jpg", array("alt"=>"Image","style"=>"float: right"));
+	//no picture
+#	echo $html->image('pics/'.$recette['Recette']['id'] .".jpg", array("alt"=>"Image","style"=>"float: right"));
 }
  ?>
 		</td>
