@@ -154,6 +154,8 @@ if(strlen($recette['Recette']['pict'])>0) {
 			echo "<a href=\"" .$source ."\" target=\"_blank\">" .$recette['Recette']['source'] ."</a>"; ?>
 		</td>
 	</tr>
+	
+	
 	<tr class="permalink">
 	<td>Permalink</td>
 	<td><? echo "http://" .$_SERVER["HTTP_HOST"] ."/" .$_REQUEST["url"];?></td>
@@ -203,19 +205,34 @@ if($session->read('Auth.User.role')) {
 	</dl>
 	</td>
 	</tr>
-	
-	
-	
 	<?
-	
-	
-	
-	
-	
-	
 }
 ?>
 	</table>
+<div class="recettes_liees" style="margin-bottom: 10px">
+<h2>Recettes liées</h2>
+<?php
+
+recettes_liees($recette['Recette']['id']);
+//recettes_liees2($recette['Recette']['id']);
+
+if($session->read('Auth.User.role')=="administrator") {
+
+?>			
+			
+			<?php echo $this->Form->create('LinkedRecette', array('controller' => 'linked_recettes', 'action' => 'add'));?>
+	<fieldset>
+ 		<legend><?php __('Add Linked Recette'); ?></legend>
+	<?php
+		echo $this->Form->input('recette_id', array("type"=>"hidden","value"=>$recette['Recette']['id']));
+		echo $this->Form->input('recettes_id', array("type"=>"text", "label"=>"Recette liée"));
+	?>
+	</fieldset>
+<?php echo $this->Form->end(__('Submit', true));?>
+	<?
+}
+?>
+</div>
 
 	<?
 if($session->read('Auth.User.role')) {
@@ -262,13 +279,27 @@ foreach ( $comment[ 'Comment' ] as $commentaire ){
 
 
 <div class="retour">
-<?
+<?php
 echo "<h1><a href=\"" .$_SERVER["HTTP_REFERER"] ."\">Retour</a></h1>";
 ?>
 </div>
 <?php
 #echo phpinfo();
 if($session->read('Auth.User.role')=="administrator") {
+
+?>
+<div class="linkedRecettes form">
+<?php echo $this->Form->create('LinkedRecette', array('controller' => 'linked_recettes', 'action' => 'add'));?>
+	<fieldset>
+ 		<legend><?php __('Add Linked Recette'); ?></legend>
+	<?php
+		echo $this->Form->input('recette_id', array("type"=>"hidden","value"=>$recette['Recette']['id']));
+		echo $this->Form->input('recettes_id', array("type"=>"text", "label"=>"Recette liée"));
+	?>
+	</fieldset>
+<?php echo $this->Form->end(__('Submit', true));?>
+</div>
+<?php
 
 	echo '
 	<h2>Tags</h2>

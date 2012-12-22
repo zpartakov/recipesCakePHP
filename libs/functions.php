@@ -1,4 +1,55 @@
-<?
+<?php
+/*
+ * functions out of php core
+ * 
+ * */
+
+function titre_recette($id) {
+	$sql="SELECT titre FROM recettes WHERE id=".$id;
+	$sql=mysql_query($sql);
+	echo mysql_result($sql,0,'titre');
+}
+
+/*
+ * fonction to find children linked recipes
+ * */
+
+function recettes_liees($id,$idnot) {
+	$sql="
+	SELECT * FROM recettes AS r, linked_recettes AS lr 
+	WHERE (lr.recette_id=".$id ." AND r.id=lr.recettes_id)";
+	if($idnot) {
+	$sql.=" AND r.id NOT LIKE " .$idnot ." ";		
+	}
+	$sql.=" 
+	GROUP BY r.titre
+	ORDER BY r.titre";
+	
+	//echo $sql;
+	$sql=mysql_query($sql);
+	$i=0;
+	while($i<mysql_num_rows($sql)) {
+		echo "<li><a href=\"/recettes2/recettes/view/".mysql_result($sql,$i,'r.id')."\">".mysql_result($sql,$i,'r.titre')."</a></li>";
+	$i++;
+	}	
+}
+
+/*
+ * reverse fonction to find parents linked recipes
+ * */
+function recettes_liees2($id) {
+	$sql="
+	SELECT * FROM linked_recettes AS lr,  recettes AS r
+	WHERE lr.recettes_id=".$id ." AND r.id=lr.recettes_id";
+	$sql=mysql_query($sql);
+	if(mysql_result($sql,0,'r.id')!=$id) {
+		echo "<li><a href=\"/recettes2/recettes/view/".mysql_result($sql,0,'r.id')."\">".mysql_result($sql,0,'r.titre')."</a></li>";
+	}
+recettes_liees(mysql_result($sql,0,'lr.recette_id'),$id);
+
+}
+
+/* ############# HTML ############## */
 /* function to extract urls from variables */
 function urlize($chaine) { 
 	#echo "test urlize: <br>" .$chaine ."<hr>";
