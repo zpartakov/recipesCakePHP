@@ -235,7 +235,10 @@ if($session->read('Auth.User.role')) {
 <div style="position: relative; top: 25px; margin-bottom: 10px">
 	<?php
 if($session->read('Auth.User.role')=="administrator") {
-
+    /*
+     * print linked recipes
+     */
+recettes_liees($recette['Recette']['id']);
 ?>			
 			
 			<?php echo $this->Form->create('LinkedRecette', array('controller' => 'linked_recettes', 'action' => 'add'));?>

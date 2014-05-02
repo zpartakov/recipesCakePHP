@@ -76,7 +76,14 @@ if($rech_globale<>"") {
 	$rech_globale=preg_replace("/ /", "%", $rech_globale);
 #admin
   if($s==1) {
-$sql="SELECT * FROM recettes WHERE prov like '%$rech_globale%' OR titre like '%$rech_globale%' OR prep like '%$rech_globale%' OR ingr like '%$rech_globale%' ORDER BY type_id,titre asc";
+$sql="
+SELECT * FROM recettes WHERE 
+prov like '%$rech_globale%' OR 
+titre like '%$rech_globale%' OR 
+prep like '%$rech_globale%' OR 
+ingr like '%$rech_globale%' OR 
+source like '%$rech_globale%' 
+ORDER BY type_id,titre asc";
   } else {
 #surfer
 $sql="SELECT * FROM recettes WHERE (prov like '%$rech_globale%' OR titre like '%$rech_globale%' OR prep like '%$rech_globale%' OR ingr like '%$rech_globale%') AND private=0 ORDER BY type_id,titre asc";
