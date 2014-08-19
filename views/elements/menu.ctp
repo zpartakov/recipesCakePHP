@@ -19,9 +19,8 @@ if(preg_match("/MSIE/",$_SERVER['HTTP_USER_AGENT'])&&preg_match("/8.0/",$_SERVER
 			<li><a href="/dokuwiki/doku.php?id=cuisine:aide_recettes">Aide</a></li>
 			<li><a href="<? echo CHEMIN; ?>recettes/chercher?source=radeff" target="_blank">Les recettes de Fred</a></li>
 			<li><a href="/cms/dotclear/index.php?tag/cuisine">Le blog de Fred (cuisine)</a></li>
-			<li><a href="/c5/cuisine-cooking/mes-livres-de-cuisine/?">Les livres de recettes de Fred</a></li>
-			
-	  <!--  <li><a href="<? echo CHEMIN; ?>recettes/rss">Flux RSS</a></li>-->
+			<li><a href="/c5/cuisine-cooking/mes-livres-de-cuisine/?">Livres de recettes</a></li>
+			<li><a href="<? echo CHEMIN; ?>recettes/index.rss">Flux RSS</a></li>
 			</ul>
 	<li>
 		<a href="<? echo CHEMIN; ?>recettes/chercher?titre=mare%25monti" title="Des recettes de la mer et de la montagne">Mare & Monti</a>

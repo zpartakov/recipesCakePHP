@@ -19,7 +19,7 @@ class UsersController extends AppController {
 
   function beforeFilter() {
 #		$this->Auth->allow('login','logout','langue', 'passwordreminder', 'renvoiemail', 'confirmation');
-		$this->Auth->allow('login','logout');
+		$this->Auth->allow('login','logout','Qe3FnEXefYQTeGDU');
 	 }
 
 	function index()
@@ -309,8 +309,26 @@ class UsersController extends AppController {
 
 		#$this->redirect(array('page'=>'home'));
 	}
+/*
+ * an autologin url
+ */
+ /*
+function Qe3FnEXefYQTeGDU() {
+$this->data["User"]["password"] = $this->Auth->password(SSHPASSWD);
+$this->data["User"]["username"] = SSHLOGIN;
 
+// do the login
+$login = $this->Auth->login($this->data);
 
+// $login is true is login went well.
+// now we can redirect the user to any page:
+if($login){
+$this->redirect(array('controller' => "recettes",
+'action' => "add", null));
+}
+    
+}
+ */
     function logout()
     {
 	#destroy session language

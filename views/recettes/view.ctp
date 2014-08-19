@@ -257,11 +257,7 @@ recettes_liees($recette['Recette']['id']);
 ?>
 </div>
 	
-<div class="retour" style="margin-top: 10px; margin-bottom: 10px">
-<?php
-echo "<h1><a href=\"" .$_SERVER["HTTP_REFERER"] ."\">Retour</a></h1>";
-?>
-</div>
+
 <div style="font-size: smaller; color: black; background-color: lightyellow; padding: 12px; margin-right: 10%; margin-left: 10%; margin-bottom: 20px">
 <p>
 Recette Fred Radeff / akademia.ch, publiée sous <?php echo $html->image('copyleft.jpg', array("alt"=>"GPL License / CopyLeft","title"=>"GPL License / CopyLeft","width"=>"45","height"=>"45"))

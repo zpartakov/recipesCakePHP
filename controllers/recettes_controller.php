@@ -30,24 +30,12 @@ function cherchetitre() {
 	 * */
 }
 
-function rss() {
-	$this->layout = 'rss';
-
-	
-	$recettes=$this->Recette->find('all',
-			array('limit'=>'300',
-					'order'=> 'Recette.date DESC'));
-	
-	
-	$this->set(compact('recettes'));
-}
-
 function index()
 {
 	$this->Recette->recursive = 0;
 	
 	if( $this->RequestHandler->isRss() ){
-	        $recettes = $this->Recette->find('all', array('limit' => 20, 'order' => 'Recette.date DESC'));
+	        $recettes = $this->Recette->find('all', array('conditions' => array('Recette.private' => '0'),'limit' => 30, 'order' => 'Recette.date DESC'));
 	        $this->set(compact('recettes'));
 	    } else {
 	if(!$_SESSION['Auth']['User']['role']) {
@@ -109,6 +97,44 @@ function add()
 }
 
 
+
+
+
+function webcopy()
+	{
+	if (!empty($this->data))
+	{
+	$this->Recette->create();
+	$this->data['Recette']['titre']=ucfirst($this->data['Recette']['titre']);
+	$this->data['Recette']['titre']=trim($this->data['Recette']['titre']);
+	$this->data['Recette']['ingr']=trim($this->data['Recette']['ingr']);
+	
+	// upload the file to the server
+	if(strlen($this->data['Recette']['image']['tmp_name'])>1) {
+	$success = move_uploaded_file($this->data['Recette']['image']['tmp_name'], WWW_ROOT.'img/pics/'.$this->data['Recette']['pict']);
+	    if(!$success) {
+	$result['errors'][] = "Error uploaded file. Please try again.";
+	}
+	}
+	
+	  /* if(strlen($this->data['Recette']['image']['tmp_name'])<1) {
+	$this->data['Recette']['pict']="";
+	}*/
+	if ($this->Recette->save($this->data))
+	{
+	$this->Session->setFlash(___('the recette has been saved', true), 'flash_message');
+	$this->redirect(array('action' => 'add'));
+	}
+	else
+	{
+	$this->Session->setFlash(___('the recette could not be saved. Please, try again.', true), 'flash_error');
+	}
+	}
+	$types = $this->Recette->Type->find('list');
+	$modeCuissons = $this->Recette->ModeCuisson->find('list');
+	$diets = $this->Recette->Diet->find('list');
+	$this->set(compact('types', 'modeCuissons', 'diets'));
+}
 function edit($id = null)
 {
 	/* protection

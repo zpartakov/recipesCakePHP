@@ -22,7 +22,7 @@ Chercher <input style="font-size: 1.2em" type="text" name="chercher" value="" id
 <h1>Suggestions du jour &nbsp;
 <?php 
 echo $html->image('suggestions/suggestion2.jpg',
-array("alt"=>"Suggestion", "width" => "100px", "style"=>"vertical-align: middle"));
+array("alt"=>"Suggestion", "width" => "100px", "style"=>"vertical-align: middle", "title"=>"cliquer pour de nouvelles suggestions", "url"=>"./"));
 ?>
 </h1>
 <?php 

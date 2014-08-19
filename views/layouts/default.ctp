@@ -34,7 +34,7 @@ echo $javascript->link('recettes.js');
 echo $javascript->link('jquery-1.5.1.js');
 echo $javascript->link('scrolltopcontrol');
 echo $javascript->link('jquery.tagsinput');
-//e($html->meta('rss', array('controller' => 'recettes', 'action' => 'rss'), array('title' => "Les dernières recettes")));
+e($html->meta('rss', array('controller' => 'recettes', 'action' => 'index.rss'), array('title' => "Les dernières recettes")));
 ?>
 <script type="text/javascript">
 	function lookup(inputString) {
@@ -75,16 +75,11 @@ echo $javascript->link('jquery.tagsinput');
             <? #echo SITE ." - " .$this->pageTitle ?>
 			</span>
 			</a>
-<?php 
-/*
- * bug with rss so hidden?
- */?>			
-<!--		&nbsp;
-<a href="<? echo CHEMIN; ?>recettes/rss" title="Flux RSS recettes Fred Radeff">
+		&nbsp;
+<a href="<? echo CHEMIN; ?>recettes/index.rss" title="Flux RSS recettes Fred Radeff">
 			<? echo $html->image('rss.gif', array("alt"=>"Flux RSS recettes Fred Radeff", "width" => "40px"));
 			?>
 			</a>
-			-->
 			</td>
 		<td class="titre" style="vertical-align: middle">
 <!-- ########################### GLOBAL SEARCH ENGINE ######################## -->
@@ -195,15 +190,7 @@ echo $html->image('qrcode.png', array("alt"=>"Code QR","title"=>"Code QR", 'widt
 #echo phpinfo();
 ?>
 </td>
-<td>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-">
-<input type="image" src="https://www.paypalobjects.com/fr_FR/CH/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
-<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-</form>
-</td>
+
 </tr>
 </table>
 
