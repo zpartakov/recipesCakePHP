@@ -1,0 +1,18 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+/** General Style Info **/
+body {
+	background: #003d4c;
+	color: #fff;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-size: 14px;
+	margin: 0;
+	padding: 2%;
+}
+
+#leftnav, #header, #footer, .retour {
+display: none;
+}
