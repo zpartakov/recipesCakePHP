@@ -10,7 +10,7 @@ $test=0;
 while($test==0){
 
 	if($this->Session->read('Auth.User')['role']!="administrator"){
-		$query->where(['private' => 0]); // Return the same query object	
+		$query->where(['private =' => '0']); // Return the same query object	
 	}
 	$query->where(['Recettes.pict NOT LIKE' => '']);
 	$query->order('rand()');
