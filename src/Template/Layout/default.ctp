@@ -58,12 +58,15 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
      
     
     <header>
-    <h1><a href="<?php echo CHEMIN; ?>">Recettes de cuisine Fred Radeff&nbsp;<img src="/pics/casserole.png" alt="image casserole"/></a></h1>
+    <h1><a href="<?php echo CHEMIN; ?>">Recettes de cuisine Fred Radeff&nbsp;<img src="/pics/casserole.png" alt="image casserole"/></a>
+
+    </h1>
            <div id="hamburger">
                 <div></div>
    		         <div></div>
    		         <div></div>
   	      </div>
+
     </header>
     
     

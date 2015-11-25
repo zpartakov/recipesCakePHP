@@ -1,7 +1,7 @@
 <?php
 $this->set('title', $recette->titre);
 
-require_once("/var/www/radeff/libs/Zpartakov.php");
+//require_once("/var/www/radeff/libs/Zpartakov.php");
 
 if($this->Session->read('Auth.User')['role']!="administrator"){
 	$admin=0;

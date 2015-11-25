@@ -4,11 +4,21 @@ $this->set('title', 'Accueil');
 ?>
 
 <div style="margin-left: 5%; margin-right: 7%">
-<?php
+<table>
+	<tr>
+		<td>
+			<?php
+			echo $this->element('total_recettes');
+			?>
+		</td>
+		<td>
+			<?php
+			echo $this->element('random_image');
+			?>
+		</td>
+	</tr>
+</table>			
 
-echo $this->element('total_recettes');
-
-?>
 <form action='/recettes3/recettes/' method="get" name="formu"> 
 	<input type="hidden" name="cherche" value="1">
 	<table>
