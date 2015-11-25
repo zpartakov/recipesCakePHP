@@ -1,5 +1,3 @@
-# recipesCakePHP
-a cooking recipes system
 // This file is part of recipesCakePHP - http://recettes.akademia.ch/
 // recipesCakePHP is a cooking recipe CMS written with CakePHP by Fred Radeff
 //
@@ -24,4 +22,6 @@ a cooking recipes system
 * @copyright (c) 2012 Fred Radeff, akademia.ch
 * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 * @requires cakePhp 3.0.15
+* # recipesCakePHP
+* # a cooking recipes system
 */
