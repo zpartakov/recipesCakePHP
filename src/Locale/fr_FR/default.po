@@ -1,0 +1,137 @@
+"Project-Id-Version: Atable-fre\n"
+"POT-Creation-Date: 2012-09-27 06:17+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Fred Radeff <fradeff@akademia.ch>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "titre_page_accueil"
+msgstr "Kulturtroc"
+
+msgid "Invalid %s"
+msgstr "Invalide %s"
+
+msgid "The %s has been saved"
+msgstr "%s a été sauvegardé"
+
+msgid "The %s could not be saved. Please, try again."
+msgstr "L'enregistrement %s n'a pas pu être sauvegardé. Merci d'essayer à nouveau."
+
+msgid "Invalid id for %s"
+msgstr "id invalide pour %s"
+
+msgid "%s deleted"
+msgstr "%s effacé"
+
+msgid "%s was not deleted"
+msgstr "%s n'a pas été effacé"
+
+msgid "Invalid User."
+msgstr "Utilisateur invalide"
+
+msgid "The User has been saved"
+msgstr ""
+
+msgid "The User could not be saved. Please, try again."
+msgstr ""
+
+msgid "Invalid User"
+msgstr "Utilisateur invalide"
+
+msgid "You are not authorized to access that location."
+msgstr "Vous n'êtes pas autorisé à accéder à cette ressource."
+
+msgid "You are not authorized to access that location"
+msgstr "Vous n'êtes pas autorisé à accéder à cette ressource"
+
+msgid "Invalid id for User"
+msgstr ""
+
+msgid "User deleted"
+msgstr ""
+
+msgid "Add %s"
+msgstr "Ajouter %s"
+
+msgid "Actif"
+msgstr "Actif"
+
+msgid "Submit"
+msgstr "Soumettre"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "List %s"
+msgstr "Afficher %s"
+
+msgid "Actifs"
+msgstr "Actifs"
+
+msgid "Edit %s"
+msgstr "Modifier %s"
+
+msgid "Delete"
+msgstr "Effacer"
+
+msgid "Are you sure you want to delete # %s?"
+msgstr "Confirmer la suppression de # %s?"
+
+msgid "View"
+msgstr "Voir"
+
+msgid "Edit"
+msgstr "Modifier"
+ 
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr "Page %page% de %pages%, montre l'enregistrement %current% d'un total de %count% enregistrements, commence à l'enregistrement %start%, finit à l'enregistrement %end%"
+
+msgid "previous"
+msgstr "précédent"
+
+msgid "next"
+msgstr "suivant"
+
+msgid "New %s"
+msgstr "Nouveau %s"
+
+msgid "Id"
+msgstr ""
+
+msgid "Date Debut"
+msgstr "Date de début"
+
+msgid "Date Fin"
+msgstr "Date de fin"
+
+msgid "Delete %s"
+msgstr "Effacer %s"
+
+#ebooks
+msgid "Ebook"
+msgstr "Livre électronique"
+
+msgid "Ebooks"
+msgstr "Livres électronique"
+
+msgid "New Ebook"
+msgstr "Nouveau Livre électronique"
+
+#tags
+msgid "List Tag"
+msgstr "Liste Tags"
+
+msgid "New Tag"
+msgstr "Nouveau Tag"
+
+msgid "New Document"
+msgstr "Nouveau Document"
+
+msgid "List Typedocs"
+msgstr "Liste des types de documents"
+
+msgid "New Typedoc"
+msgstr "Nouveau Type de document"
+
+
+ 
