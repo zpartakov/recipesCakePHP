@@ -36,7 +36,7 @@ class RecettesController extends AppController
 	'contain' => ['Types', 'ModeCuissons', 'Diets'],
 	'limit' => 10,
 	'order' => [
-	'id' => 'desc'
+	'Recettes.id' => 'desc'
 			]
 			];
 	
@@ -69,171 +69,171 @@ class RecettesController extends AppController
      */
     public function index()
     {
-$boole=0;
+		$boole=0;
 
 
-/* 
- * ###################### //global search #################
- * 
- * */
-if($_GET['globalsearch']){
-		$s=$_GET['globalsearch'];
+		/* 
+		 * ###################### //global search #################
+		 * 
+		 * */
+		if($_GET['globalsearch']){
+				$s=$_GET['globalsearch'];
 
-			$conditions = array('OR' => array(
-    array('Recettes.titre LIKE' => '%'.$s.'%'),
-    array('Recettes.source LIKE' => '%'.$s.'%'),
-    array('Recettes.ingr LIKE' => '%'.$s.'%'),
-    array('Recettes.prov LIKE' => '%'.$s.'%')
+					$conditions = array('OR' => array(
+			array('Recettes.titre LIKE' => '%'.$s.'%'),
+			array('Recettes.source LIKE' => '%'.$s.'%'),
+			array('Recettes.ingr LIKE' => '%'.$s.'%'),
+			array('Recettes.prov LIKE' => '%'.$s.'%')
 
-));
+		));
 
-	$query=$this->Recettes->find('all', array('conditions' => $conditions));
-	$this->set('recettes', $this->paginate($query));
-/* 
- * ###################### //specific search #################
- * 
- * */
-	}elseif($_GET['source']||$_GET['titre']||$_GET['prep']||$_GET['temps']||$_GET['type_id']||$_GET['ingr']||$_GET['prov']||$_GET['mode_cuisson_id']||$_GET['kids']||$_GET['diet_id']){ //recherche source (recettes Fred Radeff & famille)
-		
-		$sous_conditions=array();
-		
-		if($_GET['source']){ //recherche source (recettes Fred Radeff & famille)
-		$sous_conditions[] =array('Recettes.source LIKE' => '%'.$_GET['source'].'%');
-		//$query = $this->Recettes->find()->where(['source LIKE' => '%'.$_GET['source'].'%']);
-		//$this->set('recettes', $this->paginate($query));
-		}		
-		if($_GET['titre']){ //recherche titre
-		$sous_conditions[] =array('Recettes.titre LIKE' => '%'.$_GET['titre'].'%');
-		//$query = $this->Recettes->find()->where(['titre LIKE' => '%'.$_GET['titre'].'%']);
-		//$this->set('recettes', $this->paginate($query));
-		}
-		if($_GET['prep']){ //recherche préparation
-			$sous_conditions[] =array('Recettes.prep LIKE' => '%'.$_GET['prep'].'%');
-			//$query = $this->Recettes->find()->where(['prep LIKE' => '%'.$_GET['prep'].'%']);
-			//$this->set('recettes', $this->paginate($query));	
-		}
-		if($_GET['temps']){ //recherche temps
-			$sous_conditions[] =array('Recettes.temps LIKE' => '%'.$_GET['temps'].'%');
-			//$query = $this->Recettes->find()->where(['temps LIKE' => '%'.$_GET['temps'].'%']);
-			//$this->set('recettes', $this->paginate($query));	
-		}
-		if($_GET['type_id']){ //recherche type_id
-			$sous_conditions[] =array('Recettes.type_id LIKE' => $_GET['type_id']);
-			//$query = $this->Recettes->find()->where(['type_id =' => $_GET['type_id']]);
-			//$this->set('recettes', $this->paginate($query));	
-		}
-		if($_GET['ingr']){ //recherche ingrédient
-			$sous_conditions[] =array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%');
-			//$query = $this->Recettes->find()->where(['ingr LIKE' => '%'.$_GET['ingr'].'%']);
-			//$this->set('recettes', $this->paginate($query));	
-		}
-		
-		if($_GET['prov']){ //recherche provenance
-			$sous_conditions[] =array('Recettes.prov LIKE' => '%'.$_GET['prov'].'%');
-			//$query = $this->Recettes->find()->where(['prov LIKE' => '%'.$_GET['prov'].'%']);
-			//$this->set('recettes', $this->paginate($query));
-		}
-		if($_GET['mode_cuisson_id']){ //recherche mode de cuisson
-			$sous_conditions[] =array('Recettes.mode_cuisson_id =' => $_GET['mode_cuisson_id']);
-			//$query = $this->Recettes->find()->where(['mode_cuisson_id =' => $_GET['mode_cuisson_id']]);
-			//$this->set('recettes', $this->paginate($query));	
-		}
-		if($_GET['kids']){ //recherche recettes enfants
-			$sous_conditions[] =array('Recettes.prep LIKE' => '%<!--kids-->%');
-			//$query = $this->Recettes->find()->where(['prep LIKE' => '%<!--kids-->%']);
-			//$this->set('recettes', $this->paginate($query));	
-		}
-		if($_GET['diet_id']){ //recherche régimes
-			$sous_conditions[] =array('Recettes.diet_id =' => $_GET['diet_id']);
-			//$query = $this->Recettes->find()->where(['diet_id =' => $_GET['diet_id']]);
-			//$this->set('recettes', $this->paginate($query));	
-		}
-/* 
- * ###################### //no search, display new recipes #################
- * 
- * */
- 
- //print_r($sous_conditions); exit;
- 	$conditions = array('AND' => array($sous_conditions));
-	$query=$this->Recettes->find('all', array('conditions' => $conditions));
-		//			debug($query);
-	$this->set('recettes', $this->paginate($query));
-		
- 
- 
-}elseif($_GET['ingrNot']){ //recherches booléennes portant sur plusieurs ingrédients;on laisse tomber les sous-conditions pour les 
-	if($_GET['ingrNot']){ //recherche ingrédient2
-		//selection: empty = AND or NOT idem selection1	
-		if($_GET['selection']=='NOT'){
-			$conditions = array('AND' => array(
-			array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-			array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%')));
-			
+			$query=$this->Recettes->find('all', array('conditions' => $conditions));
+			$this->set('recettes', $this->paginate($query));
+		/* 
+		 * ###################### //specific search #################
+		 * 
+		 * */
+			}elseif($_GET['source']||$_GET['titre']||$_GET['prep']||$_GET['temps']||$_GET['type_id']||$_GET['ingr']||$_GET['prov']||$_GET['mode_cuisson_id']||$_GET['kids']||$_GET['diet_id']){ //recherche source (recettes Fred Radeff & famille)
+				
+				$sous_conditions=array();
+				
+				if($_GET['source']){ //recherche source (recettes Fred Radeff & famille)
+				$sous_conditions[] =array('Recettes.source LIKE' => '%'.$_GET['source'].'%');
+				//$query = $this->Recettes->find()->where(['source LIKE' => '%'.$_GET['source'].'%']);
+				//$this->set('recettes', $this->paginate($query));
+				}		
+				if($_GET['titre']){ //recherche titre
+				$sous_conditions[] =array('Recettes.titre LIKE' => '%'.$_GET['titre'].'%');
+				//$query = $this->Recettes->find()->where(['titre LIKE' => '%'.$_GET['titre'].'%']);
+				//$this->set('recettes', $this->paginate($query));
+				}
+				if($_GET['prep']){ //recherche préparation
+					$sous_conditions[] =array('Recettes.prep LIKE' => '%'.$_GET['prep'].'%');
+					//$query = $this->Recettes->find()->where(['prep LIKE' => '%'.$_GET['prep'].'%']);
+					//$this->set('recettes', $this->paginate($query));	
+				}
+				if($_GET['temps']){ //recherche temps
+					$sous_conditions[] =array('Recettes.temps LIKE' => '%'.$_GET['temps'].'%');
+					//$query = $this->Recettes->find()->where(['temps LIKE' => '%'.$_GET['temps'].'%']);
+					//$this->set('recettes', $this->paginate($query));	
+				}
+				if($_GET['type_id']){ //recherche type_id
+					$sous_conditions[] =array('Recettes.type_id LIKE' => $_GET['type_id']);
+					//$query = $this->Recettes->find()->where(['type_id =' => $_GET['type_id']]);
+					//$this->set('recettes', $this->paginate($query));	
+				}
+				if($_GET['ingr']){ //recherche ingrédient
+					$sous_conditions[] =array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%');
+					//$query = $this->Recettes->find()->where(['ingr LIKE' => '%'.$_GET['ingr'].'%']);
+					//$this->set('recettes', $this->paginate($query));	
+				}
+				
+				if($_GET['prov']){ //recherche provenance
+					$sous_conditions[] =array('Recettes.prov LIKE' => '%'.$_GET['prov'].'%');
+					//$query = $this->Recettes->find()->where(['prov LIKE' => '%'.$_GET['prov'].'%']);
+					//$this->set('recettes', $this->paginate($query));
+				}
+				if($_GET['mode_cuisson_id']){ //recherche mode de cuisson
+					$sous_conditions[] =array('Recettes.mode_cuisson_id =' => $_GET['mode_cuisson_id']);
+					//$query = $this->Recettes->find()->where(['mode_cuisson_id =' => $_GET['mode_cuisson_id']]);
+					//$this->set('recettes', $this->paginate($query));	
+				}
+				if($_GET['kids']){ //recherche recettes enfants
+					$sous_conditions[] =array('Recettes.prep LIKE' => '%<!--kids-->%');
+					//$query = $this->Recettes->find()->where(['prep LIKE' => '%<!--kids-->%']);
+					//$this->set('recettes', $this->paginate($query));	
+				}
+				if($_GET['diet_id']){ //recherche régimes
+					$sous_conditions[] =array('Recettes.diet_id =' => $_GET['diet_id']);
+					//$query = $this->Recettes->find()->where(['diet_id =' => $_GET['diet_id']]);
+					//$this->set('recettes', $this->paginate($query));	
+				}
+		/* 
+		 * ###################### //no search, display new recipes #################
+		 * 
+		 * */
+		 
+		 //print_r($sous_conditions); exit;
+			$conditions = array('AND' => array($sous_conditions));
+			$query=$this->Recettes->find('all', array('conditions' => $conditions));
+				//			debug($query);
+			$this->set('recettes', $this->paginate($query));
+				
+		 
+		 
+		}elseif($_GET['ingrNot']){ //recherches booléennes portant sur plusieurs ingrédients;on laisse tomber les sous-conditions pour les 
+			if($_GET['ingrNot']){ //recherche ingrédient2
+				//selection: empty = AND or NOT idem selection1	
+				if($_GET['selection']=='NOT'){
+					$conditions = array('AND' => array(
+					array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+					array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%')));
+					
+				} else {
+					$conditions = array('AND' => array(
+					array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+					array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%')));
+				}
+				$query=$this->Recettes->find('all', array('conditions' => $conditions));
+				$this->set('recettes', $this->paginate($query));	
+			}
+			if($_GET['ingrNot1']){ //recherche ingrédient3
+				//selection: empty = AND or NOT idem selection1	
+				if($_GET['selection1']=='NOT'){
+					if($_GET['selection']=='NOT'){
+						$conditions = array('AND' => array(
+						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
+						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));			
+					} else {
+						$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
+						$conditions = array('AND' => array(
+						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+						array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%'),
+						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));
+					}	
+				} else {
+					if($_GET['selection']=='NOT'){
+						$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
+						$conditions = array('AND' => array(
+						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
+						array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot1'].'%')));			
+					} else {
+						$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
+						$conditions = array('AND' => array(
+						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+						array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%'),
+						array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot1'].'%')));
+					}	
+				}
+				$query=$this->Recettes->find('all', array('conditions' => $conditions));
+				$this->set('recettes', $this->paginate($query));	
+			}
 		} else {
-			$conditions = array('AND' => array(
-			array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-			array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%')));
-		}
-		$query=$this->Recettes->find('all', array('conditions' => $conditions));
-		$this->set('recettes', $this->paginate($query));	
+				//is the user an admin? if yes, display hidden recipes	
+				if ($this->Auth->user('id')) {
+						$query = $this->Recettes->find();
+						$this->set('recettes', $this->paginate($query));
+				//no? display only public recipes
+				} else {
+						$query = $this->Recettes->find()->where(['private LIKE' => '0']);
+						$this->set('recettes', $this->paginate($query));
+				}
+					//debug($query);
+			}	        
+				
+			 //end query
+			 //create boolean //bug
+		/*     if($boole==1){
+				 $query = $this->Recettes->findAllBySourceAndTitre('%'.$_GET['source'].'%', '%'.$_GET['titre'].'%');
+							$this->set('recettes', $this->paginate($query));	
+				debug($query);
+			 }
+		  */   
+				
+				$this->set('_serialize', ['recettes']);
 	}
-	if($_GET['ingrNot1']){ //recherche ingrédient3
-		//selection: empty = AND or NOT idem selection1	
-		if($_GET['selection1']=='NOT'){
-			if($_GET['selection']=='NOT'){
-				$conditions = array('AND' => array(
-				array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-				array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
-				array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));			
-			} else {
-				$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
-				$conditions = array('AND' => array(
-				array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-				array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%'),
-				array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));
-			}	
-		} else {
-			if($_GET['selection']=='NOT'){
-				$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
-				$conditions = array('AND' => array(
-				array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-				array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
-				array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot1'].'%')));			
-			} else {
-				$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
-				$conditions = array('AND' => array(
-				array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-				array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%'),
-				array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot1'].'%')));
-			}	
-		}
-		$query=$this->Recettes->find('all', array('conditions' => $conditions));
-		$this->set('recettes', $this->paginate($query));	
-	}
-} else {
-		//is the user an admin? if yes, display hidden recipes	
-		if ($this->Auth->user('id')) {
-				$query = $this->Recettes->find();
-				$this->set('recettes', $this->paginate($query));
-		//no? display only public recipes
-		} else {
-				$query = $this->Recettes->find()->where(['private LIKE' => '0']);
-				$this->set('recettes', $this->paginate($query));
-		}
-			//debug($query);
-	}	        
-        
-     //end query
-     //create boolean //bug
-/*     if($boole==1){
-		 $query = $this->Recettes->findAllBySourceAndTitre('%'.$_GET['source'].'%', '%'.$_GET['titre'].'%');
-		 			$this->set('recettes', $this->paginate($query));	
-		debug($query);
-	 }
-  */   
-        
-        $this->set('_serialize', ['recettes']);
-    }
 
     /**
      * View method
@@ -244,8 +244,10 @@ if($_GET['globalsearch']){
      */
     public function view($id = null)
     {
+//            'contain' => ['Types', 'ModeCuissons', 'Diets', 'Tags', 'Comments', 'Menus', 'RecetteUser', 'Stats', 'UsersTags']
+
         $recette = $this->Recettes->get($id, [
-            'contain' => ['Types', 'ModeCuissons', 'Diets', 'Tags', 'Comments', 'Menus', 'RecetteUser', 'Stats', 'UsersTags']
+           'contain' => ['Types', 'ModeCuissons', 'Diets']
         ]);
         $this->set('recette', $recette);
         $this->set('_serialize', ['recette']);

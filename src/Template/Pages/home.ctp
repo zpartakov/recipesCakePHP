@@ -21,15 +21,11 @@ $this->set('title', 'Accueil');
 
 <form action='/recettes3/recettes/' method="get" name="formu"> 
 	<input type="hidden" name="cherche" value="1">
-	<table>
-		<tr>
-			<td><h2 style="text-align: center; vertical-align: top">Recherche simple</h2></td>
-			<td style="vertical-align: bottom"><input type="text" name="globalsearch" style="width: 350px; font-size: bigger"></td>
-			<td style="vertical-align: middle"><input type="submit"></td>
-		</tr>
-	</table>
+<h2>Recherche simple</h2>
+<p><input type="text" name="globalsearch" style="width: 350px; font-size: bigger"></p>
+<p><input type="submit"></p>
 </form>
-</div>
+<div id="advanced_search">
 <hr />
 <h2 style="text-align: center">Recherche avancée</h2>
 <form action='/recettes3/recettes/' method="get" name="formu" target="_blank"> 
@@ -144,6 +140,7 @@ if($this->Session->read('Auth.User')['role']=="administrator"){
 </td>
     </tr>
   </table>
+  </div>
 </form>
 
 

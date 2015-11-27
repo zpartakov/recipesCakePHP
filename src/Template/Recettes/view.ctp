@@ -67,11 +67,13 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             
 				<?php
 					echo $this->Text->autoParagraph(h($recette->mode_cuisson->lib));
+		
 				?>
 				
             <h6 class="subheader"><?= __('Régime') ?></h6>
             				<?php
 					echo $this->Text->autoParagraph(h($recette->diet->lib));
+		
 				?>
         </div>
         <div class="large-2 columns numbers end">
@@ -99,7 +101,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
    
     <div class="row texts">
         <div class="columns large-9">
-            <h6 class="subheader"><?= __('Ingrédients') ?></h6>
+            <strong><?= __('Ingrédients') ?></strong>
             <div style="font-style: italic"><?php
              $ingredients=html_entity_decode($this->Text->autoParagraph(h($recette->ingr)));
 //            <p><p>Mettre les raisins secs &agrave; tremper dans de l&#39;eau chaude.</p></p>
@@ -111,7 +113,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 
     <div class="row texts">
         <div class="columns large-9">
-            <h6 class="subheader"><?= __('Préparation') ?></h6>
+            <strong><?= __('Préparation') ?></strong>
             <?php
              $preparation=html_entity_decode($this->Text->autoParagraph(h($recette->prep)));
              putz_lignes_vides($preparation);
@@ -122,6 +124,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
         <div class="columns large-9">
             <h6 class="subheader"><?= __('Source') ?></h6>
             <?php
+            $zesource=$recette->source;
             $source=$this->Text->autoParagraph(h($recette->source));
             
             //$source=preg_replace("/^http(.*)/","<a href=\"http\1\">http\1</a>",$source);
@@ -140,7 +143,11 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 		<br />Vous pouvez reproduire cette recette, à condition de:
 		<ul style="margin-top: 5px; font-size: 11px; ">
 			<li>la recopier intégralement</li>
-			<li>mentionner la source <span style="font-style: italic;">http://radeff.red<?php  echo $_SERVER["REQUEST_URI"];?></span></li>
+			<li>mentionner les sources:
+			<ul style="margin-top: 5px; font-size: 11px; ">
+			 <li><?php echo $zesource;?></span></li>
+			 <li>http://radeff.red<?php  echo $_SERVER["REQUEST_URI"];?></li>
+			 </ul>
 			<li>la partager dans les mêmes conditions</li>
 		</ul>
 		</div>

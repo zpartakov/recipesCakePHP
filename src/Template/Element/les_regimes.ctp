@@ -4,7 +4,9 @@ use Cake\ORM\TableRegistry;
 $query = TableRegistry::get('Diets')->find();
 $query->order(['lib' => 'ASC']); // Still same object, no SQL executed
 $nbrec2=1; $regimes="";
-foreach ($query as $article) {   
+foreach ($query as $article) {
+    //debug($article->lib);
+    
     $regimes.= "<option value=\"".$article->id."\">".$article->lib."</option>";
     $nbrec2++;
 }
