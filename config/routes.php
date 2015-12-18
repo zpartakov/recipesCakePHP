@@ -49,7 +49,12 @@ Router::scope('/', function ($routes) {
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    $routes->connect('/rss', ['controller' => 'Recettes', 'action' => 'rss']);
     $routes->connect('/add', ['controller' => 'Recettes', 'action' => 'add']);
+    $routes->connect('/a', ['controller' => 'Recettes', 'action' => 'add']);
+    $routes->connect('/recettes/index.rss', ['controller' => 'Recettes', 'action' => 'rss']);
+    
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -74,9 +79,13 @@ Router::scope('/', function ($routes) {
      */
     $routes->fallbacks('InflectedRoute');
 });
+//Router::extensions('rss');//radeff added rss1
+Router::extensions('json', 'xml','rss');
+
 
 /**
  * Load all plugin routes.  See the Plugin documentation on
  * how to customize the loading of plugin routes.
  */
 Plugin::routes();
+

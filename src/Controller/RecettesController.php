@@ -39,7 +39,8 @@ class RecettesController extends AppController
 	'Recettes.id' => 'desc'
 			]
 			];
-	
+
+			
 	public function isAuthorized($user) {
         //auth check
         //return boolean
@@ -49,10 +50,12 @@ class RecettesController extends AppController
 		parent::initialize();
 		$this->loadComponent('Paginator');
 		$this->loadComponent('Auth');
+		$this->loadComponent('RequestHandler'); //radeff added rss2
 	
 		// Allow the display action so our pages controller
 		// continues to work.
-		$this->Auth->allow(['display','view']);
+		$this->Auth->allow(['display','view', 'rss']);//radeff added rss6
+
 	//				$this->Auth->allow('index','chercher','view','total_recettes','pays','les_types','nouveau','rss','regime','les_regimes', 'suggestions');
 	}
 	
@@ -62,6 +65,27 @@ class RecettesController extends AppController
 		$this->Auth->allow('index','chercher','view','total_recettes','pays','les_types','nouveau','rss','regime','les_regimes', 'suggestions');
 
 	}
+	
+	
+	public function rss() //radeff added rss3
+    {
+		$this->layout = 'rss/default';
+		if(!$this->Auth->user('id')) { //unlogged users
+			$recettes = $this->Recettes
+						->find()
+						->where(['Recettes.private' => '0'])
+						->limit(20)
+						->order(['id' => 'desc']);
+					$this->set(compact('recettes'));			
+		} else { //logged users, display private recipes
+			$recettes = $this->Recettes
+						->find()
+						->limit(20)
+						->order(['id' => 'desc']);
+					$this->set(compact('recettes'));			
+		}
+	}
+
     /**
      * Index method
      *
@@ -69,6 +93,7 @@ class RecettesController extends AppController
      */
     public function index()
     {
+
 		$boole=0;
 
 
@@ -79,14 +104,12 @@ class RecettesController extends AppController
 		if($_GET['globalsearch']){
 				$s=$_GET['globalsearch'];
 
-					$conditions = array('OR' => array(
-			array('Recettes.titre LIKE' => '%'.$s.'%'),
-			array('Recettes.source LIKE' => '%'.$s.'%'),
-			array('Recettes.ingr LIKE' => '%'.$s.'%'),
-			array('Recettes.prov LIKE' => '%'.$s.'%')
-
-		));
-
+			$conditions = array('OR' => array(
+				array('Recettes.titre LIKE' => '%'.$s.'%'),
+				array('Recettes.source LIKE' => '%'.$s.'%'),
+				array('Recettes.ingr LIKE' => '%'.$s.'%'),
+				array('Recettes.prov LIKE' => '%'.$s.'%')
+			));
 			$query=$this->Recettes->find('all', array('conditions' => $conditions));
 			$this->set('recettes', $this->paginate($query));
 		/* 
@@ -236,6 +259,39 @@ class RecettesController extends AppController
 	}
 
     /**
+     * Index method
+     *
+     * @return void
+     */
+    public function book()
+    {
+		$this->layout = 'print';
+		$query = $this->Recettes->find('all')
+		->where(['Recettes.prov LIKE' => $_GET['prov']])
+		->order(['Recettes.type_id' => 'ASC'])
+		->order(['Recettes.titre' => 'ASC']);
+		$this->set('recettes', $query);	
+		//extract types
+		$types = $this->Recettes->Types->find('list')
+		->order(['Types.id'=>'ASC']);
+		$types = $types->toArray();
+		$this->set('types', $types);	
+		//extract modes de cuisson
+		$ModeCuissons = $this->Recettes->ModeCuissons->find('list')
+		->order(['ModeCuissons.lib'=>'ASC']);
+		$ModeCuissons = $ModeCuissons->toArray();
+		$this->set('ModeCuissons', $ModeCuissons);
+		//extract Diets
+		$Diets = $this->Recettes->Diets->find('list')
+		->order(['Diets.lib'=>'ASC']);
+		$Diets = $Diets->toArray();
+		$this->set('Diets', $Diets);
+
+	}
+	
+
+
+    /**
      * View method
      *
      * @param string|null $id Recette id.
@@ -261,6 +317,16 @@ class RecettesController extends AppController
     public function add()
     {
         $recette = $this->Recettes->newEntity();
+/*
+ * 		//a function to search if the title is unique or not; if not, warns and give a link to the recipe matching
+		$recettes = $this->Recettes
+			->find()
+			->where(['Recettes.titre LIKE' => '%'.$_GET['titre'].'%']);
+					$this->set(compact('recettes'));			
+
+ * */
+
+
         if ($this->request->is('post')) {
             $recette = $this->Recettes->patchEntity($recette, $this->request->data);
                         //print_r($recette); exit;
@@ -344,10 +410,19 @@ class RecettesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    /* suggestions de recettes */
-	public function suggestions(){
+	public function cherchetitre() { 
+		//a function to search if the title is unique or not; if not, warns and give a link to the recipe matching
+		$recettes = $this->Recettes
+			->find()
+			->where(['Recettes.titre LIKE' => '%'.$_GET['titre'].'%']);
+					$this->set(compact('recettes'));			
+	}
+
+	public function suggestions(){ //suggestions de recettes
 		
 	}
+	
+
 
 }
 

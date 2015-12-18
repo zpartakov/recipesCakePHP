@@ -1,18 +1,54 @@
-* {
+body {
 	margin:0;
 	padding:0;
-}
-
-/** General Style Info **/
-body {
-	background: #003d4c;
-	color: #fff;
+	background: snow;
+	color: black;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
 	font-size: 14px;
 	margin: 0;
 	padding: 2%;
 }
 
+ h1 {page-break-before: always;}
 #leftnav, #header, #footer, .retour {
 display: none;
+}
+.depart {
+	border: thin solid;
+	padding: 3px;
+	margin-right: 1em;
+}
+img {
+    border-radius: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+}
+
+/* Default left, right, top, bottom margin is 2cm */
+@page { margin: 2cm } 
+ 
+/* First page, 10 cm margin on top */
+@page :first {
+  margin-top: 10cm;
+}
+ 
+/* Left pages, a wider margin on the left */
+@page :left {
+  margin-left: 3cm;
+  margin-right: 2cm;
+}
+ 
+@page :right {
+  margin-left: 2cm;
+  margin-right: 3cm;
+}
+
+@media all {
+	.page-break	{ display: none; }
+}
+
+@media print {
+	.page-break	{ display: block; page-break-before: always; }
 }

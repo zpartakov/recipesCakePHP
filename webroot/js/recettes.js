@@ -24,16 +24,17 @@ function vide_recherche(id) {
 * */
 
 function checkunik(value) {
+	alert(value); 
 	$.ajax({
 	   type: "GET",
-	   url: "/recettes3/recettes/cherchetitre?titre="+value,
+	   url: "/recettes/recettes/cherchetitre?titre="+value,
        dataType: "html",   //expect html to be returned                
 	   error:function(msg){
 		 alert( "Error !: " + msg );
 	   },
 	   success:function(data){
-		            $("#responsecontainer").html(data); 
-		   lid="#tr"+id;		   
+		$("#responsecontainer").html(data); 
+		   lid="#tr"+value;		   
 		   $(lid).fadeOut();
 		}
 	});

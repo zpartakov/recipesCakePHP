@@ -88,8 +88,16 @@ class RecettesTable extends Table
             ->notEmpty('prov');
 
         $validator
-            ->allowEmpty('titre')
+            //->allowEmpty('titre')
+            //->requirePresence('titre', 'create')
+            //->notEmpty('titre');
             ->add('titre', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+/*
+$validator->add('titre', 'unique', [
+    'rule' => 'uniqueTitre',
+    'provider' => 'table'
+]);
+*/
 
         $validator
             ->requirePresence('temps', 'create')

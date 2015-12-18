@@ -13,7 +13,7 @@
  */
 
 //the webdir of application radeff
-define ('CHEMIN','/recettes3/');
+define ('CHEMIN','/recettes/');
 
 
 /**

@@ -19,7 +19,7 @@ $this->set('title', 'Accueil');
 	</tr>
 </table>			
 
-<form action='/recettes3/recettes/' method="get" name="formu"> 
+<form action='/recettes/recettes/' method="get" name="formu"> 
 	<input type="hidden" name="cherche" value="1">
 <h2>Recherche simple</h2>
 <p><input type="text" name="globalsearch" style="width: 350px; font-size: bigger"></p>
@@ -28,7 +28,7 @@ $this->set('title', 'Accueil');
 <div id="advanced_search">
 <hr />
 <h2 style="text-align: center">Recherche avancée</h2>
-<form action='/recettes3/recettes/' method="get" name="formu" target="_blank"> 
+<form action='/recettes/recettes/' method="get" name="formu" target="_blank"> 
 		<input type="hidden" name="cherche" value="1">
 
   <table width="95%" border="0" cellpadding="5">

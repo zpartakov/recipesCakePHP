@@ -10,13 +10,20 @@ $test=0;
 while($test==0){
 
 	if($this->Session->read('Auth.User')['role']!="administrator"){
-		$query->where(['private =' => '0']); // Return the same query object	
+		$query->where(['private NOT LIKE' => '1']); // Return the same query object	
 	}
 	$query->where(['Recettes.pict NOT LIKE' => '']);
 	$query->order('rand()');
 	$query->firstOrFail();
 
 
+/*
+ * 			$conditions = array('OR' => array(
+				array('Recettes.titre LIKE' => '%'.$s.'%'),
+				array('Recettes.source LIKE' => '%'.$s.'%'),
+
+			$query=$this->Recettes->find('all', array('conditions' => $conditions));
+*/
 		foreach ($query as $recette) {
 			//any image of the recipe?
 			$files = $dir->find($recette->pict, true);

@@ -88,11 +88,21 @@ echo "<h3>Nouveautés</h3>";
     </thead>
     <tbody>
     <?php foreach ($recettes as $recette): ?>
+    
+    
+    <?php
+    //do not display if private recipe to non-logged users
+			$prive=$recette->private;
+			if(($prive=="1") && (!$this->Session->read('Auth.User')['role'])) {
+			} else {
+    ?>
+    
         <tr>
             <td style="<?php echo $lestyle; ?>"><?= $this->Number->format($recette->id) ?></td>
             <td>
 				<strong>
 				<?php       
+				//echo "<h1>private?: ".$prive."</h1>";
 				$titre=$recette->titre; 
 				$titre=preg_replace("/<!--.*-->/","",$titre);
 
@@ -123,7 +133,13 @@ echo "<h3>Nouveautés</h3>";
             </td>
         </tr>
 
-    <?php endforeach; ?>
+
+
+
+    <?php
+}
+    
+     endforeach; ?>
     </tbody>
     </table>
     <div class="paginator">

@@ -40,17 +40,17 @@
             echo $this->Form->input('pers', ['type'=>'text']);
             echo $this->Form->input('type_id', ['options' => $types]);
             echo $this->Form->input('prep', ['label'=>'Préparation']);
-            echo $this->Form->input('date', ['type'=>'text']);
-            echo $this->Form->input('score', ['type'=>'text']);
+            echo $this->Form->input('date', ['type'=>'date']);
+            echo $this->Form->input('score', ['type'=>'hidden']);
             echo $this->Form->input('source', ['type'=>'text']);
             echo $this->Form->input('pict', ['type'=>'text']);
             echo $this->Form->input('private');
             echo $this->Form->input('mode_cuisson_id', ['options' => $modeCuissons]);
             echo $this->Form->input('time', ['type'=>'text']);
-            echo $this->Form->input('difficulty', ['type'=>'text']);
-            echo $this->Form->input('price', ['type'=>'text']);
+            echo $this->Form->input('difficulty', ['type'=>'hidden']);
+            echo $this->Form->input('price', ['type'=>'hidden']);
             echo $this->Form->input('diet_id', ['options' => $diets]);
-            echo $this->Form->input('tags._ids', ['options' => $tags]);
+            echo $this->Form->input('tags._ids', ['type'=>'hidden']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -58,7 +58,7 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
      
     
     <header>
-    <h1><a href="<?php echo CHEMIN; ?>">Recettes de cuisine Fred Radeff&nbsp;<img src="/pics/casserole.png" alt="image casserole"/></a></h1>
+    <h1><a href="<?php echo CHEMIN; ?>">Recettes de cuisine Fred Radeff&nbsp;<img src="/pics/casserole.png" alt="image casserole"/></a><a href="<? echo CHEMIN; ?>recettes/rss"><img src="/pics/rss.png" alt="Flux RSS"></a></h1>
            <div id="hamburger">
                 <div></div>
    		         <div></div>
@@ -86,21 +86,24 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 <table>
 	<tr>
 	<td>
-		<a href="/dokuwiki/doku.php?id=cuisine:aide_recettes" title="Aide"><img src="/recettes3/img/help.png" alt="Aide" /></a>
+		<a href="/dokuwiki/doku.php?id=cuisine:aide_recettes" title="Aide"><img src="/recettes/img/help.png" alt="Aide" /></a>
 	</td>
 	<td>
-		<a href="/www2/services" title="About"><img src="/recettes3/img/linux/tux_che.jpg" alt="About" /></a>
+		<a href="/www2/services" title="About"><img src="/recettes/img/linux/tux_che.jpg" alt="About" /></a>
 	</td>
 	<td>
-		<a href="https://github.com/zpartakov/recipesCakePHP" title="github repository"><img src="/recettes3/img/github.png" alt="github repository" /></a>
+		<a href="https://github.com/zpartakov/recipesCakePHP" title="github repository"><img src="/recettes/img/github.png" alt="github repository" /></a>
 	</td>
 	<td>
-		<a href="/www2/contact" title="contact"><img src="/recettes3/img/ico-contact.gif" alt="contact" /></a>
+		<a href="/www2/contact" title="contact"><img src="/recettes/img/ico-contact.gif" alt="contact" /></a>
 	</td>
 	<td>
-		<a href="http://creativecommons.org/licenses/by-sa/2.0/fr/" title="GPL License / CopyLeft"><img src="/recettes3/img/copyleft.jpg" style="width: 45; height: 45" alt="GPL License / CopyLeft" /></a></td>
+		<a href="http://creativecommons.org/licenses/by-sa/2.0/fr/" title="GPL License / CopyLeft"><img src="/recettes/img/copyleft.jpg" style="width: 45; height: 45" alt="GPL License / CopyLeft" /></a></td>
 	<td>
-		<img src="/recettes3/img/qrcode.png" style="width: 45" alt="Code QR" />
+		<a href="<? echo CHEMIN; ?>recettes/rss"><img src="/pics/rss-feed.png" alt="Flux RSS" style="width: 15; height: 45"></a>
+	</td>	
+	<td>
+		<img src="/recettes/img/qrcode.png" style="width: 45" alt="Code QR" />
 	</td>
 	</tr>
 </table>

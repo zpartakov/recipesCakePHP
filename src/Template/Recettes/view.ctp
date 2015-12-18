@@ -1,7 +1,14 @@
 <?php
 $this->set('title', $recette->titre);
+if(!$this->Session->read('Auth.User')['role']&&$recette->private=="1"){ //do not display private recipe to non-logged users
 
-require_once("/var/www/radeff/libs/Zpartakov.php");
+echo $this->Html->charset();
+
+	echo "Désolé, vous cette recette est privée...";
+	echo "<p><a href=\"javascript:history.go(-2)\">retour</a>";
+	exit;
+}
+require_once("/var/www/radeff/libs/Zpartakov.php"); //required for external php functions like putz_lignes_vides
 
 if($this->Session->read('Auth.User')['role']!="administrator"){
 	$admin=0;
@@ -48,8 +55,15 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 		//use Cake\Filesystem\File; //not mandatory
 		$dir = new Folder(WWW_ROOT . 'img/pics');
 		$files = $dir->find($recette->pict, true);
+		
+		//print_r($files); //tests
+		
 		$nimg=count($files);
+		
+		//echo "<p>#: $nimg</p>"; //tests
+		
 		if($nimg==1) {
+			//echo "<p>yo image!</p>"; //tests
             echo $this->Html->image('pics/'.$recette->pict);
 		}
         ?>
@@ -104,6 +118,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             <strong><?= __('Ingrédients') ?></strong>
             <div style="font-style: italic"><?php
              $ingredients=html_entity_decode($this->Text->autoParagraph(h($recette->ingr)));
+             $ingredients=preg_replace("/-/","<br />-", $ingredients);
 //            <p><p>Mettre les raisins secs &agrave; tremper dans de l&#39;eau chaude.</p></p>
              //$ingredients=preg_replace("/\<br \/\>\<br \/\>/","<br />",$ingredients);
              putz_lignes_vides($ingredients);
@@ -115,20 +130,29 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
         <div class="columns large-9">
             <strong><?= __('Préparation') ?></strong>
             <?php
-             $preparation=html_entity_decode($this->Text->autoParagraph(h($recette->prep)));
-             putz_lignes_vides($preparation);
+             //$preparation=html_entity_decode($this->Text->autoParagraph(h($recette->prep)));            
+
+$preparation=$this->Text->autoParagraph(h($recette->prep));            
+            $preparation = $this->Text->autoLink($preparation);
+            $preparation=html_entity_decode($preparation);
+             $preparation=preg_replace("/-/","<br />-", $preparation);
+            putz_lignes_vides($preparation);
+            //urlize($preparation) 
+             
 			?>
         </div>
     </div>
     <div class="row texts">
         <div class="columns large-9">
-            <h6 class="subheader"><?= __('Source') ?></h6>
+            <h6 class="subheader"><strong><?= __('Source') ?></strong></h6>
             <?php
             $zesource=$recette->source;
             $source=$this->Text->autoParagraph(h($recette->source));
-            
+            $source=$this->Text->autolink($source);
+            $source=html_entity_decode($source);
+            echo $source;
             //$source=preg_replace("/^http(.*)/","<a href=\"http\1\">http\1</a>",$source);
-            urlize ($source);
+            //urlize ($source);
              ?>
         </div>
     </div>
@@ -367,3 +391,4 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
     <?php endif; ?>
     </div>
 </div>
+
