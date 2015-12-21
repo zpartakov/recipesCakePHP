@@ -1,3 +1,19 @@
+<?php
+$this->set('title', "Liste d'ingrédients de cuisine");
+
+if($this->Session->read('Auth.User')['role']!="administrator"){
+	$admin=0;
+	$lestyle="display: none";
+}else {
+	$admin=1;
+	$lestyle="";
+}
+
+use Cake\Filesystem\Folder;
+//use Cake\Filesystem\File; //not mandatory
+$dir = new Folder(WWW_ROOT . 'img/pics');
+
+?>
 <div class="actions columns large-2 medium-3">
     <h3><?= __('Actions') ?></h3>
     <ul class="side-nav">
