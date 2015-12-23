@@ -67,7 +67,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             echo $this->Html->image('pics/'.$recette->pict);
 		}
         ?>
-</p>
+	</p>
     <div class="row">
         <div class="large-5 columns strings">
 

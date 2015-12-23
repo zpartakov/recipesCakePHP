@@ -41,7 +41,7 @@ class EpicesTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create');
-
+/*
         $validator
             ->requirePresence('lib', 'create')
             ->notEmpty('lib');
@@ -65,7 +65,7 @@ class EpicesTable extends Table
         $validator
             ->requirePresence('origine', 'create')
             ->notEmpty('origine');
-
+*/
         return $validator;
     }
 }

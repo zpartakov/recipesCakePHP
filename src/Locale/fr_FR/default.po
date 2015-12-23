@@ -1,6 +1,6 @@
 "Project-Id-Version: Atable-fre\n"
 "POT-Creation-Date: 2012-09-27 06:17+0100\n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2015-12-23 16:58+0100\n"
 "Last-Translator: Fred Radeff <fradeff@akademia.ch>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -133,5 +133,7 @@ msgstr "Liste des types de documents"
 msgid "New Typedoc"
 msgstr "Nouveau Type de document"
 
+msgid "Lib"
+msgstr "Libellé"
 
  

@@ -10,6 +10,12 @@ use App\Controller\AppController;
  */
 class EpicesController extends AppController
 {
+		public $paginate = [
+	'limit' => 10,
+	'order' => [
+	'Epices.lib' => 'asc'
+			]
+			];
 /* VARIOUS AUTH BEGIN */	
 	public function isAuthorized($user) {
         //auth check
@@ -44,8 +50,26 @@ class EpicesController extends AppController
      */
     public function index()
     {
+			if($_GET['globalsearch']){
+				$s=$_GET['globalsearch'];
+
+			$conditions = array('OR' => array(
+				array('Epices.lib LIKE' => '%'.$s.'%'),
+				array('Epices.url LIKE' => '%'.$s.'%'),
+				array('Epices.origine LIKE' => '%'.$s.'%'),
+				array('Epices.def LIKE' => '%'.$s.'%'),
+				array('Epices.util LIKE' => '%'.$s.'%')
+			));
+			$query=$this->Epices->find('all', array('conditions' => $conditions));
+			$this->set('epices', $this->paginate($query));
+		/* 
+		 * ###################### //specific search #################
+		 * 
+		 * */
+			} else {
         $this->set('epices', $this->paginate($this->Epices));
         $this->set('_serialize', ['epices']);
+	}
     }
 
     /**
@@ -101,15 +125,6 @@ class EpicesController extends AppController
             $epice = $this->Epices->patchEntity($epice, $this->request->data);
             
             
-
-			if ($this->RequestHandler->isAjax()) { 
-			  if ($this->Epices->save($this->data)) { 
-				echo 'success'; 
-			  } 
-			  Configure::write('debug', 0); 
-			  $this->autoRender = false;
-			  exit(); 
-			}
 
 
             
