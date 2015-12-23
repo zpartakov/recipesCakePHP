@@ -9,6 +9,19 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 	$lestyle="";
 }
 ?>
+<form action='/recettes/restaurants/' method="get" name="formu"> 
+<table>
+	<tr>
+		<td>
+			<input type="text" name="globalsearch" style="width: 350px">
+		</td>
+		<td>
+			<input type="submit" value="chercher">
+	</td>
+	</tr>
+</table>
+</form>
+
 <div class="actions columns large-2 medium-3" style="<?php echo $lestyle; ?>">
     <h3><?= __('Actions') ?></h3>
     <ul class="side-nav">
@@ -22,6 +35,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('nom') ?></th>
             <th><?= $this->Paginator->sort('tel') ?></th>
+            <th><?= $this->Paginator->sort('type') ?></th>
             <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('email') ?></th>
             <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('url') ?></th>
             <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('zip') ?></th>
@@ -37,6 +51,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             <?= $this->Html->link($restaurant->nom, ['action' => 'view', $restaurant->id]) ?>
             </td>
             <td><?= h($restaurant->tel) ?></td>
+            <td><?= h($restaurant->type) ?></td>
             <td style="<?php echo $lestyle; ?>"><?= h($restaurant->email) ?></td>
             <td style="<?php echo $lestyle; ?>"><?= h($restaurant->url) ?></td>
             <td style="<?php echo $lestyle; ?>"><?= h($restaurant->zip) ?></td>

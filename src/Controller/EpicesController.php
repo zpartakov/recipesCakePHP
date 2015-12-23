@@ -20,6 +20,8 @@ class EpicesController extends AppController
 		parent::initialize();
 		$this->loadComponent('Paginator');
 		$this->loadComponent('Auth');
+		$this->loadComponent('RequestHandler'); //radeff added rss2
+
 
 		// Allow the display action so our pages controller
 		// continues to work.

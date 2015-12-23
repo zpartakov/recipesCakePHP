@@ -61,8 +61,28 @@ class RestaurantsController extends AppController
      */
     public function index()
     {
+				if($_GET['globalsearch']){
+				$s=$_GET['globalsearch'];
+
+			$conditions = array('OR' => array(
+				array('Restaurants.nom LIKE' => '%'.$s.'%'),
+				array('Restaurants.type LIKE' => '%'.$s.'%'),
+				array('Restaurants.ville LIKE' => '%'.$s.'%'),
+				array('Restaurants.rem LIKE' => '%'.$s.'%'),
+				array('Restaurants.pays LIKE' => '%'.$s.'%')
+			));
+			$query=$this->Restaurants->find('all', array('conditions' => $conditions));
+			$this->set('restaurants', $this->paginate($query));
+		/* 
+		 * ###################### //specific search #################
+		 * 
+		 * */
+			} else {
+		
+		
         $this->set('restaurants', $this->paginate($this->Restaurants));
         $this->set('_serialize', ['restaurants']);
+        }
     }
 
     /**
