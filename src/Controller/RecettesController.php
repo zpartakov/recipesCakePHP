@@ -1,34 +1,12 @@
 <?php
-/*
- * 
- * 
- * todos
- * 
- * arraypush in recettes controller
- * 
- * howto clear cache
-Cache::clearGroup('recettes');
-*/
-
-
-
 namespace App\Controller;
-
 use App\Controller\AppController;
-
-/*if($_GET['cherche']==1) {
-	$ordre='titre';
-	$sens='asc';
-} else {
-	$ordre='id';
-	$sens='desc';
-}*/
 
 /**
  * Recettes Controller
  *
- * @property \App\Model\Table\RecettesTable $Recettes
  */
+
 class RecettesController extends AppController
 {
 	
@@ -36,34 +14,26 @@ class RecettesController extends AppController
 	'contain' => ['Types', 'ModeCuissons', 'Diets'],
 	'limit' => 10,
 	'order' => [
-	'Recettes.id' => 'desc'
+	'Recettes.type_id' => 'asc'
 			]
 			];
 
 			
 	public function isAuthorized($user) {
-        //auth check
-        //return boolean
     }
+
 	public function initialize()
 	{
 		parent::initialize();
 		$this->loadComponent('Paginator');
-		$this->loadComponent('Auth');
 		$this->loadComponent('RequestHandler'); //radeff added rss2
-	
-		// Allow the display action so our pages controller
-		// continues to work.
-		$this->Auth->allow(['display','view', 'rss']);//radeff added rss6
-
-	//				$this->Auth->allow('index','chercher','view','total_recettes','pays','les_types','nouveau','rss','regime','les_regimes', 'suggestions');
+		$this->loadComponent('Auth');
+		$this->Auth->allow(['display','view', 'rss', 'index']);//radeff added rss6
 	}
 	
-		public function beforeFilter(\Cake\Event\Event $event)
+	public function beforeFilter(\Cake\Event\Event $event)
 	{
-		//$this->Auth->allow('index','view');
 		$this->Auth->allow('index','chercher','view','total_recettes','pays','les_types','nouveau','rss','regime','les_regimes', 'suggestions');
-
 	}
 	
 	
@@ -95,8 +65,6 @@ class RecettesController extends AppController
     {
 
 		$boole=0;
-
-
 		/* 
 		 * ###################### //global search #################
 		 * 
@@ -184,10 +152,10 @@ class RecettesController extends AppController
 				
 		 
 		 
-		}elseif($_GET['ingrNot']){ //recherches booléennes portant sur plusieurs ingrédients;on laisse tomber les sous-conditions pour les 
-			if($_GET['ingrNot']){ //recherche ingrédient2
+		} elseif ($_GET['ingrNot']) { //recherches booléennes portant sur plusieurs ingrédients;on laisse tomber les sous-conditions pour les 
+			if ($_GET['ingrNot']) { //recherche ingrédient2
 				//selection: empty = AND or NOT idem selection1	
-				if($_GET['selection']=='NOT'){
+				if ($_GET['selection']=='NOT') {
 					$conditions = array('AND' => array(
 					array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
 					array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%')));
@@ -200,10 +168,10 @@ class RecettesController extends AppController
 				$query=$this->Recettes->find('all', array('conditions' => $conditions));
 				$this->set('recettes', $this->paginate($query));	
 			}
-			if($_GET['ingrNot1']){ //recherche ingrédient3
+			if ($_GET['ingrNot1']) { //recherche ingrédient3
 				//selection: empty = AND or NOT idem selection1	
-				if($_GET['selection1']=='NOT'){
-					if($_GET['selection']=='NOT'){
+				if ($_GET['selection1']=='NOT') {
+					if ($_GET['selection']=='NOT') {
 						$conditions = array('AND' => array(
 						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
 						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
@@ -216,7 +184,7 @@ class RecettesController extends AppController
 						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));
 					}	
 				} else {
-					if($_GET['selection']=='NOT'){
+					if ($_GET['selection']=='NOT') {
 						$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
 						$conditions = array('AND' => array(
 						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
@@ -234,28 +202,18 @@ class RecettesController extends AppController
 				$this->set('recettes', $this->paginate($query));	
 			}
 		} else {
-				//is the user an admin? if yes, display hidden recipes	
-				if ($this->Auth->user('id')) {
-						$query = $this->Recettes->find();
-						$this->set('recettes', $this->paginate($query));
-				//no? display only public recipes
-				} else {
-						$query = $this->Recettes->find()->where(['private LIKE' => '0']);
-						$this->set('recettes', $this->paginate($query));
-				}
-					//debug($query);
-			}	        
-				
-			 //end query
-			 //create boolean //bug
-		/*     if($boole==1){
-				 $query = $this->Recettes->findAllBySourceAndTitre('%'.$_GET['source'].'%', '%'.$_GET['titre'].'%');
-							$this->set('recettes', $this->paginate($query));	
-				debug($query);
-			 }
-		  */   
-				
-				$this->set('_serialize', ['recettes']);
+			//is the user an admin? if yes OR if localhost, display hidden recipes	
+			if ($this->Auth->user('id')||$_SERVER["HTTP_HOST"]=="localhost") {
+				$query = $this->Recettes->find();
+				$this->set('recettes', $this->paginate($query));
+			//no? display only public recipes
+			} else {
+				$query = $this->Recettes->find()->where(['private LIKE' => '0']);
+				$this->set('recettes', $this->paginate($query));
+			}
+			//debug($query);
+		}	        
+		$this->set('_serialize', ['recettes']);
 	}
 
     /**

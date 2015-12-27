@@ -13,7 +13,7 @@ if ($this->Session->read('Auth.User')){
 //session: Array ( [username] => radeff [] => fradeff@akademia.ch [pseudo] => radeff [role] => administrator [id] => 6 [dateIn] => Cake\I18n\Time Object ( [date] => 2010-11-29 17:15:00 [timezone_type] => 3 [timezone] => UTC ) ) 
 }
 */
-if($this->Session->read('Auth.User')['role']!="administrator"){
+if($this->Session->read('Auth.User')['role']!="administrator" && $_SERVER["HTTP_HOST"]!="localhost"){
 	$admin=0;
 	$lestyle="display: none";
 }else {
@@ -74,15 +74,10 @@ echo "<h3>Nouveautés</h3>";
     <table cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('id') ?></th>
             <th style="<?php echo $lestyle; ?>">
             <?= $this->Paginator->sort('titre') ?></th>
-                        <th style="<?php echo $lestyle; ?>">Pays d'origine</th>
-                        <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('pers') ?></th>
+			<th style="<?php echo $lestyle; ?>">Pays d'origine</th>
             <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('type_id') ?></th>
-            <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('date') ?></th>
-            <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('score') ?></th>
-            <th style="<?php echo $lestyle; ?>"><?= $this->Paginator->sort('private') ?></th>
             <th class="actions" style="<?php echo $lestyle; ?>"><?= __('Actions') ?></th>
         </tr>
     </thead>
@@ -93,12 +88,11 @@ echo "<h3>Nouveautés</h3>";
     <?php
     //do not display if private recipe to non-logged users
 			$prive=$recette->private;
-			if(($prive=="1") && (!$this->Session->read('Auth.User')['role'])) {
+			if(($prive=="1") && (!$this->Session->read('Auth.User')['role']) &&  ($_SERVER["HTTP_HOST"]!="localhost")) {
 			} else {
     ?>
     
         <tr>
-            <td style="<?php echo $lestyle; ?>"><?= $this->Number->format($recette->id) ?></td>
             <td>
 				<strong>
 				<?php       
@@ -111,7 +105,7 @@ echo "<h3>Nouveautés</h3>";
 				$nimg=count($files);
 				if($nimg==1) {
 					echo $this->Html->image('pics/'.$recette->pict, [
-						'style'=>'width: 10%;', 
+						'style'=>'width: 30%;', 
 						'alt' => $titre,
 						'title' => $titre,
 						'url' => ['controller' => 'Recettes', 'action' => 'view', $recette->id]]);
@@ -119,13 +113,9 @@ echo "<h3>Nouveautés</h3>";
 				?>
 			&nbsp;<?= $this->Html->link($titre, ['action' => 'view', $recette->id]) ?></strong></td>
             <td style="<?php echo $lestyle; ?>"><?= h($recette->prov) ?></td>
-			<td style="<?php echo $lestyle; ?>"><?= $this->Number->format($recette->pers) ?></td>
             <td style="<?php echo $lestyle; ?>">
                 <?= $recette->has('type') ? $this->Html->link($recette->type->name, ['controller' => 'Types', 'action' => 'view', $recette->type->id]) : '' ?>
             </td>
-            <td style="<?php echo $lestyle; ?>"><?= h($recette->date) ?></td>
-            <td style="<?php echo $lestyle; ?>"><?= $this->Number->format($recette->score) ?></td>
-            <td style="<?php echo $lestyle; ?>"><?= h($recette->private) ?></td>
             <td class="actions" style="<?php echo $lestyle; ?>">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $recette->id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $recette->id]) ?>

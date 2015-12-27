@@ -9,7 +9,7 @@ $test=0;
 
 while($test==0){
 
-	if($this->Session->read('Auth.User')['role']!="administrator"){
+	if($this->Session->read('Auth.User')['role']!="administrator" && $_SERVER["HTTP_HOST"]!="localhost"){
 		$query->where(['private NOT LIKE' => '1']); // Return the same query object	
 	}
 	$query->where(['Recettes.pict NOT LIKE' => '']);

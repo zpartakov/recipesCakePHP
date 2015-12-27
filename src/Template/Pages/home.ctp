@@ -18,13 +18,12 @@ $this->set('title', 'Accueil');
 		</td>
 	</tr>
 </table>			
-
+<div style="text-align: center">
 <form action='/recettes/recettes/' method="get" name="formu"> 
 	<input type="hidden" name="cherche" value="1">
-<h2>Recherche simple</h2>
-<p><input type="text" name="globalsearch" style="width: 350px; font-size: bigger"></p>
-<p><input type="submit"></p>
+<h3 style="display: inline;">Recherche simple&nbsp;<input type="text" name="globalsearch" style="width: 250px; display: inline">&nbsp;<input type="submit"></h2>
 </form>
+</div>
 <div id="advanced_search">
 <hr />
 <h2 style="text-align: center">Recherche avancée</h2>
