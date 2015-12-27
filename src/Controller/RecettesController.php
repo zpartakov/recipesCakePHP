@@ -292,7 +292,7 @@ class RecettesController extends AppController
             
             if ($this->Recettes->save($recette)) {
                 $this->Flash->success(__('The recette has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             } else {
                 $this->Flash->error(__('The recette could not be saved. Please, try again.'));
             }
