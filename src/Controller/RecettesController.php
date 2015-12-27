@@ -14,7 +14,7 @@ class RecettesController extends AppController
 	'contain' => ['Types', 'ModeCuissons', 'Diets'],
 	'limit' => 10,
 	'order' => [
-	'Recettes.id' => 'asc'
+	'Recettes.id' => 'desc'
 			]
 			];
 
