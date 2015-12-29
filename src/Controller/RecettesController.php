@@ -12,7 +12,7 @@ class RecettesController extends AppController
 	
 	public $paginate = [
 	'contain' => ['Types', 'ModeCuissons', 'Diets'],
-	'limit' => 10,
+	'limit' => 100,
 	'order' => [
 	'Recettes.id' => 'desc'
 			]

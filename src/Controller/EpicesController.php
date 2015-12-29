@@ -11,7 +11,7 @@ use App\Controller\AppController;
 class EpicesController extends AppController
 {
 		public $paginate = [
-	'limit' => 10,
+	'limit' => 25,
 	'order' => [
 	'Epices.lib' => 'asc'
 			]
@@ -86,6 +86,18 @@ class EpicesController extends AppController
         ]);
         $this->set('epice', $epice);
         $this->set('_serialize', ['epice']);
+		//find recipes containing this ingredient
+        $data = $epice->toArray();       
+        $lib=$data['lib']; 
+        	$conditions = array('AND' => array(
+				array('Recettes.ingrNot LIKE' => '%'.$lib .'%'),
+				array('Recettes.private' => '0')
+			));
+		$this->loadModel('Recettes');
+		$recettes=$this->Recettes->find('all', array('conditions' => $conditions));	
+		
+//		$this->set(compact('recettes', $recettes));
+		$this->set('recettes', $recettes);
     }
 
     /**
