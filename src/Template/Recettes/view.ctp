@@ -1,6 +1,6 @@
 <?php
 $this->set('title', $recette->titre);
-if(!$this->Session->read('Auth.User')['role']&&$recette->private=="1"){ //do not display private recipe to non-logged users
+if(!$this->Session->read('Auth.User')['role']&&$recette->private=="1" && $_SERVER["HTTP_HOST"]!="localhost"){ //do not display private recipe to non-logged users
 
 echo $this->Html->charset();
 
@@ -46,8 +46,8 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
     </ul>
 </div>
 <div class="recettes view large-10 medium-9 columns">
-    <p style="float: right">            
-		<?php       
+    <p style="float: right">
+		<?php
 		/*
 		 * is there any image of that recipe?
 		 * */
@@ -55,13 +55,13 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 		//use Cake\Filesystem\File; //not mandatory
 		$dir = new Folder(WWW_ROOT . 'img/pics');
 		$files = $dir->find($recette->pict, true);
-		
+
 		//print_r($files); //tests
-		
+
 		$nimg=count($files);
-		
+
 		//echo "<p>#: $nimg</p>"; //tests
-		
+
 		if($nimg==1) {
 			//echo "<p>yo image!</p>"; //tests
             echo $this->Html->image('pics/'.$recette->pict);
@@ -72,22 +72,22 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
         <div class="large-5 columns strings">
 
             <h6 class="subheader"><?= __('Type') ?></h6>
-            
+
 				<?php
 					echo $this->Text->autoParagraph(h($recette->type->name));
 				?>
-				
+
             <h6 class="subheader"><?= __('Mode de Cuisson') ?></h6>
-            
+
 				<?php
 					echo $this->Text->autoParagraph(h($recette->mode_cuisson->lib));
-		
+
 				?>
-				
+
             <h6 class="subheader"><?= __('Régime') ?></h6>
             				<?php
 					echo $this->Text->autoParagraph(h($recette->diet->lib));
-		
+
 				?>
         </div>
         <div class="large-2 columns numbers end">
@@ -112,7 +112,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             <h6 class="subheader"><?= __('Private') ?></h6>
             <p><?= $recette->private ? __('Yes') : __('No'); ?></p>
         </div>
-   
+
     <div class="row texts">
         <div class="columns large-9">
             <strong><?= __('Ingrédients') ?></strong>
@@ -130,15 +130,15 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
         <div class="columns large-9">
             <strong><?= __('Préparation') ?></strong>
             <?php
-             //$preparation=html_entity_decode($this->Text->autoParagraph(h($recette->prep)));            
-
-$preparation=$this->Text->autoParagraph(h($recette->prep));            
-            $preparation = $this->Text->autoLink($preparation);
+						$preparation=html_entity_decode($this->Text->autoParagraph(h($recette->prep)));
+						//$preparation=$recette->prep;
+						$preparation = $this->Text->autoLink($preparation);
             $preparation=html_entity_decode($preparation);
-             $preparation=preg_replace("/-/","<br />-", $preparation);
+
+            $preparation=preg_replace("/[\n\r ]-/","<br />-", $preparation);
             putz_lignes_vides($preparation);
-            //urlize($preparation) 
-             
+            //urlize($preparation)
+
 			?>
         </div>
     </div>
@@ -158,8 +158,8 @@ $preparation=$this->Text->autoParagraph(h($recette->prep));
     </div>
     <div class="row texts">
 		<div class="copyleft">
-		Recette Fred Radeff / radeff.red, publiée sous 
-		<?php 
+		Recette Fred Radeff / radeff.red, publiée sous
+		<?php
 		echo '<a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/fr/">';
 		echo $this->Html->image('copyleft.jpg', array("alt"=>"GPL License / CopyLeft","title"=>"GPL License / CopyLeft","width"=>"15","height"=>"15"));
 		echo '</a>';
@@ -391,4 +391,3 @@ $preparation=$this->Text->autoParagraph(h($recette->prep));
     <?php endif; ?>
     </div>
 </div>
-
