@@ -16,7 +16,7 @@ class EpicesController extends AppController
 	'Epices.lib' => 'asc'
 			]
 			];
-/* VARIOUS AUTH BEGIN */	
+/* VARIOUS AUTH BEGIN */
 	public function isAuthorized($user) {
         //auth check
         //return boolean
@@ -37,7 +37,7 @@ class EpicesController extends AppController
 	{
 				//$this->Auth->allow('index','view');
 	}
-/* VARIOUS AUTH END */	
+/* VARIOUS AUTH END */
     /**
      * Index method
      *
@@ -62,9 +62,9 @@ class EpicesController extends AppController
 			));
 			$query=$this->Epices->find('all', array('conditions' => $conditions));
 			$this->set('epices', $this->paginate($query));
-		/* 
+		/*
 		 * ###################### //specific search #################
-		 * 
+		 *
 		 * */
 			} else {
         $this->set('epices', $this->paginate($this->Epices));
@@ -87,16 +87,30 @@ class EpicesController extends AppController
         $this->set('epice', $epice);
         $this->set('_serialize', ['epice']);
 		//find recipes containing this ingredient
-        $data = $epice->toArray();       
-        $lib=$data['lib']; 
-        	$conditions = array('AND' => array(
-				array('Recettes.ingrNot LIKE' => '%'.$lib .'%'),
+        $data = $epice->toArray();
+        $lib=$data['lib'];
+//exceptions
+if(preg_match("/amchoor/",$lib)) {
+	$lib="mangue";
+} elseif (preg_match("/^ase fétide/",$lib)) {
+	$lib="ase fétide";
+} elseif (preg_match("/^baie de Genièvre/",$lib)) {
+	$lib="genièvre";
+}elseif (preg_match("/^Ache des montagnes/",$lib)) {
+ $lib="livèche";
+}elseif (preg_match("/^Achillée millefeuille/",$lib)) {
+ $lib="Achillée";
+}
+
+//
+
+
+        $conditions = array('AND' => array(
+				array('Recettes.ingr LIKE' => '%'.$lib .'%'),
 				array('Recettes.private' => '0')
 			));
 		$this->loadModel('Recettes');
-		$recettes=$this->Recettes->find('all', array('conditions' => $conditions));	
-		
-//		$this->set(compact('recettes', $recettes));
+		$recettes=$this->Recettes->find('all', array('conditions' => $conditions, 'order'=>'Recettes.titre'));
 		$this->set('recettes', $recettes);
     }
 
@@ -135,11 +149,11 @@ class EpicesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $epice = $this->Epices->patchEntity($epice, $this->request->data);
-            
-            
 
 
-            
+
+
+
             if ($this->Epices->save($epice)) {
                 $this->Flash->success(__('The epice has been saved.'));
                 return $this->redirect(['action' => 'index']);

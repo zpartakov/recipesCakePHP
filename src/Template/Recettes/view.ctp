@@ -4,7 +4,7 @@ if(!$this->Session->read('Auth.User')['role']&&$recette->private=="1" && $_SERVE
 
 echo $this->Html->charset();
 
-	echo "Désolé, vous cette recette est privée...";
+	echo "Désolé, cette recette est privée...";
 	echo "<p><a href=\"javascript:history.go(-2)\">retour</a>";
 	exit;
 }

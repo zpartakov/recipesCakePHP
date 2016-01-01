@@ -18,8 +18,8 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
     </ul>
 </div>
 <div class="epices view large-10 medium-9 columns">
-               <p style="float: right; width: 200px; margin-right: 3em">            
-		<?php       
+               <p style="float: right; width: 200px; margin-right: 3em">
+		<?php
 		/*
 		 * is there any image of that recipe?
 		 * */
@@ -55,16 +55,15 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
         </div>
     </div>
     <hr />
-<p><a href="/recettes/recettes/?ingrNot=<?php echo $epice->lib;?>">Chercher des recettes avec cette épice</a></p>
+<!--<p><a href="/recettes/recettes/?ingrNot=<?php echo $epice->lib;?>">Chercher des recettes avec cette épice</a></p>-->
 <div class=recipes>
+<h2>Recettes contenant cette épice</h2>
+	<ul>
 <?php
-//print_r($recettes);
 //debug($recettes->toArray());
-?>
-    <?php //foreach ($recettes as $recette): ?>
-<?php       
-/*				echo "<p>";
-				$titre=$recette->titre; 
+foreach ($recettes as $recette) {
+	echo "<li>";
+				$titre=$recette->titre;
 				$titre=preg_replace("/<!--.*-->/","",$titre);
 
 				//any image of the recipe?
@@ -72,15 +71,17 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 				$nimg=count($files);
 				if($nimg==1) {
 					echo $this->Html->image('pics/'.$recette->pict, [
-						'style'=>'width: 30%;', 
+						'style'=>'width: 30%;',
 						'alt' => $titre,
 						'title' => $titre,
 						'url' => ['controller' => 'Recettes', 'action' => 'view', $recette->id]]);
 				}
-				echo $titre;
-				?>
-			&nbsp;<?//= $this->Html->link($titre, ['action' => 'view', $recette->id]) ?></p>
-  */  
-     //endforeach; ?>
+			echo "&nbsp;";
+			echo $this->Html->link($titre, ['controller'=>'recettes','action' => 'view', $recette->id], array('title'=>'(' .$recette->prov .")\n".$recette->ingr)) ?></li>
+<?php
+}
+ ?>
+ </ul>
 </div>
+<h2><?= $this->Html->link(__('Retour à la liste des épices'), ['action' => 'index']) ?> </h2>
 </div>
