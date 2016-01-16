@@ -1,4 +1,4 @@
-<?php 
+<?php
 $this->set('title', "Liste de recettes de cuisine");
 
 //$this->AuthUser->id();
@@ -10,7 +10,7 @@ if ($this->Session->read('Auth.User')){
 	echo "<br>session role: "; echo $this->Session->read('Auth.User')['role'];
 	echo "<br>session email: "; echo $this->Session->read('Auth.User')['email'];
 	echo "<br>session id: "; echo $this->Session->read('Auth.User')['id'];
-//session: Array ( [username] => radeff [] => fradeff@akademia.ch [pseudo] => radeff [role] => administrator [id] => 6 [dateIn] => Cake\I18n\Time Object ( [date] => 2010-11-29 17:15:00 [timezone_type] => 3 [timezone] => UTC ) ) 
+//session: Array ( [username] => radeff [] => fradeff@akademia.ch [pseudo] => radeff [role] => administrator [id] => 6 [dateIn] => Cake\I18n\Time Object ( [date] => 2010-11-29 17:15:00 [timezone_type] => 3 [timezone] => UTC ) )
 }
 */
 if($this->Session->read('Auth.User')['role']!="administrator" && $_SERVER["HTTP_HOST"]!="localhost"){
@@ -68,8 +68,8 @@ echo "<h3>Recherche avancée</h3>";
 echo "<h3>Recherche simple</h3>";
 }else{
 echo "<h3>Nouveautés</h3>";
-}	
-	
+}
+
 	?>
     <table cellpadding="0" cellspacing="0">
     <thead>
@@ -83,21 +83,21 @@ echo "<h3>Nouveautés</h3>";
     </thead>
     <tbody>
     <?php foreach ($recettes as $recette): ?>
-    
-    
+
+
     <?php
     //do not display if private recipe to non-logged users
 			$prive=$recette->private;
 			if(($prive=="1") && (!$this->Session->read('Auth.User')['role']) &&  ($_SERVER["HTTP_HOST"]!="localhost")) {
 			} else {
     ?>
-    
+
         <tr>
             <td>
 				<strong>
-				<?php       
+				<?php
 				//echo "<h1>private?: ".$prive."</h1>";
-				$titre=$recette->titre; 
+				$titre=$recette->titre;
 				$titre=preg_replace("/<!--.*-->/","",$titre);
 
 				//any image of the recipe?
@@ -105,7 +105,7 @@ echo "<h3>Nouveautés</h3>";
 				$nimg=count($files);
 				if($nimg==1) {
 					echo $this->Html->image('pics/'.$recette->pict, [
-						'style'=>'width: 30%;', 
+						'style'=>'width: 30%;',
 						'alt' => $titre,
 						'title' => $titre,
 						'url' => ['controller' => 'Recettes', 'action' => 'view', $recette->id]]);
@@ -128,7 +128,7 @@ echo "<h3>Nouveautés</h3>";
 
     <?php
 }
-    
+
      endforeach; ?>
     </tbody>
     </table>
