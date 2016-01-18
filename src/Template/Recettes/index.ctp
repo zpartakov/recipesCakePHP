@@ -70,6 +70,9 @@ echo "<h3>Recherche simple</h3>";
 echo "<h3>Nouveautés</h3>";
 }
 
+if(!is_nan($nbrec)) {
+echo "<h3>Nombre de recettes: #" .$nbrec ."</h3>";
+}
 	?>
     <table cellpadding="0" cellspacing="0">
     <thead>
@@ -82,7 +85,8 @@ echo "<h3>Nouveautés</h3>";
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($recettes as $recette): ?>
+    <?php
+		foreach ($recettes as $recette): ?>
 
 
     <?php

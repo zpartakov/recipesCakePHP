@@ -148,7 +148,8 @@ class RecettesController extends AppController
 			$conditions = array('AND' => array($sous_conditions));
 			$query=$this->Recettes->find('all', array('conditions' => $conditions));
 				//			debug($query);
-			$this->set('recettes', $this->paginate($query));
+				$this->set('recettes', $this->paginate($query));
+				$this->set('nbrec', $query->count());
 
 
 
