@@ -310,13 +310,18 @@ class RecettesController extends AppController
 		])->extract('source');
 		$last_source = $query->first();
 
+		//last_country
+$query = $this->Recettes->find('all', [
+	'order' => ['Recettes.id' => 'DESC']
+])->extract('prov');
+$prov = $query->first();
 		//country
 		$pays = $this->Recettes->find()->group('prov')->extract('prov');
         $types = $this->Recettes->Types->find('list', ['limit' => 200]);
         $modeCuissons = $this->Recettes->ModeCuissons->find('list', ['limit' => 200])->order('lib');
         $diets = $this->Recettes->Diets->find('list', ['limit' => 200])->order('lib');
         $tags = $this->Recettes->Tags->find('list', ['limit' => 200]);
-        $this->set(compact('recette', 'types', 'modeCuissons', 'diets', 'tags', 'pays', 'lastid', 'last_source'));
+        $this->set(compact('recette', 'types', 'modeCuissons', 'diets', 'tags', 'pays', 'lastid', 'last_source','prov'));
         $this->set('_serialize', ['recette']);
     }
 

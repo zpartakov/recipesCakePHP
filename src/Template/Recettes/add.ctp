@@ -3,7 +3,7 @@ function ClipBoard(s) {
 	text=document.getElementById('pict').value;
 	window.prompt ("Copier dans le presse-papier: Ctrl+C, Enter", text);
     }
-</SCRIPT> 
+</SCRIPT>
 <?php
 
 
@@ -41,8 +41,12 @@ $image=$lastid.".jpg";
          <div class="input select required"><label for="prov">Prov</label>
          <select name="prov" style="width: 230px" required="required" id="prov">
 		 <?php
-			foreach ($pays as $pay): 
-				echo "<option>".$pay."</option>";
+			foreach ($pays as $pay):
+				echo "<option";
+				if($pay==$prov) {
+					echo " selected";
+				}
+				echo ">".$pay."</option>";
 			endforeach;
 		?>
 		 </select>
@@ -76,4 +80,3 @@ $image=$lastid.".jpg";
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
-
