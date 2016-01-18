@@ -54,7 +54,7 @@ top: -43px;
 background-color: #FFB9AC;
 margin-top: 10px;
 padding-top: 5px;
-padding-bottom: 5px; 
+padding-bottom: 5px;
 position: relative;
 top: -5px;
 }
@@ -91,7 +91,7 @@ a.tooltip:hover em {
     border: 1px solid #bbb;
     background: #ffc;
     width:470px;
-    -moz-border-radius : 2em 1em; -webkit-border-radius : 2em 1em; 
+    -moz-border-radius : 2em 1em; -webkit-border-radius : 2em 1em;
 }
 a.tooltip:hover em span {
     position: absolute;
@@ -106,7 +106,7 @@ a.tooltip:hover em span {
 }
 
 .bigbutton {  font-size: x-large; color: #333333; background-color: #CCCCCC; border-style: outset; border-top-width: medium; border-right-width: medium; border-bottom-width: medium; border-left-width: medium; vertical-align: top}
-.bigbutton:hover {  font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #666666; background-color: #FFCC99; border-style: inset; border-top-width: thin; border-right-width: thin; border-bottom-width: thin; border-left-width: thin}
+.bigbutton:hover {  color: #666666; background-color: #FFCC99; border-style: inset; border-top-width: thin; border-right-width: thin; border-bottom-width: thin; border-left-width: thin}
 
 .permalink {
 display: none;
@@ -137,12 +137,12 @@ display: none;
 }
 
 .copyleft {
-	width: 400px; 
+	width: 400px;
 /*	font-size: smaller; */
-	color: black; 
-	background-color: lightyellow; 
-	padding: 12px; 
-	margin-right: 10%; 
-	margin-left: 10%; 
+	color: black;
+	background-color: lightyellow;
+	padding: 12px;
+	margin-right: 10%;
+	margin-left: 10%;
 	margin-bottom: 2px
 }
