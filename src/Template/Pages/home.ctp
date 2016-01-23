@@ -124,7 +124,7 @@ $this->set('title', 'Accueil');
 		<td>Recettes avec image&nbsp;<input type="checkbox" name="image" value="1"></td>
 	</tr>
 <?php
-if($this->Session->read('Auth.User')['role']=="administrator"){
+if($this->Session->read('Auth.User')['role']=="administrator"||$_SERVER["HTTP_HOST"]=="localhost"){
 ?>
 	<tr>
 		<td>Texte intégral&nbsp;<input type="checkbox" name="fulltext" value="1"></td>
