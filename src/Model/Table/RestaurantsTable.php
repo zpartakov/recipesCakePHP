@@ -45,44 +45,35 @@ class RestaurantsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('nom')
-            ->add('nom', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
+            ->requirePresence('nom')
+            ->notEmpty('nom');
+            
         $validator
             ->allowEmpty('adresse');
 
         $validator
-            ->requirePresence('tel', 'create')
-            ->notEmpty('tel');
+            ->allowEmpty('tel');
 
         $validator
-            ->add('email', 'valid', ['rule' => 'email'])
-            ->requirePresence('email', 'create')
-            ->notEmpty('email');
+            ->allowEmpty('email');
 
         $validator
-            ->requirePresence('url', 'create')
-            ->notEmpty('url');
+            ->allowEmpty('url');
 
         $validator
-            ->requirePresence('zip', 'create')
-            ->notEmpty('zip');
+            ->allowEmpty('zip');
 
         $validator
-            ->requirePresence('ville', 'create')
-            ->notEmpty('ville');
+            ->allowEmpty('ville');
 
         $validator
-            ->requirePresence('pays', 'create')
-            ->notEmpty('pays');
+            ->allowEmpty('pays');
 
         $validator
-            ->requirePresence('type', 'create')
-            ->notEmpty('type');
+            ->allowEmpty('type');
 
         $validator
-            ->requirePresence('rem', 'create')
-            ->notEmpty('rem');
+            ->allowEmpty('rem');
 
         return $validator;
     }
@@ -96,7 +87,7 @@ class RestaurantsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
+        //$rules->add($rules->isUnique(['email']));
         return $rules;
     }
 }

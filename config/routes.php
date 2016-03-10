@@ -50,9 +50,10 @@ Router::scope('/', function ($routes) {
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    //$routes->connect('/restaurants/add', ['controller' => 'Restaurants', 'action' => 'add']);
     $routes->connect('/rss', ['controller' => 'Recettes', 'action' => 'rss']);
-    $routes->connect('/add', ['controller' => 'Recettes', 'action' => 'add']);
-    $routes->connect('/a', ['controller' => 'Recettes', 'action' => 'add']);
+    //$routes->connect('/add', ['controller' => 'Recettes', 'action' => 'add']);
+        //$routes->connect('/a', ['controller' => 'Recettes', 'action' => 'add']);
     $routes->connect('/recettes/index.rss', ['controller' => 'Recettes', 'action' => 'rss']);
     
 

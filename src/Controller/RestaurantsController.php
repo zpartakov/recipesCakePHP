@@ -12,39 +12,31 @@ class RestaurantsController extends AppController
 {
 
 /* VARIOUS AUTH BEGIN */	
+	
+	
 	public function isAuthorized($user) {
-        //auth check
-        //return boolean
-    }
+	}
+	
 	public function initialize()
 	{
 		parent::initialize();
 		$this->loadComponent('Paginator');
-		$this->loadComponent('Auth', [
-				'authorize'=> 'Controller',//added this line
-				'authenticate' => [
-				'Form' => [
-				'fields' => [
-				'username' => 'email',
-				'password' => 'password'
-				]
-				]
-				],
-				'loginAction' => [
-				'controller' => 'Users',
-				'action' => 'login'
-				],
-				'unauthorizedRedirect' => $this->referer()
-				]);
+		$this->loadComponent('RequestHandler'); //radeff added rss2
+		$this->loadComponent('Auth');
+		$this->Auth->allow(['index', 'view']);//radeff added rss6
+	}
 	
-		// Allow the display action so our pages controller
-		// continues to work.
-		$this->Auth->allow(['display','view']);
-	}
-		public function beforeFilter(\Cake\Event\Event $event)
+	public function beforeFilter(\Cake\Event\Event $event)
 	{
-				$this->Auth->allow('index','view');
+		$this->Auth->allow('index','view');
 	}
+	
+	
+	
+	
+	
+	
+	
 /* VARIOUS AUTH END */	
 
 
