@@ -23,6 +23,7 @@
             echo $this->Form->input('zip');
             echo $this->Form->input('ville');
             echo $this->Form->input('pays');
+            echo $this->Form->input('gps');
             echo $this->Form->input('type');
             echo $this->Form->input('rem');
         ?>

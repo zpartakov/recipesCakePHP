@@ -41,7 +41,23 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
         </div>
         <div class="large-2 columns dates end">
             <h6 class="subheader"><?= __('Ville') ?></h6>
-            <p><?= h($restaurant->ville) ?></p>
+            <p>
+			<?php
+			echo $restaurant->ville;
+			//echo $restaurant->gps;
+
+			//geolocalisation
+			if(strlen($restaurant->gps)>0){
+				//echo "yoman";
+			echo "<a target=\"_blank\" href=\"http://www.openstreetmap.org/#map=18/";
+			echo trim($restaurant->gps) ."\">";
+					?>
+						<img src="/recettes/img/local-seo-icon.png" style="width: 25px" alt="GPS" />
+					<?php
+					echo "</a>";			
+			}	
+			?>	
+            </p>
             <h6 class="subheader"><?= __('Pays') ?></h6>
             <p><?= h($restaurant->pays) ?></p>
             <h6 class="subheader" style="<?php echo $lestyle; ?>"><?= __('Created') ?></h6>

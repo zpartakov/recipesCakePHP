@@ -75,6 +75,9 @@ class RestaurantsTable extends Table
         $validator
             ->allowEmpty('rem');
 
+        $validator
+            ->allowEmpty('gps');
+
         return $validator;
     }
 

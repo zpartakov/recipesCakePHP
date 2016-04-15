@@ -68,7 +68,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 			<?php
             //url
 				if(strlen($restaurant->url)>0){
-					echo "<a title=\"website\" href=\"" .$restaurant->utl ."\">";
+					echo "<a title=\"website\" href=\"" .$restaurant->url ."\">";
 					?>
 						<img src="/recettes/img/illo-16.jpg" style="width: 25px" alt="website" />
 					<?php
@@ -77,7 +77,25 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             ?>
 			</td>
             <td style="<?php echo $lestyle; ?>"><?= h($restaurant->zip) ?></td>
-            <td><?= h($restaurant->ville) ?></td>
+            <td>
+			<?php
+						echo $restaurant->ville;
+
+			//geolocalisation
+			if(strlen($restaurant->gps)>0){
+				echo "yoman";
+			echo "<a target=\"_blank\" href=\"http://www.openstreetmap.org/#map=18/";
+			echo trim($restaurant->gps) ."\">";
+					?>
+						<img src="/recettes/img/local-seo-icon.png" style="width: 25px" alt="GPS" />
+					<?php
+					echo "</a>";			
+			}	
+			?>	
+				
+			</td>
+            
+            
             <td class="actions" style="<?php echo $lestyle; ?>">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $restaurant->id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $restaurant->id]) ?>
