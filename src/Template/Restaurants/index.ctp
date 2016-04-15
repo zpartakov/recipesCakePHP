@@ -52,8 +52,30 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             </td>
             <td><?= h($restaurant->tel) ?></td>
             <td><?= h($restaurant->type) ?></td>
-            <td style="<?php echo $lestyle; ?>"><?= h($restaurant->email) ?></td>
-            <td style="<?php echo $lestyle; ?>"><?= h($restaurant->url) ?></td>
+            <td style="<?php echo $lestyle; ?>">
+            <?php
+            //email
+				if(strlen($restaurant->email)>0){
+					echo "<a title=\"mail\" href=\"mailto:" .$restaurant->email ."\">";
+					?>
+						<img src="/recettes/img/mail.png" style="width: 25px" alt="email" />
+					<?php
+					echo "</a>";
+				}
+            ?>
+            </td>
+            <td style="<?php echo $lestyle; ?>">
+			<?php
+            //url
+				if(strlen($restaurant->url)>0){
+					echo "<a title=\"website\" href=\"" .$restaurant->utl ."\">";
+					?>
+						<img src="/recettes/img/illo-16.jpg" style="width: 25px" alt="website" />
+					<?php
+					echo "</a>";
+				}
+            ?>
+			</td>
             <td style="<?php echo $lestyle; ?>"><?= h($restaurant->zip) ?></td>
             <td><?= h($restaurant->ville) ?></td>
             <td class="actions" style="<?php echo $lestyle; ?>">
