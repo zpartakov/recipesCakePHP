@@ -83,8 +83,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 
 			//geolocalisation
 			if(strlen($restaurant->gps)>0){
-				echo "yoman";
-			echo "<a target=\"_blank\" href=\"http://www.openstreetmap.org/#map=18/";
+			echo "&nbsp;<a target=\"_blank\" href=\"http://www.openstreetmap.org/#map=18/";
 			echo trim($restaurant->gps) ."\">";
 					?>
 						<img src="/recettes/img/local-seo-icon.png" style="width: 25px" alt="GPS" />

@@ -28,7 +28,7 @@ class DietsController extends AppController
 	}
 		public function beforeFilter(\Cake\Event\Event $event)
 	{
-				//$this->Auth->allow('index','view');
+				$this->Auth->allow('index','view');
 	}
 /* VARIOUS AUTH END */	
     /**
