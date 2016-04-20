@@ -13,7 +13,7 @@ $this->set('title', 'Accueil');
 		</td>
 		<td>
 			<?php
-			echo $this->element('random_image');
+			//echo $this->element('random_image');
 			?>
 		</td>
 	</tr>
