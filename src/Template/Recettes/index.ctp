@@ -109,7 +109,7 @@ echo "<h3>Nombre de recettes: #" .$nbrec ."</h3>";
 				$nimg=count($files);
 				if($nimg==1) {
 					echo $this->Html->image('pics/'.$recette->pict, [
-						'style'=>'width: 30%;',
+						'style'=>'width: 100px;',
 						'alt' => $titre,
 						'title' => $titre,
 						'url' => ['controller' => 'Recettes', 'action' => 'view', $recette->id]]);

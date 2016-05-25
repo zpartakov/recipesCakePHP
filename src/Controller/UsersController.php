@@ -60,7 +60,12 @@ class UsersController extends AppController
 			$user = $this->Auth->identify();
 			if ($user) {
 				$this->Auth->setUser($user);
-				return $this->redirect($this->Auth->redirectUrl());
+				//return $this->redirect($this->Auth->redirectUrl());
+						return $this->redirect([
+            'controller' => 'Recettes',
+            'action' => 'add'
+        ]);
+
 			}
 	//		$this->Flash->error('Your username or password is incorrect.');
 			$this->Flash->error('Nom d\'utilisateur et/ou mot de passe erroné.');
@@ -71,6 +76,7 @@ class UsersController extends AppController
 	{
 		$this->Flash->success('You are now logged out.');
 		return $this->redirect($this->Auth->logout());
+
 	}
 	
     /**

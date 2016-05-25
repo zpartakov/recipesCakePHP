@@ -119,6 +119,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
             <div style="font-style: italic"><?php
              $ingredients=html_entity_decode($this->Text->autoParagraph(h($recette->ingr)));
              $ingredients=preg_replace("/-/","<br />-", $ingredients);
+						 $ingredients=stripslashes($ingredients);
 //            <p><p>Mettre les raisins secs &agrave; tremper dans de l&#39;eau chaude.</p></p>
              //$ingredients=preg_replace("/\<br \/\>\<br \/\>/","<br />",$ingredients);
              putz_lignes_vides($ingredients);
