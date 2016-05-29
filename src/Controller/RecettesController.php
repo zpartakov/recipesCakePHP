@@ -2,6 +2,8 @@
 namespace App\Controller;
 use App\Controller\AppController;
 
+use Cake\Datasource\ConnectionManager; //hack quick n dirty
+
 /**
  * Recettes Controller
  *
@@ -284,17 +286,39 @@ class RecettesController extends AppController
 			->find()
 			->where(['Recettes.titre LIKE' => '%'.$_GET['titre'].'%']);
 					$this->set(compact('recettes'));
-
  * */
-
 
         if ($this->request->is('post')) {
             $recette = $this->Recettes->patchEntity($recette, $this->request->data);
-			//print_r($recette); exit;
-//debug($recette);
-print_r($this->request->data);
- exit;
-            if ($this->Recettes->save($recette)) {
+
+            if ($this->Recettes->save($recette)) {	
+				
+				//begin hack quick n dirty
+				
+					//echo phpinfo();
+					$ingr=$_POST['RIngrs']['ingr'];
+					//echo "<p>ingredients: " .$ingr."</p>";
+					$prep=$_POST['RPreps']['prep'];
+					//echo "<p>pr&eacute;paration: " .$prep."</p>";
+					//exit;
+							$query = $this->Recettes->find('all', [
+								'order' => ['Recettes.id' => 'DESC']
+							])->extract('id');
+							$lastid = $query->first();
+												
+							//print_r($this->request->data['RIngrs']); exit;
+									
+							$connection = ConnectionManager::get('default');
+							$connection->insert('r_ingrs', [
+								'ingr' => $ingr,
+								'recette_id' => $lastid
+							]);
+							$connection->insert('r_preps', [
+								'prep' => $prep,
+								'recette_id' => $lastid
+							]);
+				//end hack quick n dirty
+
                 $this->Flash->success(__('The recette has been saved.'));
                 return $this->redirect(['action' => 'add']);
             } else {
@@ -307,12 +331,13 @@ print_r($this->request->data);
 			'order' => ['Recettes.id' => 'DESC']
 		])->extract('id');
 		$lastid = $query->first();
-
 				//last_source
 		$query = $this->Recettes->find('all', [
 			'order' => ['Recettes.id' => 'DESC']
 		])->extract('source');
 		$last_source = $query->first();
+		
+		
 
 		//last_country
 $query = $this->Recettes->find('all', [
