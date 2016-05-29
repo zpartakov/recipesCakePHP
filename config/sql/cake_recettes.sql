@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.49, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: cake_recettes
 -- ------------------------------------------------------
@@ -275,7 +275,7 @@ CREATE TABLE `mode_cuissons` (
   `rem` text COLLATE utf8_unicode_ci NOT NULL,
   `img` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,6 +293,36 @@ CREATE TABLE `posts` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `r_ingrs`
+--
+
+DROP TABLE IF EXISTS `r_ingrs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `r_ingrs` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `recette_id` int(12) NOT NULL,
+  `ingr` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14892 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `r_preps`
+--
+
+DROP TABLE IF EXISTS `r_preps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `r_preps` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `recette_id` int(12) NOT NULL,
+  `prep` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18725 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,10 +352,8 @@ CREATE TABLE `recettes` (
   `prov` text NOT NULL,
   `titre` varchar(255) DEFAULT NULL,
   `temps` text NOT NULL,
-  `ingr` longtext NOT NULL,
   `pers` tinyint(2) NOT NULL DEFAULT '0',
   `type_id` int(12) NOT NULL,
-  `prep` longtext NOT NULL,
   `date` date NOT NULL DEFAULT '0000-00-00',
   `score` tinyint(4) NOT NULL DEFAULT '0',
   `source` text NOT NULL,
@@ -338,7 +366,7 @@ CREATE TABLE `recettes` (
   `diet_id` int(9) NOT NULL,
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `titre` (`titre`)
-) ENGINE=MyISAM AUTO_INCREMENT=14250 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14319 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -369,7 +397,7 @@ CREATE TABLE `recettes00` (
   `diet_id` int(9) NOT NULL,
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `titre` (`titre`)
-) ENGINE=MyISAM AUTO_INCREMENT=13019 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14318 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -603,4 +631,4 @@ CREATE TABLE `vins_types` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-15 15:15:54
+-- Dump completed on 2016-05-29 14:33:36

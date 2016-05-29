@@ -36,10 +36,10 @@
             echo $this->Form->input('prov', ['type'=>'text']);
             echo $this->Form->input('titre', ['label'=>'Titre de la recette']);
             echo $this->Form->input('temps', ['type'=>'text','label'=>'Temps de repos/préparation']);
-            echo $this->Form->input('ingr', ['label'=>'Ingrédients']);
+            echo $this->Form->input('RIngrs.ingr', ['label'=>'Ingrédients', 'type'=>'textarea']);
             echo $this->Form->input('pers', ['type'=>'text']);
             echo $this->Form->input('type_id', ['options' => $types]);
-            echo $this->Form->input('prep', ['label'=>'Préparation']);
+            echo $this->Form->input('RPreps.prep', ['label'=>'Préparation', 'type'=>'textarea']);
             echo $this->Form->input('date', ['type'=>'date']);
             echo $this->Form->input('score', ['type'=>'hidden']);
             echo $this->Form->input('source', ['type'=>'text']);

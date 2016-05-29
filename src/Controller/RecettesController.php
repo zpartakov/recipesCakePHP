@@ -75,7 +75,7 @@ class RecettesController extends AppController
 			$conditions = array('OR' => array(
 				array('Recettes.titre LIKE' => '%'.$s.'%'),
 				array('Recettes.source LIKE' => '%'.$s.'%'),
-				array('Recettes.ingr LIKE' => '%'.$s.'%'),
+				array('RIngrs.ingr LIKE' => '%'.$s.'%'),
 				array('Recettes.prov LIKE' => '%'.$s.'%')
 			));
 			$query=$this->Recettes->find('all', array('conditions' => $conditions));
@@ -99,7 +99,7 @@ class RecettesController extends AppController
 				//$this->set('recettes', $this->paginate($query));
 				}
 				if($_GET['prep']){ //recherche préparation
-					$sous_conditions[] =array('Recettes.prep LIKE' => '%'.$_GET['prep'].'%');
+					$sous_conditions[] =array('RPreps.prep LIKE' => '%'.$_GET['prep'].'%');
 					//$query = $this->Recettes->find()->where(['prep LIKE' => '%'.$_GET['prep'].'%']);
 					//$this->set('recettes', $this->paginate($query));
 				}
@@ -114,7 +114,7 @@ class RecettesController extends AppController
 					//$this->set('recettes', $this->paginate($query));
 				}
 				if($_GET['ingr']){ //recherche ingrédient
-					$sous_conditions[] =array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%');
+					$sous_conditions[] =array('RIngrs.ingr LIKE' => '%'.$_GET['ingr'].'%');
 					//$query = $this->Recettes->find()->where(['ingr LIKE' => '%'.$_GET['ingr'].'%']);
 					//$this->set('recettes', $this->paginate($query));
 				}
@@ -130,7 +130,7 @@ class RecettesController extends AppController
 					//$this->set('recettes', $this->paginate($query));
 				}
 				if($_GET['kids']){ //recherche recettes enfants
-					$sous_conditions[] =array('Recettes.prep LIKE' => '%<!--kids-->%');
+					$sous_conditions[] =array('RPreps.prep LIKE' => '%<!--kids-->%');
 					//$query = $this->Recettes->find()->where(['prep LIKE' => '%<!--kids-->%']);
 					//$this->set('recettes', $this->paginate($query));
 				}
@@ -158,13 +158,13 @@ class RecettesController extends AppController
 				//selection: empty = AND or NOT idem selection1
 				if ($_GET['selection']=='NOT') {
 					$conditions = array('AND' => array(
-					array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-					array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%')));
+					array('RIngrs.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+					array('RIngrs.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%')));
 
 				} else {
 					$conditions = array('AND' => array(
-					array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-					array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%')));
+					array('RIngrs.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+					array('RIngrs.ingr LIKE' => '%'.$_GET['ingrNot'].'%')));
 				}
 				$query=$this->Recettes->find('all', array('conditions' => $conditions));
 				$this->set('recettes', $this->paginate($query));
@@ -174,29 +174,29 @@ class RecettesController extends AppController
 				if ($_GET['selection1']=='NOT') {
 					if ($_GET['selection']=='NOT') {
 						$conditions = array('AND' => array(
-						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
-						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));
+						array('RIngrs.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+						array('RIngrs.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
+						array('RIngrs.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));
 					} else {
 						$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
 						$conditions = array('AND' => array(
-						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-						array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%'),
-						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));
+						array('RIngrs.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+						array('RIngrs.ingr LIKE' => '%'.$_GET['ingrNot'].'%'),
+						array('RIngrs.ingr NOT LIKE' => '%'.$_GET['ingrNot1'].'%')));
 					}
 				} else {
 					if ($_GET['selection']=='NOT') {
 						$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
 						$conditions = array('AND' => array(
-						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-						array('Recettes.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
-						array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot1'].'%')));
+						array('RIngrs.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+						array('RIngrs.ingr NOT LIKE' => '%'.$_GET['ingrNot'].'%'),
+						array('RIngrs.ingr LIKE' => '%'.$_GET['ingrNot1'].'%')));
 					} else {
 						$sous_conditions[] =array('Recettes. LIKE' => '%'.$_GET[''].'%');
 						$conditions = array('AND' => array(
-						array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
-						array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%'),
-						array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot1'].'%')));
+						array('RIngrs.ingr LIKE' => '%'.$_GET['ingr'].'%'),
+						array('RIngrs.ingr LIKE' => '%'.$_GET['ingrNot'].'%'),
+						array('RIngrs.ingr LIKE' => '%'.$_GET['ingrNot1'].'%')));
 					}
 				}
 				$query=$this->Recettes->find('all', array('conditions' => $conditions));
@@ -262,10 +262,12 @@ class RecettesController extends AppController
 //            'contain' => ['Types', 'ModeCuissons', 'Diets', 'Tags', 'Comments', 'Menus', 'RecetteUser', 'Stats', 'UsersTags']
 
         $recette = $this->Recettes->get($id, [
-           'contain' => ['Types', 'ModeCuissons', 'Diets']
+           'contain' => ['Types', 'ModeCuissons', 'Diets', 'RIngrs', 'RPreps']
         ]);
         $this->set('recette', $recette);
         $this->set('_serialize', ['recette']);
+		$this->set('ingrs', $this->RIngrs);
+        $this->set('preps', $this->RPreps);
     }
 
     /**
@@ -288,9 +290,10 @@ class RecettesController extends AppController
 
         if ($this->request->is('post')) {
             $recette = $this->Recettes->patchEntity($recette, $this->request->data);
-                        //print_r($recette); exit;
-
-
+			//print_r($recette); exit;
+//debug($recette);
+print_r($this->request->data);
+ exit;
             if ($this->Recettes->save($recette)) {
                 $this->Flash->success(__('The recette has been saved.'));
                 return $this->redirect(['action' => 'add']);
@@ -325,6 +328,9 @@ $prov = $query->first();
         $this->set(compact('recette', 'types', 'modeCuissons', 'diets', 'tags', 'pays', 'lastid', 'last_source','prov'));
         $this->set('_serialize', ['recette']);
     }
+    
+    
+
 
     /**
      * Edit method
