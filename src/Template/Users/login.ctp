@@ -1,3 +1,7 @@
+<script type="text/javascript">
+$(function() {
+  $("#username").focus();
+});</script>
 <?php
 $this->set('title', "Login");
 ?>
