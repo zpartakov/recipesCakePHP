@@ -55,10 +55,6 @@ class DietsTable extends Table
             ->notEmpty('lib');
 
         $validator
-            ->requirePresence('rem', 'create')
-            ->notEmpty('rem');
-
-        $validator
             ->requirePresence('date_mod', 'create')
             ->notEmpty('date_mod');
 
