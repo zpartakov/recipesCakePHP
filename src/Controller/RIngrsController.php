@@ -10,7 +10,23 @@ use App\Controller\AppController;
  */
 class RIngrsController extends AppController
 {
+	public function isAuthorized($user) {
+    }
 
+	public function initialize()
+	{
+		parent::initialize();
+		$this->loadComponent('Paginator');
+		$this->loadComponent('RequestHandler'); //radeff added rss2
+		$this->loadComponent('Auth');
+		$this->Auth->allow(['display','view', 'rss', 'index', 'suggestions']);//radeff added rss6
+	}
+
+	public function beforeFilter(\Cake\Event\Event $event)
+	{
+		$this->Auth->allow('index','view');
+	}
+	
     /**
      * Index method
      *
