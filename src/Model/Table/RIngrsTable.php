@@ -1,12 +1,10 @@
 <?php
 namespace App\Model\Table;
-
 use App\Model\Entity\RIngr;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
 /**
  * RIngrs Model
  *

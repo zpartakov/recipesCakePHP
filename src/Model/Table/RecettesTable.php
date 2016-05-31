@@ -1,6 +1,5 @@
 <?php
 namespace App\Model\Table;
-
 use App\Model\Entity\Recette;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -71,8 +70,9 @@ class RecettesTable extends Table
         ]);
         
 		$this->hasOne('RIngrs', [
-            'foreignKey' => 'recette_id',
-			$this->displayField('ingr')
+            'foreignKey' => 'recette_id'
+			/*	,
+			$this->displayField('ingr')*/
 
         ]);
         
