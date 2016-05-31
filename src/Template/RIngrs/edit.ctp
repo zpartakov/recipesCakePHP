@@ -17,7 +17,7 @@
     <fieldset>
         <legend><?= __('Edit R Ingr') ?></legend>
         <?php
-            echo $this->Form->input('recette_id', ['options' => $recettes]);
+            echo $this->Form->hidden('recette_id');
             echo $this->Form->input('ingr');
         ?>
     </fieldset>

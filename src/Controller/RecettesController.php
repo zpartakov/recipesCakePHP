@@ -283,34 +283,18 @@ class RecettesController extends AppController
     public function add()
     {
         $recette = $this->Recettes->newEntity();
-/*
- * 		//a function to search if the title is unique or not; if not, warns and give a link to the recipe matching
-		$recettes = $this->Recettes
-			->find()
-			->where(['Recettes.titre LIKE' => '%'.$_GET['titre'].'%']);
-					$this->set(compact('recettes'));
- * */
-
         if ($this->request->is('post')) {
             $recette = $this->Recettes->patchEntity($recette, $this->request->data);
 
             if ($this->Recettes->save($recette)) {	
 				
 				//begin hack quick n dirty
-				
-					//echo phpinfo();
 					$ingr=$_POST['RIngrs']['ingr'];
-					//echo "<p>ingredients: " .$ingr."</p>";
 					$prep=$_POST['RPreps']['prep'];
-					//echo "<p>pr&eacute;paration: " .$prep."</p>";
-					//exit;
 							$query = $this->Recettes->find('all', [
 								'order' => ['Recettes.id' => 'DESC']
 							])->extract('id');
 							$lastid = $query->first();
-												
-							//print_r($this->request->data['RIngrs']); exit;
-									
 							$connection = ConnectionManager::get('default');
 							$connection->insert('r_ingrs', [
 								'ingr' => $ingr,
@@ -339,14 +323,12 @@ class RecettesController extends AppController
 			'order' => ['Recettes.id' => 'DESC']
 		])->extract('source');
 		$last_source = $query->first();
-		
-		
 
 		//last_country
-$query = $this->Recettes->find('all', [
-	'order' => ['Recettes.id' => 'DESC']
-])->extract('prov');
-$prov = $query->first();
+		$query = $this->Recettes->find('all', [
+			'order' => ['Recettes.id' => 'DESC']
+		])->extract('prov');
+		$prov = $query->first();
 		//country
 		$pays = $this->Recettes->find()->group('prov')->extract('prov');
         $types = $this->Recettes->Types->find('list', ['limit' => 200]);
@@ -357,9 +339,6 @@ $prov = $query->first();
         $this->set('_serialize', ['recette']);
     }
     
-    
-
-
     /**
      * Edit method
      *
@@ -381,12 +360,13 @@ $prov = $query->first();
                 $this->Flash->error(__('The recette could not be saved. Please, try again.'));
             }
         }
+        
         $types = $this->Recettes->Types->find('list', ['limit' => 200]);
         $modeCuissons = $this->Recettes->ModeCuissons->find('list', ['limit' => 200]);
         $diets = $this->Recettes->Diets->find('list', ['limit' => 200]);
         $tags = $this->Recettes->Tags->find('list', ['limit' => 200]);
         $this->set(compact('recette', 'types', 'modeCuissons', 'diets', 'tags'));
-        $this->set('_serialize', ['recette']);
+        $this->set('_serialize', ['recette'], 'ingr');
     }
 
     /**
@@ -400,6 +380,11 @@ $prov = $query->first();
     {
         $this->request->allowMethod(['post', 'delete']);
         $recette = $this->Recettes->get($id);
+
+        //begin hack quick n dirty
+        header('Location: http://radeff.red/recettes/r_ingrs/delete?rec_id='.$id);
+        //end hack quick n dirty
+        
         if ($this->Recettes->delete($recette)) {
             $this->Flash->success(__('The recette has been deleted.'));
         } else {
@@ -417,79 +402,8 @@ $prov = $query->first();
 	}
 
 	public function suggestions(){ //suggestions de recettes
-
 	}
-
 
 
 }
 
-
-	/*
-	 * BRONX
-	 *
-	 *
-	if($this->Session->read('Auth.User')['role']=="admin"){
-//	$this->set('recettes', $this->paginate());
-
-
-			/*
-			 *
-			 * By default, CakePHP joins multiple conditions with boolean AND. This means the snippet below would only match posts that have been created in the past two weeks, and have a title that matches one in the given set. However, we could just as easily find posts that match either condition:
-
-array("OR" => array(
-    "Post.title" => array("First post", "Second post", "Third post"),
-    "Post.created >" => date('Y-m-d', strtotime("-2 weeks"))
-))
-
-CakePHP accepts all valid SQL boolean operations, including AND, OR, NOT, XOR, etc., and they can be upper or lower case, whichever you prefer. These conditions are also infinitely nestable. Let’s say you had a belongsTo relationship between Posts and Authors. Let’s say you wanted to find all the posts that contained a certain keyword (“magic”) or were created in the past two weeks, but you wanted to restrict your search to posts written by Bob:
-
-array(
-    "Author.name" => "Bob",
-    "OR" => array(
-        "Post.title LIKE" => "%magic%",
-        "Post.created >" => date('Y-m-d', strtotime("-2 weeks"))
-    )
-)
-
-If you need to set multiple conditions on the same field, like when you want to do a LIKE search with multiple terms, you can do so by using conditions similar to:
-
-array('OR' => array(
-    array('Post.title LIKE' => '%one%'),
-    array('Post.title LIKE' => '%two%')
-))
-
-			$conditions = array("OR" => array(
-    "Recette.titre LIKE " => '%'.$s.'%'),
-    "Recette.source LIKE " => '%'.$s.'%'));
-
-			 *
-			 * */
-		/*
-		 * fonctionne mais bien compliqué... vu qu'il faudrait calculer TOUTES LES COMBINAISONS = 11!
-		 *
-			$conditions = array('AND' => array(
-			array('Recettes.titre LIKE' => '%'.$_GET['titre'].'%'),
-			array('Recettes.prep LIKE' => '%'.$_GET['prep'].'%')));
-						$query=$this->Recettes->find('all', array('conditions' => $conditions));
-		//			debug($query);
-							$this->set('recettes', $this->paginate($query));
-							*
-							*
-							*
-							*
-							*
-5.3.1. Adding Values to the End of an Array
-
-To insert more values into the end of an existing indexed array, use the [] syntax:
-
-    $family = array('Fred', 'Wilma');
-    $family[] = 'Pebbles';                 // $family[2] is 'Pebbles'
-
-This construct assumes the array's indexes are numbers and assigns elements into the next available numeric index, starting from 0. Attempting to append to an associative array is almost always a programmer mistake, but PHP will give the new elements numeric indexes without issuing a warning:
-
-    $person = array('name' => 'Fred');
-    $person[] = 'Wilma';                   // $person[0] is now 'Wilma'
-
-
-			*/

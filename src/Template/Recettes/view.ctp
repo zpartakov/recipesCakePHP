@@ -129,8 +129,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 			$preparation = $this->Text->autoLink($preparation);
             $preparation=html_entity_decode($preparation);
             $preparation=preg_replace("/[\n\r ]-/","<br />-", $preparation);
-            echo nl2br($preparation);
-            //putz_lignes_vides($preparation);
+            echo "<p>" .nl2br($preparation) ."</p>";
 			?>
         </div>
     </div>

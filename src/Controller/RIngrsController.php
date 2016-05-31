@@ -91,14 +91,25 @@ class RIngrsController extends AppController
      */
     public function edit($id = null)
     {
+    	//begin horrible hack to get ingr from given recipe
+    	if($_GET['rec_id']){
+    		$rec_id=$_GET['rec_id'];
+    		$query = $this->RIngrs->find('all')
+    		->where(['recette_id' => $rec_id]);
+			foreach ($query as $row) {
+				$id=$row->id;
+			}
+			//die;    		
+    	}
+    	//end horrible hack to get ingr from given recipe
+    	
         $rIngr = $this->RIngrs->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $rIngr = $this->RIngrs->patchEntity($rIngr, $this->request->data);
             if ($this->RIngrs->save($rIngr)) {
-                $this->Flash->success(__('The r ingr has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect('/recettes/edit/'.$rec_id);
             } else {
                 $this->Flash->error(__('The r ingr could not be saved. Please, try again.'));
             }
@@ -117,10 +128,22 @@ class RIngrsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+    	//begin horrible hack
+    	if($_GET['rec_id']){
+    		$rec_id=$_GET['rec_id'];
+    		$query = $this->RIngrs->find('all')
+    		->where(['recette_id' => $rec_id]);
+    		foreach ($query as $row) {
+    			$id=$row->id;
+    		}
+    		
+    	}
+    	//end horrible hack
+    	   
         $rIngr = $this->RIngrs->get($id);
-        if ($this->RIngrs->delete($rIngr)) {
-            $this->Flash->success(__('The r ingr has been deleted.'));
+    	
+    	if ($this->RIngrs->delete($rIngr)) {
+            header('Location: http://radeff.red/recettes/r_preps/delete?rec_id='.$id);
         } else {
             $this->Flash->error(__('The r ingr could not be deleted. Please, try again.'));
         }

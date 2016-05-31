@@ -6,6 +6,7 @@
                 ['action' => 'delete', $recette->id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $recette->id)]
             )
+            
         ?></li>
         <li><?= $this->Html->link(__('List Recettes'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Types'), ['controller' => 'Types', 'action' => 'index']) ?></li>
@@ -36,10 +37,8 @@
             echo $this->Form->input('prov', ['type'=>'text']);
             echo $this->Form->input('titre', ['label'=>'Titre de la recette']);
             echo $this->Form->input('temps', ['type'=>'text','label'=>'Temps de repos/préparation']);
-            echo $this->Form->input('RIngrs.ingr', ['label'=>'Ingrédients', 'type'=>'textarea']);
             echo $this->Form->input('pers', ['type'=>'text']);
             echo $this->Form->input('type_id', ['options' => $types]);
-            echo $this->Form->input('RPreps.prep', ['label'=>'Préparation', 'type'=>'textarea']);
             echo $this->Form->input('date', ['type'=>'date']);
             echo $this->Form->input('score', ['type'=>'hidden']);
             echo $this->Form->input('source', ['type'=>'text']);
@@ -53,6 +52,10 @@
             echo $this->Form->input('tags._ids', ['type'=>'hidden']);
         ?>
     </fieldset>
+    <!-- horrible hack to edit associated table -->
+    <p><a href="/recettes/r_ingrs/edit/?rec_id=<?php echo $recette->id;?>">Modifier les ingrédients</a></p>
+    <p><a href="/recettes/r_preps/edit/?rec_id=<?php echo $recette->id;?>">Modifier la préparation</a></p>
+        
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
