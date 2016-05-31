@@ -77,10 +77,13 @@ class RecettesController extends AppController
 			$conditions = array('OR' => array(
 				array('Recettes.titre LIKE' => '%'.$s.'%'),
 				array('Recettes.source LIKE' => '%'.$s.'%'),
-				array('RIngrs.ingr LIKE' => '%'.$s.'%'),
 				array('Recettes.prov LIKE' => '%'.$s.'%')
 			));
+				
 			$query=$this->Recettes->find('all', array('conditions' => $conditions));
+			$this->set('nbrec', $query->count());
+				
+			//debug($query); die;
 			$this->set('recettes', $this->paginate($query));
 		/*
 		 * ###################### //specific search #################
