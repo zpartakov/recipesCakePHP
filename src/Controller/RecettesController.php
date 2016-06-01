@@ -14,7 +14,7 @@ class RecettesController extends AppController
 
 	public $paginate = [
 	'contain' => ['Types', 'ModeCuissons', 'Diets'],
-	'limit' => 100,
+	'limit' => 10,
 	'order' => [
 	'Recettes.id' => 'desc'
 			]
@@ -218,6 +218,8 @@ class RecettesController extends AppController
 				$this->set('recettes', $this->paginate($query));
 			}
 			//debug($query);
+						$this->set('nbrec', $query->count());
+
 		}
 		$this->set('_serialize', ['recettes']);
 	}
@@ -406,4 +408,3 @@ class RecettesController extends AppController
 
 
 }
-
