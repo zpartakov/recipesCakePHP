@@ -1,26 +1,43 @@
-# CakePHP Application Skeleton
+recipesCakePHP
+=======
+[![recipesCakePHP](http://radeff.red/pics/casserole.png)](recipesCakePHP)
 
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
-[![License](https://img.shields.io/packagist/l/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
+A cooking recipe database software, including advanced boolean search
 
-A skeleton for creating applications with [CakePHP](http://cakephp.org) 3.x.
+Un système de gestion de recettes de cuisine, comprenant une recherche booléenne
 
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+website / site web: [http://radeff.red/recettes]
 
-## Installation
+Required
+=======
+AMP (Apache, MySQL et PHP)
+cakePHP 3 https://github.com/cakephp/cakephp/tree/master
 
-1. Download [Composer](http://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
 
-If Composer is installed globally, run
-```bash
-composer create-project --prefer-dist cakephp/app [app_name]
-```
+ 
+/**
+*
+* @package recipesCakePHP
+* @version $Id: 3.0
+* @author Fred Radeff <fradeff@akademia.ch>
+* @copyright (c) 2015 Fred Radeff, akademia.ch
+* @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+*
+*/
 
-You should now be able to visit the path to where you installed the app and see
-the setup traffic lights.
-
-## Configuration
-
-Read and edit `config/app.php` and setup the 'Datasources' and any other
-configuration relevant for your application.
+// This file is part of recipesCakePHP - https://github.com/zpartakov/recipesCakePHP
+// demo: http://radeff.red/recettes
+// recipesCakePHP is a cooking recipe CMS written with CakePHP by Fred Radeff
+//
+// recipesCakePHP is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// recipesCakePHP is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with PmCake. If not, see <http://www.gnu.org/licenses/>.
