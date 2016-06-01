@@ -16,12 +16,17 @@ cakePHP 3 https://github.com/cakephp/cakephp/tree/master
 --------------------------------------------------------
  
 @package recipesCakePHP
+
 @version $Id: 3.0
+
 @author Fred Radeff <fradeff@akademia.ch>
+
 @copyright (c) 2015 Fred Radeff, akademia.ch
+
 @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 
 This file is part of recipesCakePHP - https://github.com/zpartakov/recipesCakePHP
+
 demo: http://radeff.red/recettes
 
 recipesCakePHP is a cooking recipe CMS written with CakePHP by Fred Radeff
