@@ -21,7 +21,7 @@ cakePHP 3 https://github.com/cakephp/cakephp/tree/master
 
 @author Fred Radeff <fradeff@akademia.ch>
 
-@copyright (c) 2015 Fred Radeff, akademia.ch
+@copyright (c) 2016 Fred Radeff, akademia.ch
 
 @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 
