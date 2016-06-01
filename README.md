@@ -17,7 +17,7 @@ cakePHP 3 https://github.com/cakephp/cakephp/tree/master
  
 @package recipesCakePHP
 
-@version $Id: 3.0
+@version $Id: 3.1
 
 @author Fred Radeff <fradeff@akademia.ch>
 
