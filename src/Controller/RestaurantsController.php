@@ -12,11 +12,9 @@ class RestaurantsController extends AppController
 {
 
 /* VARIOUS AUTH BEGIN */	
-	
-	
 	public function isAuthorized($user) {
 	}
-	
+
 	public function initialize()
 	{
 		parent::initialize();
@@ -25,19 +23,12 @@ class RestaurantsController extends AppController
 		$this->loadComponent('Auth');
 		$this->Auth->allow(['index', 'view']);//radeff added rss6
 	}
-	
+
 	public function beforeFilter(\Cake\Event\Event $event)
 	{
 		$this->Auth->allow('index','view');
 	}
-	
-	
-	
-	
-	
-	
-	
-/* VARIOUS AUTH END */	
+/* VARIOUS AUTH END */
 
 
 	public $paginate = [
@@ -65,13 +56,13 @@ class RestaurantsController extends AppController
 			));
 			$query=$this->Restaurants->find('all', array('conditions' => $conditions));
 			$this->set('restaurants', $this->paginate($query));
-		/* 
+		/*
 		 * ###################### //specific search #################
-		 * 
+		 *
 		 * */
 			} else {
-		
-		
+
+
         $this->set('restaurants', $this->paginate($this->Restaurants));
         $this->set('_serialize', ['restaurants']);
         }

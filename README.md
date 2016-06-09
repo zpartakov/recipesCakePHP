@@ -1,5 +1,5 @@
 recipesCakePHP
-=======
+==============
 [![recipesCakePHP](http://radeff.red/pics/casserole.png)](recipesCakePHP)
 
 A cooking recipe database software, including advanced boolean search
@@ -14,7 +14,7 @@ AMP (Apache, MySQL et PHP)
 cakePHP 3 https://github.com/cakephp/cakephp/tree/master
 
 --------------------------------------------------------
- 
+
 @package recipesCakePHP
 
 @version $Id: 3.1

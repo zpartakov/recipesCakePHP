@@ -14,7 +14,19 @@ use Cake\Filesystem\Folder;
 $dir = new Folder(WWW_ROOT . 'img/pics');
 
 ?>
-<div class="actions columns large-2 medium-3">
+<form action='/recettes/ingredients/' method="get" name="formu">
+<table>
+	<tr>
+		<td>
+			<input type="text" name="globalsearch" style="width: 350px">
+		</td>
+		<td>
+			<input type="submit" value="chercher">
+	</td>
+	</tr>
+</table>
+</form>
+<div class="actions columns large-2 medium-3" style="<?php echo $lestyle; ?>">
     <h3><?= __('Actions') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Html->link(__('New Ingredient'), ['action' => 'add']) ?></li>
@@ -30,7 +42,7 @@ $dir = new Folder(WWW_ROOT . 'img/pics');
             <th><?= $this->Paginator->sort('kcal') ?></th>
             <th><?= $this->Paginator->sort('price') ?></th>
             <th><?= $this->Paginator->sort('img') ?></th>
-            <th class="actions"><?= __('Actions') ?></th>
+            <th class="actions" style="<?php echo $lestyle; ?>"><?= __('Actions') ?></th>
         </tr>
     </thead>
     <tbody>
@@ -42,7 +54,7 @@ $dir = new Folder(WWW_ROOT . 'img/pics');
             <td><?= $this->Number->format($ingredient->kcal) ?></td>
             <td><?= $this->Number->format($ingredient->price) ?></td>
             <td><?= h($ingredient->img) ?></td>
-            <td class="actions">
+            <td class="actions" style="<?php echo $lestyle; ?>">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $ingredient->id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $ingredient->id]) ?>
                 <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $ingredient->id], ['confirm' => __('Are you sure you want to delete # {0}?', $ingredient->id)]) ?>
