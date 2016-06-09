@@ -1,5 +1,7 @@
-<?php	
+<?php
 //affiche les ingrédients pour la recherche
+use Cake\Core\Configure;
+
 use Cake\ORM\TableRegistry;
 
 $query = TableRegistry::get('Ingredients')->find();
@@ -11,7 +13,8 @@ foreach ($query as $article) {
     $nbrec2++;
 }
 
-	echo "<select name=\"ingredient_id\" size=\"" .$nbrec2."\" style=\"width: 200px; height: ".($nbrec2*1) ."pt; display: block\"><option value='' selected>-- all --</option>";
+$nbrec2 = Configure::read('selNbre');
+	echo "<select name=\"ingredient_id\" size=\"" .$nbrec2 ."\" style=\"width: 200px; height: ".($nbrec2*1) ."pt; display: block\"><option value='' selected>-- all --</option>";
 	echo $regimes;
-	echo "</select>";	
-?>	
+	echo "</select>";
+?>
