@@ -80,7 +80,8 @@ CREATE TABLE `diets` (
   `lib` varchar(255) NOT NULL,
   `rem` text NOT NULL,
   `date_mod` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COMMENT='régimes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,10 +93,12 @@ DROP TABLE IF EXISTS `emails`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `emails` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(200) NOT NULL DEFAULT '',
   `date` date NOT NULL DEFAULT '0000-00-00',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,25 +109,6 @@ DROP TABLE IF EXISTS `epices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `epices` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
-  `lib` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `def` text COLLATE utf8_unicode_ci NOT NULL,
-  `util` text COLLATE utf8_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `origine` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=354 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `epices00`
---
-
-DROP TABLE IF EXISTS `epices00`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `epices00` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `lib` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `def` text COLLATE utf8_unicode_ci NOT NULL,
@@ -193,7 +177,7 @@ CREATE TABLE `ingredients` (
   `commissions` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `libelle` (`libelle`)
-) ENGINE=MyISAM AUTO_INCREMENT=574 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=575 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +291,7 @@ CREATE TABLE `r_ingrs` (
   `recette_id` int(12) NOT NULL,
   `ingr` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14892 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14913 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,7 +306,7 @@ CREATE TABLE `r_preps` (
   `recette_id` int(12) NOT NULL,
   `prep` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18725 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18745 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,40 +348,10 @@ CREATE TABLE `recettes` (
   `difficulty` int(2) NOT NULL,
   `price` int(2) NOT NULL,
   `diet_id` int(9) NOT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `titre` (`titre`)
-) ENGINE=MyISAM AUTO_INCREMENT=14319 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `recettes00`
---
-
-DROP TABLE IF EXISTS `recettes00`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `recettes00` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `prov` text NOT NULL,
-  `titre` varchar(255) DEFAULT NULL,
-  `temps` text NOT NULL,
-  `ingr` longtext NOT NULL,
-  `pers` tinyint(2) NOT NULL DEFAULT '0',
-  `type_id` int(12) NOT NULL,
-  `prep` longtext NOT NULL,
-  `date` date NOT NULL DEFAULT '0000-00-00',
-  `score` tinyint(4) NOT NULL DEFAULT '0',
-  `source` text NOT NULL,
-  `pict` text NOT NULL,
-  `private` tinyint(1) NOT NULL DEFAULT '0',
-  `mode_cuisson_id` int(9) NOT NULL,
-  `time` int(2) NOT NULL,
-  `difficulty` int(2) NOT NULL,
-  `price` int(2) NOT NULL,
-  `diet_id` int(9) NOT NULL,
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `titre` (`titre`)
-) ENGINE=MyISAM AUTO_INCREMENT=14318 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14377 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,10 +383,12 @@ DROP TABLE IF EXISTS `recettes_orthographe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `recettes_orthographe` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
   `orthographe` varchar(250) NOT NULL DEFAULT '',
   `aurtograf` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `aurtograf` (`aurtograf`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -590,6 +546,7 @@ DROP TABLE IF EXISTS `vins_cepages`;
 CREATE TABLE `vins_cepages` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
   `cepage` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
   KEY `id` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -602,10 +559,12 @@ DROP TABLE IF EXISTS `vins_millesimes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vins_millesimes` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
   `an` varchar(6) NOT NULL DEFAULT '0',
   `millesime` tinyint(4) NOT NULL DEFAULT '0',
-  `vin_type_id` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `vin_type_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1635 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -618,6 +577,7 @@ DROP TABLE IF EXISTS `vins_types`;
 CREATE TABLE `vins_types` (
   `id` varchar(50) NOT NULL DEFAULT '',
   `libelle` text NOT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -631,4 +591,4 @@ CREATE TABLE `vins_types` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-29 14:33:36
+-- Dump completed on 2016-06-09 13:39:41
