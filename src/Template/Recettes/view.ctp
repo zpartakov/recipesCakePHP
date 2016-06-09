@@ -113,9 +113,19 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 			$ingredients=$recette->r_ingr->ingr;
 			$ingredients=html_entity_decode($ingredients);
             //$ingredients=preg_replace("/-/","<br />-", $ingredients);
-			//$ingredients=stripslashes($ingredients);
+						//$ingredients=stripslashes($ingredients);
             //putz_lignes_vides($ingredients);
-            echo nl2br($ingredients);
+						$ingredients=preg_replace("/^$/","",$ingredients);
+						$ingredients=preg_replace("/<p>/","",$ingredients);
+						$ingredients=preg_replace("/<\/p>/","<br />",$ingredients);
+						$ingredients=preg_replace("/<br \/><br \/>/","<br />",$ingredients);
+						$ingredients=preg_replace("/<br \/><br \/>/","<br />",$ingredients);
+						$ingredients=preg_replace("/^<br \/>$/","<br />",$ingredients);
+//ajoute des sauts de lignes s'il en manque
+if(!preg_match("/<br \/>/", $ingredients)){
+	$ingredients=nl2br($ingredients);
+}
+            echo $ingredients;
              ?></div>
         </div>
     </div>
@@ -128,8 +138,18 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 			$preparation=html_entity_decode($preparation);
 			$preparation = $this->Text->autoLink($preparation);
             $preparation=html_entity_decode($preparation);
-            $preparation=preg_replace("/[\n\r ]-/","<br />-", $preparation);
-            echo "<p>" .nl2br($preparation) ."</p>";
+            //$preparation=preg_replace("/[\n\r ]-/","<br />-", $preparation);
+//echo "<p>" .$preparation ."</p>";
+$preparation=preg_replace("/^$/","",$preparation);
+$preparation=preg_replace("/<p>/","",$preparation);
+$preparation=preg_replace("/<\/p>/","<br />",$preparation);
+$preparation=preg_replace("/<br \/><br \/>/","<br />",$preparation);
+//ajoute des sauts de lignes s'il en manque
+if(!preg_match("/<br \/>/", $preparation)){
+	$preparation=nl2br($preparation);
+}
+
+echo "<p>".$preparation."</p>";
 			?>
         </div>
     </div>
