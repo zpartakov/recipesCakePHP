@@ -7,7 +7,7 @@
 			<li><a href="<? echo CHEMIN; ?>recettes/rss"><img src="/pics/rss.png" alt="Flux RSS">&nbsp;Flux RSS</a></li>
       <li><a href="<? echo CHEMIN; ?>recettes/suggestions">Suggestions</a></li>
 			<li><a href="<? echo CHEMIN; ?>epices/">Épices</a></li>
-			<li><a href="/dokuwiki/doku.php?id=cuisine:aide_recettes">Aide</a></li>
+			<li><a href="/recettes/pages/aide">Aide</a></li>
 			<li><a href="<? echo CHEMIN; ?>recettes/?source=radeff" target="_blank">Les recettes de Fred</a></li>
 			<li><a href="/cms/dotclear/index.php?tag/cuisine">Le blog de Fred (cuisine)</a></li>
 			<li><a href="<? echo CHEMIN; ?>recettes/?titre=mare%25monti" title="Des recettes de la mer et de la montagne">Mare & Monti</a></li>

@@ -58,7 +58,7 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 
 
 
-    <header>
+    <header style="text-align: center;">
     <h1><a href="<?php echo CHEMIN; ?>">Recettes de cuisine Fred Radeff&nbsp;<img src="/pics/casserole.png" alt="image casserole"/></a><a href="<? echo CHEMIN; ?>recettes/rss"><img src="/pics/rss.png" alt="Flux RSS"></a></h1>
            <div id="hamburger">
                 <div></div>
@@ -68,7 +68,7 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
     </header>
 
 
-  	      <h2 style="margin-left: 1em"><?php echo $title; ?></h2>
+  	      <h2 style="text-align: center;"><?php echo $title; ?></h2>
 
         <!-- navigation -->
 <?php echo $this->element('menu');?>
