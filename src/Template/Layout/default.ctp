@@ -1,5 +1,6 @@
 <?php
 $cakeDescription = 'Recettes de cuisine Fred Radeff';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,15 +21,15 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 
 		<?= $this->Html->script('recettes.js') ?>
         <?= $this->Html->script('jquery-2.1.4.js') ?>
-		
+
 		<?= $this->Html->script('jquery-ui.js') ?>
         <?= $this->Html->script('hamburger.js') ?>
         <?= $this->Html->script('jquery.scroll2Top.min.js') ?>
-                
+
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-    
+
     		<!-- scroll2Top CSS -->
 		<style>
 			#to_the_top {
@@ -54,9 +55,9 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 </head>
 <body>
 <div id="container">
-    
-     
-    
+
+
+
     <header>
     <h1><a href="<?php echo CHEMIN; ?>">Recettes de cuisine Fred Radeff&nbsp;<img src="/pics/casserole.png" alt="image casserole"/></a><a href="<? echo CHEMIN; ?>recettes/rss"><img src="/pics/rss.png" alt="Flux RSS"></a></h1>
            <div id="hamburger">
@@ -65,10 +66,10 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
    		         <div></div>
   	      </div>
     </header>
-    
-    
+
+
   	      <h2 style="margin-left: 1em"><?php echo $title; ?></h2>
-          
+
         <!-- navigation -->
 <?php echo $this->element('menu');?>
         <!--The Layer that will be layed over the content
@@ -86,7 +87,7 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 <table>
 	<tr>
 	<td>
-		<a href="/dokuwiki/doku.php?id=cuisine:aide_recettes" title="Aide"><img src="/recettes/img/help.png" alt="Aide" /></a>
+		<a href="/recettes/pages/aide" title="Aide"><img src="/recettes/img/help.png" alt="Aide" /></a>
 	</td>
 	<td>
 		<a href="/www2/services" title="About"><img src="/recettes/img/linux/tux_che.jpg" alt="About" /></a>
@@ -101,7 +102,7 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 		<a href="http://creativecommons.org/licenses/by-sa/2.0/fr/" title="GPL License / CopyLeft"><img src="/recettes/img/copyleft.jpg" style="width: 45; height: 45" alt="GPL License / CopyLeft" /></a></td>
 	<td>
 		<a href="<? echo CHEMIN; ?>recettes/rss"><img src="/pics/rss-feed.png" alt="Flux RSS" style="width: 15; height: 45"></a>
-	</td>	
+	</td>
 	<td>
 		<img src="/recettes/img/qrcode.png" style="width: 45" alt="Code QR" />
 	</td>
@@ -109,8 +110,8 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 </table>
         </div>
     </div>
-	
-</div>    
+
+</div>
 <?= $this->Flash->render('auth') ?>
 
 <!-- Piwik -->
