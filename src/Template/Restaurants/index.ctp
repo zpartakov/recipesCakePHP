@@ -1,4 +1,4 @@
-<?php
+<?php 
 $this->set('title', "Liste de restaurants");
 
 if($this->Session->read('Auth.User')['role']!="administrator"){
@@ -9,7 +9,7 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 	$lestyle="";
 }
 ?>
-<form action='/recettes/restaurants/' method="get" name="formu">
+<form action='/recettes/restaurants/' method="get" name="formu"> 
 <table>
 	<tr>
 		<td>
@@ -88,13 +88,13 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 					?>
 						<img src="/recettes/img/local-seo-icon.png" style="width: 25px" alt="GPS" />
 					<?php
-					echo "</a>";
-			}
-			?>
-
+					echo "</a>";			
+			}	
+			?>	
+				
 			</td>
-
-
+            
+            
             <td class="actions" style="<?php echo $lestyle; ?>">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $restaurant->id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $restaurant->id]) ?>

@@ -1,5 +1,5 @@
 recipesCakePHP
-==============
+=======
 [![recipesCakePHP](http://radeff.red/pics/casserole.png)](recipesCakePHP)
 
 A cooking recipe database software, including advanced boolean search

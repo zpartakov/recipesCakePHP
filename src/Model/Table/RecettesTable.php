@@ -1,5 +1,6 @@
 <?php
 namespace App\Model\Table;
+
 use App\Model\Entity\Recette;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -68,19 +69,6 @@ class RecettesTable extends Table
             'targetForeignKey' => 'tag_id',
             'joinTable' => 'recettes_tags'
         ]);
-        
-		$this->hasOne('RIngrs', [
-            'foreignKey' => 'recette_id'
-			/*	,
-			$this->displayField('ingr')*/
-
-        ]);
-        
-         $this->hasOne('RPreps', [
-            'foreignKey' => 'recette_id',
-			$this->displayField('prep')
-
-        ]);
     }
 
     /**
@@ -115,18 +103,18 @@ $validator->add('titre', 'unique', [
             ->requirePresence('temps', 'create')
             ->notEmpty('temps');
 
-      /*  $validator
+        $validator
             ->requirePresence('ingr', 'create')
-            ->notEmpty('ingr'); */
+            ->notEmpty('ingr');
 
         $validator
             ->add('pers', 'valid', ['rule' => 'numeric'])
             ->requirePresence('pers', 'create')
             ->notEmpty('pers');
 
-/*        $validator
+        $validator
             ->requirePresence('prep', 'create')
-            ->notEmpty('prep'); */
+            ->notEmpty('prep');
 
         $validator
             ->add('date', 'valid', ['rule' => 'date'])
@@ -169,25 +157,29 @@ $validator->add('titre', 'unique', [
         return $validator;
     }
     
-/*
+    // Dans une classe table ou behavior
 public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
 {
    if (isset($data['username'])) {
 	   //remove double blank lines
-       $data['RIngrs.ingr'] = preg_replace('/[\n\n]+/', '\n', $data['RIngrs.ingr']);
-       $data['RIngrs.ingr'] = preg_replace('/[\r\r]+/', '\n', $data['RIngrs.ingr']);
-       $data['RPreps.prep'] = preg_replace('/[\n\n]+/', '\n', $data['RPreps.prep']);
-       $data['RPreps.prep'] = preg_replace('/[\r\r]+/', '\n', $data['RPreps.prep']);
-       
-              $data['RIngrs.ingr'] = preg_replace('/<p>/', '', $data['RIngrs.ingr']);
-              $data['RIngrs.ingr'] = preg_replace('/<\/p>/', '<br />', $data['RIngrs.ingr']);
+       /*     $recette = preg_replace('/[\n\r\n\r]+/', '', $recette);
+            $recette = preg_replace('/[\n\n]+/', '\n', $recette);
+            $recette = preg_replace('/[\r\r]+/', '\n', $recette);*/
 
-              $data['RPreps.prep'] = preg_replace('/<p>/', '', $data['RPreps.prep']);
-              $data['RPreps.prep'] = preg_replace('/<\/p>/', '<br />', $data['RPreps.prep']);
+       $data['ingr'] = preg_replace('/[\n\n]+/', '\n', $data['ingr']);
+       $data['ingr'] = preg_replace('/[\r\r]+/', '\n', $data['ingr']);
+       $data['prep'] = preg_replace('/[\n\n]+/', '\n', $data['prep']);
+       $data['prep'] = preg_replace('/[\r\r]+/', '\n', $data['prep']);
+       
+              $data['ingr'] = preg_replace('/<p>/', '', $data['ingr']);
+              $data['ingr'] = preg_replace('/<\/p>/', '<br />', $data['ingr']);
+
+              $data['prep'] = preg_replace('/<p>/', '', $data['prep']);
+              $data['prep'] = preg_replace('/<\/p>/', '<br />', $data['prep']);
 
    }
 }
-*/
+
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.

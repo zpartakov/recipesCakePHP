@@ -10,31 +10,42 @@ use App\Controller\AppController;
  */
 class IngredientsController extends AppController
 {
-	/* VARIOUS AUTH BEGIN */
-		public function isAuthorized($user) {
-		}
 
-		public function initialize()
-		{
-			parent::initialize();
-			$this->loadComponent('Paginator');
-			$this->loadComponent('RequestHandler'); //radeff added rss2
-			$this->loadComponent('Auth');
-			$this->Auth->allow(['index', 'view']);//radeff added rss6
-		}
-
+/* VARIOUS AUTH BEGIN */	
+	public function isAuthorized($user) {
+        //auth check
+        //return boolean
+    }
+	public function initialize()
+	{
+		parent::initialize();
+		$this->loadComponent('Paginator');
+		$this->loadComponent('Auth', [
+				'authorize'=> 'Controller',//added this line
+				'authenticate' => [
+				'Form' => [
+				'fields' => [
+				'username' => 'email',
+				'password' => 'password'
+				]
+				]
+				],
+				'loginAction' => [
+				'controller' => 'Users',
+				'action' => 'login'
+				],
+				'unauthorizedRedirect' => $this->referer()
+				]);
+	
+		// Allow the display action so our pages controller
+		// continues to work.
+		$this->Auth->allow(['display','view']);
+	}
 		public function beforeFilter(\Cake\Event\Event $event)
-		{
-			$this->Auth->allow('index','view');
-		}
-	/* VARIOUS AUTH END */
-
-	public $paginate = [
-	'limit' => 10,
-	'order' => [
-	'libelle' => 'asc'
-			]
-			];
+	{
+				$this->Auth->allow('index','view');
+	}
+/* VARIOUS AUTH END */	
 
     /**
      * Index method
@@ -43,24 +54,8 @@ class IngredientsController extends AppController
      */
     public function index()
     {
-			if($_GET['globalsearch']){
-			$s=$_GET['globalsearch'];
-
-		$conditions = array('OR' => array(
-			array('Ingredients.libelle LIKE' => '%'.$s.'%')
-		));
-//		print_r($conditions); exit;
-		$query=$this->Ingredients->find('all', array('conditions' => $conditions));
-		//debug($query); exit;
-		$this->set('ingredients', $this->paginate($query));
-	/*
-	 * ###################### //specific search #################
-	 *
-	 * */
-		} else {
         $this->set('ingredients', $this->paginate($this->Ingredients));
         $this->set('_serialize', ['ingredients']);
-			}
     }
 
     /**

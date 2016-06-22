@@ -47,7 +47,6 @@ class IngredientsTable extends Table
             ->notEmpty('libelle')
             ->add('libelle', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
-/*
         $validator
             ->requirePresence('typ', 'create')
             ->notEmpty('typ');
@@ -73,7 +72,7 @@ class IngredientsTable extends Table
         $validator
             ->requirePresence('commissions', 'create')
             ->notEmpty('commissions');
-*/
+
         return $validator;
     }
 }

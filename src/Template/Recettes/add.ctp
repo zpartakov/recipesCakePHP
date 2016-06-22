@@ -51,12 +51,19 @@ $image=$lastid.".jpg";
 		?>
 		 </select>
         <?php
+        /*
+         * http://stackoverflow.com/questions/31353085/validating-fields-as-unique-in-cakephp-3-0
+         * http://book.cakephp.org/3.0/fr/orm/validation.html
+         * http://book.cakephp.org/3.0/fr/core-libraries/validation.html
+         * */
+			//echo $this->Form->input('prov', ['options' => $lespays, 'style'=>'width: 230px']);
+//            echo $this->Form->input('titre', ['label'=>'Titre de la recette', "onBlur"=>"checkunik(document.getElementById('titre').value)"]);
             echo $this->Form->input('titre', ['label'=>'Titre de la recette']);
             echo $this->Form->input('temps', ['type'=>'text','label'=>'Temps de repos/préparation', 'value'=>0]);
-            echo $this->Form->input('RIngrs.ingr', ['label'=>'Ingrédients', 'type'=>'textarea']);
+            echo $this->Form->input('ingr', ['label'=>'Ingrédients']);
             echo $this->Form->input('pers', ['type'=>'text', 'value'=>6]);
             echo $this->Form->input('type_id', ['options' => $types]);
-            echo $this->Form->input('RPreps.prep', ['label'=>'Préparation', 'type'=>'textarea']);
+            echo $this->Form->input('prep', ['label'=>'Préparation']);
             echo $this->Form->input('date', ['type'=>'hidden', 'value'=>date('Y-m-d')]);
             echo $this->Form->input('score', ['type'=>'hidden', 'value'=>0]);
             echo $this->Form->input('source', ['type'=>'text','label'=>'Source (url)', 'value'=>$last_source]);
@@ -67,6 +74,7 @@ $image=$lastid.".jpg";
             echo $this->Form->input('difficulty', ['type'=>'hidden', 'value'=>0]);
             echo $this->Form->input('price', ['type'=>'hidden', 'value'=>0]);
             echo $this->Form->input('diet_id', ['options' => $diets]);
+            //echo $this->Form->input('tags._ids', ['options' => $tags, ['type'=>'hidden']]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

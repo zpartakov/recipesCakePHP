@@ -52,11 +52,18 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
 		 * is there any image of that recipe?
 		 * */
 		use Cake\Filesystem\Folder;
-
+		//use Cake\Filesystem\File; //not mandatory
 		$dir = new Folder(WWW_ROOT . 'img/pics');
 		$files = $dir->find($recette->pict, true);
+
+		//print_r($files); //tests
+
 		$nimg=count($files);
+
+		//echo "<p>#: $nimg</p>"; //tests
+
 		if($nimg==1) {
+			//echo "<p>yo image!</p>"; //tests
             echo $this->Html->image('pics/'.$recette->pict);
 		}
         ?>
@@ -110,22 +117,12 @@ if($this->Session->read('Auth.User')['role']!="administrator"){
         <div class="columns large-9">
             <strong><?= __('Ingrédients') ?></strong>
             <div style="font-style: italic"><?php
-			$ingredients=$recette->r_ingr->ingr;
-			$ingredients=html_entity_decode($ingredients);
-            //$ingredients=preg_replace("/-/","<br />-", $ingredients);
-						//$ingredients=stripslashes($ingredients);
-            //putz_lignes_vides($ingredients);
-						$ingredients=preg_replace("/^$/","",$ingredients);
-						$ingredients=preg_replace("/<p>/","",$ingredients);
-						$ingredients=preg_replace("/<\/p>/","<br />",$ingredients);
-						$ingredients=preg_replace("/<br \/><br \/>/","<br />",$ingredients);
-						$ingredients=preg_replace("/<br \/><br \/>/","<br />",$ingredients);
-						$ingredients=preg_replace("/^<br \/>$/","<br />",$ingredients);
-//ajoute des sauts de lignes s'il en manque
-if(!preg_match("/<br \/>/", $ingredients)){
-	$ingredients=nl2br($ingredients);
-}
-            echo $ingredients;
+             $ingredients=html_entity_decode($this->Text->autoParagraph(h($recette->ingr)));
+             $ingredients=preg_replace("/-/","<br />-", $ingredients);
+						 $ingredients=stripslashes($ingredients);
+//            <p><p>Mettre les raisins secs &agrave; tremper dans de l&#39;eau chaude.</p></p>
+             //$ingredients=preg_replace("/\<br \/\>\<br \/\>/","<br />",$ingredients);
+             putz_lignes_vides($ingredients);
              ?></div>
         </div>
     </div>
@@ -134,22 +131,15 @@ if(!preg_match("/<br \/>/", $ingredients)){
         <div class="columns large-9">
             <strong><?= __('Préparation') ?></strong>
             <?php
-			$preparation=$recette->r_prep->prep;
-			$preparation=html_entity_decode($preparation);
-			$preparation = $this->Text->autoLink($preparation);
+						$preparation=html_entity_decode($this->Text->autoParagraph(h($recette->prep)));
+						//$preparation=$recette->prep;
+						$preparation = $this->Text->autoLink($preparation);
             $preparation=html_entity_decode($preparation);
-            //$preparation=preg_replace("/[\n\r ]-/","<br />-", $preparation);
-//echo "<p>" .$preparation ."</p>";
-$preparation=preg_replace("/^$/","",$preparation);
-$preparation=preg_replace("/<p>/","",$preparation);
-$preparation=preg_replace("/<\/p>/","<br />",$preparation);
-$preparation=preg_replace("/<br \/><br \/>/","<br />",$preparation);
-//ajoute des sauts de lignes s'il en manque
-if(!preg_match("/<br \/>/", $preparation)){
-	$preparation=nl2br($preparation);
-}
 
-echo "<p>".$preparation."</p>";
+            $preparation=preg_replace("/[\n\r ]-/","<br />-", $preparation);
+            putz_lignes_vides($preparation);
+            //urlize($preparation)
+
 			?>
         </div>
     </div>
@@ -162,6 +152,8 @@ echo "<p>".$preparation."</p>";
             $source=$this->Text->autolink($source);
             $source=html_entity_decode($source);
             echo $source;
+            //$source=preg_replace("/^http(.*)/","<a href=\"http\1\">http\1</a>",$source);
+            //urlize ($source);
              ?>
         </div>
     </div>

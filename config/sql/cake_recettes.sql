@@ -280,36 +280,6 @@ CREATE TABLE `posts` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `r_ingrs`
---
-
-DROP TABLE IF EXISTS `r_ingrs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `r_ingrs` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
-  `recette_id` int(12) NOT NULL,
-  `ingr` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14913 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `r_preps`
---
-
-DROP TABLE IF EXISTS `r_preps`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `r_preps` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
-  `recette_id` int(12) NOT NULL,
-  `prep` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18745 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `recette_user`
 --
 
@@ -348,10 +318,12 @@ CREATE TABLE `recettes` (
   `difficulty` int(2) NOT NULL,
   `price` int(2) NOT NULL,
   `diet_id` int(9) NOT NULL,
+  `ingr` longtext NOT NULL,
+  `prep` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `titre` (`titre`)
-) ENGINE=MyISAM AUTO_INCREMENT=14377 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14384 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -591,4 +563,4 @@ CREATE TABLE `vins_types` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-09 13:39:41
+-- Dump completed on 2016-06-22  7:07:58

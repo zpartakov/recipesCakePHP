@@ -1,6 +1,18 @@
 <?php
 $this->set('title', "Liste de recettes de cuisine");
 
+//$this->AuthUser->id();
+//$username=$this->AuthUser->user('username');
+
+/*
+if ($this->Session->read('Auth.User')){
+	echo "<br>session username: "; echo $this->Session->read('Auth.User')['username'];
+	echo "<br>session role: "; echo $this->Session->read('Auth.User')['role'];
+	echo "<br>session email: "; echo $this->Session->read('Auth.User')['email'];
+	echo "<br>session id: "; echo $this->Session->read('Auth.User')['id'];
+//session: Array ( [username] => radeff [] => fradeff@akademia.ch [pseudo] => radeff [role] => administrator [id] => 6 [dateIn] => Cake\I18n\Time Object ( [date] => 2010-11-29 17:15:00 [timezone_type] => 3 [timezone] => UTC ) )
+}
+*/
 if($this->Session->read('Auth.User')['role']!="administrator" && $_SERVER["HTTP_HOST"]!="localhost"){
 	$admin=0;
 	$lestyle="display: none";
@@ -40,7 +52,6 @@ $dir = new Folder(WWW_ROOT . 'img/pics');
 </div>
 
 <div class="recettes index large-10 medium-9 columns">
-	
 	<?php
 if($_GET['source']||$_GET['titre']||$_GET['prep']||$_GET['temps']||$_GET['type_id']||$_GET['ingr']||$_GET['ingrNot']||$_GET['ingrNot1']||$_GET['prov']||$_GET['mode_cuisson_id']||$_GET['kids']||$_GET['diet_id']){
 echo "<h3>Recherche avancée</h3>";
@@ -60,7 +71,7 @@ echo "<h3>Nouveautés</h3>";
 }
 
 if(!is_nan($nbrec)) {
-echo "<h4>Nombre de recettes: #" .$nbrec ."</h4>";
+echo "<h3>Nombre de recettes: #" .$nbrec ."</h3>";
 }
 	?>
     <table cellpadding="0" cellspacing="0">
