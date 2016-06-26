@@ -1,4 +1,6 @@
 <?php
+//echo $this->element('new_recipes'); exit;?>
+<?php
 $cakeDescription = 'Recettes de cuisine Fred Radeff';
 ?>
 <!DOCTYPE html>
@@ -58,7 +60,9 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 
 
     <header>
-    <h1><a href="<?php echo CHEMIN; ?>">Recettes de cuisine Fred Radeff&nbsp;<img src="/pics/casserole.png" alt="image casserole"/></a><a href="<? echo CHEMIN; ?>recettes/rss"><img src="/pics/rss.png" alt="Flux RSS"></a></h1>
+    <h1><a href="<?php echo CHEMIN; ?>">Recettes de cuisine Fred Radeff&nbsp;<img src="/pics/casserole.png" alt="image casserole"/></a><a href="<? echo CHEMIN; ?>recettes/rss"><img src="/pics/rss.png" alt="Flux RSS"></a>
+    &nbsp;
+</h1>
            <div id="hamburger">
                 <div></div>
    		         <div></div>
@@ -68,10 +72,6 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 
 
   	      <h2 style="margin-left: 1em"><?php echo $title; ?></h2>
-<div class="new_recipes">
-  <?php echo $this->element('random_image');?>
-  <?php// echo $this->element('new_recipes');?>
-</div>
         <!-- navigation -->
 <?php echo $this->element('menu');?>
         <!--The Layer that will be layed over the content

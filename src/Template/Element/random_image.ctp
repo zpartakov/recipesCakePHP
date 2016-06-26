@@ -1,4 +1,4 @@
-	<?php
+<?php
 $test=0;
 	//affiche des images aléatoires
 	use Cake\ORM\TableRegistry;
@@ -31,11 +31,11 @@ while($test==0){
 			if($nimg==1) {
 				$test=1;
 				echo $this->Html->image('pics/'.$recette->pict, [
-				'style'=>'width: 100px; margin-left: 1em; padding-right: 1em, padding-bottom: 1em',
+				'style'=>'width: 50px',
 				'alt' => $recette->titre ."(".$recette->prov.")",
 				'title' => $recette->titre ."(".$recette->prov.")",
 				'url' => ['controller' => 'Recettes', 'action' => 'view', $recette->id]]);
-				echo "&nbsp;&nbsp;" .$this->Html->link($recette->titre, ['controller'=>'recettes', 'action' => 'view', $recette->id]);
+				echo "<br />" .$this->Html->link($recette->titre, ['controller'=>'recettes', 'action' => 'view', $recette->id]);
 
 			}
 		}
