@@ -68,6 +68,10 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
    		         <div></div>
    		         <div></div>
   	      </div>
+          <div class="nouvelles_recettes">
+            <span style="font-size: 11px">Dernières recettes de Fred Radeff</span><br/>
+            <?php require_once("/var/www/radeff/recettes_static/new_recipes.html"); ?>
+          </div>
     </header>
 
 

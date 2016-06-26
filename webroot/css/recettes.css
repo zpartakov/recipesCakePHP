@@ -25,6 +25,27 @@
   }
 }
 
+
+
+.nouvelles_recettes {
+width: 200px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 15px;
+padding-right: 15px;
+background-color: #ffedcc;
+position: absolute;
+top: 10px;
+right: 2em;
+text-align: right
+
+    border-radius: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+}
+
 img {
     border-radius: 10px;
         border-top-left-radius: 10px;
