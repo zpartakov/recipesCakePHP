@@ -1,4 +1,4 @@
-<?php	
+	<?php
 $test=0;
 	//affiche des images aléatoires
 	use Cake\ORM\TableRegistry;
@@ -10,7 +10,7 @@ $test=0;
 while($test==0){
 
 	if($this->Session->read('Auth.User')['role']!="administrator" && $_SERVER["HTTP_HOST"]!="localhost"){
-		$query->where(['private NOT LIKE' => '1']); // Return the same query object	
+		$query->where(['private NOT LIKE' => '1']); // Return the same query object
 	}
 	$query->where(['Recettes.pict NOT LIKE' => '']);
 	$query->order('rand()');
@@ -31,13 +31,13 @@ while($test==0){
 			if($nimg==1) {
 				$test=1;
 				echo $this->Html->image('pics/'.$recette->pict, [
-				'style'=>'width: 30%;', 
+				'style'=>'width: 100px; margin-left: 1em; padding-right: 1em, padding-bottom: 1em',
 				'alt' => $recette->titre ."(".$recette->prov.")",
 				'title' => $recette->titre ."(".$recette->prov.")",
 				'url' => ['controller' => 'Recettes', 'action' => 'view', $recette->id]]);
-				echo $this->Html->link($recette->titre, ['controller'=>'recettes', 'action' => 'view', $recette->id]);
+				echo "&nbsp;&nbsp;" .$this->Html->link($recette->titre, ['controller'=>'recettes', 'action' => 'view', $recette->id]);
 
 			}
 		}
 }
-?>	
+?>

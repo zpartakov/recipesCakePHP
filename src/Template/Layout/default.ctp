@@ -68,7 +68,10 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
 
 
   	      <h2 style="margin-left: 1em"><?php echo $title; ?></h2>
-
+<div class="new_recipes">
+  <?php echo $this->element('random_image');?>
+  <?php// echo $this->element('new_recipes');?>
+</div>
         <!-- navigation -->
 <?php echo $this->element('menu');?>
         <!--The Layer that will be layed over the content
