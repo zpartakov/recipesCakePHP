@@ -68,6 +68,12 @@ $cakeDescription = 'Recettes de cuisine Fred Radeff';
    		         <div></div>
    		         <div></div>
   	      </div>
+          <div style="text-align: center">
+          <form action='/recettes/recettes/' method="get" name="formu">
+          	<input type="hidden" name="cherche" value="1">
+          <h3 style="display: inline;">Recherche simple&nbsp;<input type="text" name="globalsearch" style="width: 250px; display: inline">&nbsp;<input type="submit"></h2>
+          </form>
+          </div>
           <div class="nouvelles_recettes">
             <span style="font-size: 11px">Dernières recettes de Fred Radeff</span><br/>
             <?php require_once("/var/www/radeff/recettes_static/new_recipes.html"); ?>
