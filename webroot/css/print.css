@@ -9,7 +9,7 @@ body {
 	padding: 2%;
 }
 
- h1 {page-break-before: always;}
+h1 {page-break-before: always;}
 #leftnav, #header, #footer, .retour {
 display: none;
 }
@@ -27,19 +27,19 @@ img {
 }
 
 /* Default left, right, top, bottom margin is 2cm */
-@page { margin: 2cm } 
- 
+@page { margin: 2cm }
+
 /* First page, 10 cm margin on top */
 @page :first {
   margin-top: 10cm;
 }
- 
+
 /* Left pages, a wider margin on the left */
 @page :left {
   margin-left: 3cm;
   margin-right: 2cm;
 }
- 
+
 @page :right {
   margin-left: 2cm;
   margin-right: 3cm;
