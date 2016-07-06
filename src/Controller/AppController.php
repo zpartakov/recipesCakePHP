@@ -25,8 +25,8 @@ use Cake\Controller\Controller;
  */
 class AppController extends Controller
 {
-	
-	
+
+
 
     /**
      * Initialization hook method.
@@ -39,8 +39,8 @@ class AppController extends Controller
     {
         parent::initialize();
         $this->loadComponent('Flash');
-        
+
     }
+
+		
 }
-
-

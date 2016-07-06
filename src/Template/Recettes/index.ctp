@@ -69,9 +69,9 @@ echo "<h3>Recherche simple</h3>";
 }else{
 echo "<h3>Nouveautés</h3>";
 }
-
+$nbrec=count($recettes);
 if(!is_nan($nbrec)) {
-echo "<h3>Nombre de recettes: #" .$nbrec ."</h3>";
+//echo "<h3>Nombre de recettes: #" .$nbrec ."</h3>";
 }
 	?>
     <table cellpadding="0" cellspacing="0">

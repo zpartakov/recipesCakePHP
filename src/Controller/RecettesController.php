@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Controller\AppController;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Recettes Controller
  *
@@ -28,12 +28,13 @@ class RecettesController extends AppController
 		$this->loadComponent('Paginator');
 		$this->loadComponent('RequestHandler'); //radeff added rss2
 		$this->loadComponent('Auth');
-		$this->Auth->allow(['display','view', 'rss', 'index', 'suggestions']);//radeff added rss6
+
+		$this->Auth->allow(['display','view', 'rss', 'index', 'suggestions', 'liste2commissions']);//radeff added rss6
 	}
 
 	public function beforeFilter(\Cake\Event\Event $event)
 	{
-		$this->Auth->allow('index','chercher','view','total_recettes','pays','les_types','nouveau','rss','regime','les_regimes', 'suggestions');
+		$this->Auth->allow('index','chercher','view','total_recettes','pays','les_types','nouveau','rss','regime','les_regimes', 'suggestions', 'liste2commissions');
 	}
 
 
@@ -152,10 +153,11 @@ class RecettesController extends AppController
 				$this->set('nbrec', $query->count());
 
 
+		if ($_GET['ingrNot']) { //recherches booléennes portant sur plusieurs ingrédients;on laisse tomber les sous-conditions pour les
+			
+			
+			if (strlen($_GET['ingrNot'])>0&&strlen($_GET['ingrNot1'])<1) { //recherche ingrédient2
 
-		} elseif ($_GET['ingrNot']) { //recherches booléennes portant sur plusieurs ingrédients;on laisse tomber les sous-conditions pour les
-			if ($_GET['ingrNot']) { //recherche ingrédient2
-				//selection: empty = AND or NOT idem selection1
 				if ($_GET['selection']=='NOT') {
 					$conditions = array('AND' => array(
 					array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
@@ -166,11 +168,16 @@ class RecettesController extends AppController
 					array('Recettes.ingr LIKE' => '%'.$_GET['ingr'].'%'),
 					array('Recettes.ingr LIKE' => '%'.$_GET['ingrNot'].'%')));
 				}
+				
+				//print_r($conditions); 
+				//exit;
+				
 				$query=$this->Recettes->find('all', array('conditions' => $conditions));
 				$this->set('recettes', $this->paginate($query));
-			}
-			if ($_GET['ingrNot1']) { //recherche ingrédient3
-				//selection: empty = AND or NOT idem selection1
+			} 
+			
+			if (strlen($_GET['ingrNot1'])>0) { //recherche ingrédient3
+
 				if ($_GET['selection1']=='NOT') {
 					if ($_GET['selection']=='NOT') {
 						$conditions = array('AND' => array(
@@ -202,6 +209,11 @@ class RecettesController extends AppController
 				$query=$this->Recettes->find('all', array('conditions' => $conditions));
 				$this->set('recettes', $this->paginate($query));
 			}
+
+				//debug($query);
+
+
+		} 
 		} else {
 			//is the user an admin? if yes OR if localhost, display hidden recipes
 			if ($this->Auth->user('id')||$_SERVER["HTTP_HOST"]=="localhost") {
@@ -386,7 +398,11 @@ $prov = $query->first();
 
 	}
 
-
+	public function liste2commissions() { //grocery list
+		//$this->layout = 'print'; //old
+		$this->viewBuilder()->layout('print'); //new
+//		     require_once(ROOT .DS. "Vendor" . DS  . "MyClass" . DS . "MyClass.php");
+	}
 
 }
 
