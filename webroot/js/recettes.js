@@ -13,6 +13,13 @@
 */
 
 
+function cacheautresingredients() {
+	document.getElementById('autresingredients').style.display = 'none';
+	document.getElementById('autresingredients2').style.display = 'none';
+	document.getElementById('autresingredientsa').style.display = 'none';
+	document.getElementById('autresingredientsa2').style.display = 'none';
+}
+
 function vide_recherche(id) {
 	document.getElementById(id).value="";
 }

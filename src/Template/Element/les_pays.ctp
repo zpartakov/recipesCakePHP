@@ -11,7 +11,8 @@ foreach ($query as $article) {
     $nbrec2++;
 }
 
-	echo "<select name=\"prov\" size=\"" .$nbrec2."\" style=\"width: 200px; height: ".($nbrec2*1) ."pt; display: block\"><option value='' selected>-- all --</option>";
+
+	echo "<select onchange=\"cacheautresingredients()\" name=\"prov\" size=\"" .$nbrec2."\" style=\"width: 200px; height: ".($nbrec2*1) ."pt; display: block\"><option value='' selected>-- all --</option>";
 	echo $regimes;
 	echo "</select>";	
 ?>	

@@ -69,10 +69,9 @@ $this->set('title', 'Accueil');
 		?>
 	  </td>
     </tr>
-
     <tr>
-	<td>2e ingrédient (facultatif)</td>
-      <td class=gros>
+	<td id="autresingredients">2e ingrédient (facultatif)</td>
+      <td class=gros id="autresingredients2">
         <input type="radio" name="selection" value="" checked>&nbsp;ET
         <input type="radio" name="selection" value="NOT">&nbsp;NON
         <input type='text' name='ingrNot'>
@@ -80,8 +79,8 @@ $this->set('title', 'Accueil');
     </tr>
 
     <tr>
-	<td>3e ingrédient (facultatif)</td>
-      <td class=gros>
+	<td id="autresingredientsa">3e ingrédient (facultatif)</td>
+      <td class=gros id="autresingredientsa2">
         <input type="radio" name="selection1" value="" checked>&nbsp;ET
         <input type="radio" name="selection1" value="NOT">&nbsp;NON
         <input type='text' name='ingrNot1'>

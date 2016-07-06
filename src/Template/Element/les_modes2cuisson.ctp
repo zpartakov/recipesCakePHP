@@ -10,7 +10,7 @@ foreach ($query as $article) {
     $regimes.= "<option value=\"".$article->id."\">".$article->lib."</option>";
     $nbrec2++;
 }
-	echo "<select name=\"mode_cuisson_id\" size=\"" .$nbrec2."\" style=\"width: 200px; height: ".($nbrec2*15) ."pt; display: block\"><option value='' selected>-- all --</option>";
+	echo "<select onchange=\"cacheautresingredients()\" name=\"mode_cuisson_id\" size=\"" .$nbrec2."\" style=\"width: 200px; height: ".($nbrec2*15) ."pt; display: block\"><option value='' selected>-- all --</option>";
 	echo $regimes;
 	echo "</select>";	
 ?>	
