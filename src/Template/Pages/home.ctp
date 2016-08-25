@@ -2,7 +2,10 @@
 //http://book.cakephp.org/3.0/en/orm/query-builder.html
 $this->set('title', 'Accueil');
 ?>
-
+<div class="nouvelles_recettes">
+	<span style="font-size: 11px">Dernières recettes de Fred Radeff</span><br/>
+	<?php require_once("/var/www/radeff/recettes_static/new_recipes.html"); ?>
+</div>
 <div style="margin-left: 5%; margin-right: 7%">
 <table>
 	<tr>
